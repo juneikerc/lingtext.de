@@ -75,7 +75,7 @@ function parseSpotify(url: URL): SongEmbedData | null {
     id = parts[2];
   }
 
-  // También aceptar URLs ya embebidas:
+  // Also accept already-embedded URLs:
   // /embed/track/<id>
   if (type === "embed" && parts.length >= 3) {
     type = parts[1];
@@ -97,7 +97,7 @@ function parseSpotify(url: URL): SongEmbedData | null {
 export function parseSongEmbed(rawUrl: string): ParseSongEmbedResult {
   const parsedUrl = parseUrl(rawUrl);
   if (!parsedUrl) {
-    return { error: "URL inválida. Revisa el enlace e inténtalo otra vez." };
+    return { error: "Ungueltige URL. Bitte pruefe den Link und versuche es erneut." };
   }
 
   const youtubeData = parseYouTube(parsedUrl);
@@ -108,6 +108,6 @@ export function parseSongEmbed(rawUrl: string): ParseSongEmbedResult {
 
   return {
     error:
-      "Solo se permiten enlaces válidos de YouTube o Spotify (track, album, playlist o episode).",
+      "Nur gueltige YouTube- oder Spotify-Links sind erlaubt (track, album, playlist oder episode).",
   };
 }

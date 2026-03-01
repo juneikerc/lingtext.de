@@ -3,13 +3,18 @@
  */
 
 import { TRANSLATORS } from "@/types";
+import {
+  APP_ORIGIN,
+  SOURCE_LANGUAGE,
+  TARGET_LANGUAGE,
+} from "@/config/app-identity";
 
 export { TRANSLATORS };
 
 export const TRANSLATOR_LABELS: Record<TRANSLATORS, string> = {
-  [TRANSLATORS.CHROME]: "⚡ Rápido | Básico",
-  [TRANSLATORS.MEDIUM]: "🧠 Inteligente | Medio",
-  [TRANSLATORS.SMART]: "🚀 Muy Inteligente",
+  [TRANSLATORS.CHROME]: "⚡ Schnell | Basis",
+  [TRANSLATORS.MEDIUM]: "🧠 Intelligent | Mittel",
+  [TRANSLATORS.SMART]: "🚀 Sehr intelligent",
 };
 
 export function isChromeAIAvailable(): boolean {
@@ -31,8 +36,8 @@ export async function translateFromChrome(
   try {
     // @ts-expect-error Translator is an emerging Chrome API.
     const translator = await Translator.create({
-      sourceLanguage: "en",
-      targetLanguage: "es",
+      sourceLanguage: SOURCE_LANGUAGE,
+      targetLanguage: TARGET_LANGUAGE,
     });
     const result = await translator.translate(term);
     return { translation: String(result || "").trim() };
@@ -62,7 +67,7 @@ export async function translateWithOpenRouter(
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
-        "HTTP-Referer": "https://lingtext.org",
+        "HTTP-Referer": APP_ORIGIN,
         "X-Title": "LingText Extension",
       },
       body: JSON.stringify({
@@ -70,7 +75,7 @@ export async function translateWithOpenRouter(
         messages: [
           {
             role: "user",
-            content: `You are a machine that outputs strict JSON. You receive an English word and output its Spanish translations grouped by grammatical category as a list of strings.\nRules:\n1. Use only valid JSON.\n2. Values must be arrays of strings.\n3. Only include relevant categories.\n\ntranslate this word to spanish: ${sanitizedText} (respond only with the translation no additional text)`,
+            content: `You are a machine that outputs strict JSON. You receive an English word and output its German translations grouped by grammatical category as a list of strings.\nRules:\n1. Use only valid JSON.\n2. Values must be arrays of strings.\n3. Only include relevant categories.\n\ntranslate this word to german: ${sanitizedText} (respond only with the translation no additional text)`,
           },
         ],
         max_tokens: 100,

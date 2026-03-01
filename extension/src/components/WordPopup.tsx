@@ -60,9 +60,9 @@ export default function WordPopup({
         </button>
       </div>
 
-      {/* Traducción */}
+      {/* Translation */}
       <div className="lingtext-popup-body">
-        <div className="lingtext-popup-label">🇪🇸 Traducción</div>
+        <div className="lingtext-popup-label">🇩🇪 Übersetzung</div>
         <div className="lingtext-popup-translation">
           {parsedTranslation?.info ? (
             Object.entries(parsedTranslation.info).map(
@@ -80,23 +80,23 @@ export default function WordPopup({
           )}
         </div>
 
-        {/* Estado */}
+        {/* Status */}
         <div className="lingtext-popup-status">
           <span
             className={`lingtext-status-badge ${isUnknown ? "unknown" : "known"}`}
           >
-            {isUnknown ? "🎯 Por aprender" : "✅ Conocida"}
+            {isUnknown ? "🎯 Zu lernen" : "✅ Bekannt"}
           </span>
         </div>
 
-        {/* Acciones */}
+        {/* Actions */}
         <div className="lingtext-popup-actions">
           {isUnknown ? (
             <button
               className="lingtext-btn lingtext-btn-known"
               onClick={() => onMarkKnown(popup.lower)}
             >
-              ✅ Marcar como conocida
+              ✅ Als bekannt markieren
             </button>
           ) : (
             <button
@@ -105,7 +105,7 @@ export default function WordPopup({
                 onMarkUnknown(popup.lower, popup.word, popup.translation)
               }
             >
-              🎓 Marcar para repasar
+              🎓 Zum Wiederholen markieren
             </button>
           )}
         </div>

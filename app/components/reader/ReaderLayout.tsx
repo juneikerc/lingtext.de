@@ -71,12 +71,12 @@ export function ReaderProgressFooter({
       <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full px-6 py-3 text-sm text-gray-600 dark:text-gray-400 flex items-center space-x-4">
         <div className="flex items-center space-x-2">
           <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-          <span>Palabras conocidas</span>
+          <span>Wörter conocidas</span>
         </div>
         <div className="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
         <div className="flex items-center space-x-2">
           <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
-          <span>Palabras por aprender ({unknownCount})</span>
+          <span>Wörter por aprender ({unknownCount})</span>
         </div>
       </div>
     </Link>
@@ -98,14 +98,14 @@ export function ReaderHelpFloatingLink() {
           target="_blank"
           rel="noopener noreferrer"
           className="block rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-semibold text-white shadow-lg transition-colors duration-200 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-indigo-500 dark:text-indigo-50 dark:hover:bg-indigo-400 dark:focus-visible:ring-offset-gray-900 animate-pulse motion-reduce:animate-none"
-          aria-label="Abrir grupo de Facebook para preguntas"
+          aria-label="Facebook-Gruppe fuer Fragen oeffnen"
         >
-          ¿Tienes dudas? Pregunta en nuestro grupo de Facebook →
+          Hast du Fragen? Frag in unserer Facebook-Gruppe →
         </a>
         <button
           type="button"
           className="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-gray-600 shadow-md transition-colors duration-200 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:ring-offset-gray-900"
-          aria-label="Ocultar ayuda"
+          aria-label="Hilfe ausblenden"
           onClick={() => setIsVisible(false)}
         >
           <span aria-hidden="true">×</span>

@@ -71,7 +71,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   useExposeDbDebug();
-  useExtensionSync(); // Sincronización con la extensión de Chrome
+  useExtensionSync(); // Sync with the Chrome extension
   return <Outlet />;
 }
 

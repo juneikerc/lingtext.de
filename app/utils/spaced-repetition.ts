@@ -1,29 +1,29 @@
 import type { WordEntry, SpacedRepetitionData } from "~/types";
 
 /**
- * Determina si una palabra está lista para repaso
- * Si no tiene datos (es nueva), se considera lista.
- * Si tiene datos, se compara la fecha.
+ * Determines whether a word is ready for review.
+ * If it has no SR data (new), it is considered ready.
+ * If it has SR data, compare current time to nextReview.
  */
 export function isWordReadyForReview(word: WordEntry): boolean {
-  if (!word.srData) return true; // Primera vez (Nueva)
+  if (!word.srData) return true; // First time (new card)
   return Date.now() >= word.srData.nextReview;
 }
 
 /**
- * Formatea el tiempo restante hasta el próximo repaso
+ * Formats remaining time until next review.
  */
 export function formatTimeUntilReview(nextReview: number): string {
   const now = Date.now();
   const diff = nextReview - now;
 
-  if (diff <= 0) return "Ahora";
+  if (diff <= 0) return "Jetzt";
 
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
   if (days > 0) {
-    return `${days} día${days > 1 ? "s" : ""}`;
+    return `${days} Tag${days > 1 ? "e" : ""}`;
   } else if (hours > 0) {
     return `${hours} h`;
   } else {
@@ -33,8 +33,8 @@ export function formatTimeUntilReview(nextReview: number): string {
 }
 
 /**
- * Calcula estadísticas de palabras listas para repaso.
- * Útil para mostrar contadores en el UI.
+ * Calculates stats for words ready to review.
+ * Useful for counters in the UI.
  */
 export function calculateReadyWords(words: WordEntry[]) {
   const ready = words.filter(isWordReadyForReview);
@@ -47,9 +47,9 @@ export function calculateReadyWords(words: WordEntry[]) {
 }
 
 /**
- * Algoritmo SM-2 (Estilo Anki) Mejorado
- * * @param currentData Datos actuales de SR (undefined si es nueva)
- * @param quality Calidad de la respuesta: 0-5 (0=olvido total, 3=aprobado, 5=perfecto)
+ * Improved SM-2 algorithm (Anki style).
+ * @param currentData Current SR data (undefined if new card).
+ * @param quality Answer quality: 0-5 (0=complete blackout, 3=pass, 5=perfect).
  */
 export function calculateNextReview(
   currentData: SpacedRepetitionData | undefined,
@@ -57,11 +57,10 @@ export function calculateNextReview(
 ): SpacedRepetitionData {
   const now = Date.now();
 
-  // Valores por defecto si es una palabra nueva
+  // Default values for a new word
   if (!currentData) {
-    // Si la calidad es baja (<3), programamos para muy pronto (ej. 1 hora o 1 día)
-    // Si es alta, empezamos con 1 día.
-    const initialInterval = quality >= 3 ? 1 : 0.04; // 0.04 días ~= 1 hora
+    // Low quality (<3): very soon; high quality: start at 1 day.
+    const initialInterval = quality >= 3 ? 1 : 0.04; // 0.04 days ~= 1 hour
 
     return {
       easeFactor: 2.5,
@@ -75,35 +74,35 @@ export function calculateNextReview(
   let { easeFactor, repetitions, interval } = currentData;
 
   if (quality >= 3) {
-    // --- RESPUESTA CORRECTA ---
+    // --- CORRECT ANSWER ---
     if (repetitions === 0) {
       interval = 1;
     } else if (repetitions === 1) {
-      interval = 6; // Salto clásico de Anki (1 día -> 6 días)
+      interval = 6; // Classic Anki jump (1 day -> 6 days)
     } else {
       interval = Math.round(interval * easeFactor);
     }
     repetitions += 1;
 
-    // Ajustar Ease Factor (fórmula estándar SM-2)
+    // Adjust ease factor (standard SM-2 formula)
     // EF' = EF + (0.1 - (5-q) * (0.08 + (5-q)*0.02))
     easeFactor =
       easeFactor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
 
-    // No dejar que el factor baje de 1.3 (para evitar el "infierno de repasos")
+    // Keep minimum at 1.3 to avoid "review hell"
     if (easeFactor < 1.3) easeFactor = 1.3;
   } else {
-    // --- RESPUESTA INCORRECTA ---
+    // --- INCORRECT ANSWER ---
     repetitions = 0;
-    interval = 1; // Reiniciar a 1 día
-    // Nota: En implementaciones estrictas de Anki, a veces se reduce el Ease Factor aquí,
-    // pero mantenerlo suele ser menos frustrante para el usuario.
+    interval = 1; // Reset to 1 day
+    // Note: strict Anki variants may reduce ease factor here,
+    // but keeping it is usually less frustrating.
   }
 
-  // Calcular próxima fecha (timestamp)
+  // Compute next review timestamp
   const nextReview = now + interval * 24 * 60 * 60 * 1000;
 
-  // Mantener historial limitado a las últimas 20 revisiones para no llenar la DB
+  // Keep only last 20 entries to avoid DB bloat
   const reviewHistory = [
     ...(currentData.reviewHistory || []),
     { date: now, quality, interval },

@@ -3,7 +3,7 @@ slug: "lectura-intensiva-vs-extensiva"
 title: "Lectura intensiva vs lectura extensiva | Aprendizaje de inglés"
 mainHeading: "Lectura intensiva vs lectura extensiva: ¿Cuál es más efectiva para aprender idiomas?"
 metaDescription: "La lectura intensiva y la lectura extensiva son dos enfoques distintos en el aprendizaje de un idioma. Cada uno tiene sus propias características y objetivos que contribuyen al desarrollo de la competencia lingüística."
-image: "https://images.lingtext.org/lectura-intensiva-vs-extensiva.png"
+image: "https://images.lingtext.de/lectura-intensiva-vs-extensiva.png"
 tags: ["Lectura", "Metodología", "Estrategias"]
 ---
 

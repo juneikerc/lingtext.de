@@ -39,7 +39,7 @@ export default function Card({
           <button
             onClick={playAudio}
             className="p-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
-            title="Escuchar pronunciación"
+            title="Aussprache anhören"
           >
             <span className="text-xl">🔊</span>
           </button>
@@ -48,16 +48,16 @@ export default function Card({
         <div className="flex items-center justify-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
           <span className="flex items-center space-x-1">
             <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
-            <span>Agregada: {new Date(word.addedAt).toLocaleDateString()}</span>
+            <span>Hinzugefuegt: {new Date(word.addedAt).toLocaleDateString()}</span>
           </span>
         </div>
       </div>
 
-      {/* Área de respuesta */}
+      {/* Answer area */}
       <div className="p-8">
         {showTranslation ? (
           <div className="space-y-6">
-            {/* Respuesta correcta */}
+            {/* Correct answer */}
             <div className="text-center">
               <div className="inline-flex items-center px-6 py-2 mb-4 text-lg font-medium text-gray-700 bg-gray-100 dark:bg-gray-800 dark:text-gray-300 rounded-full border border-gray-200 dark:border-gray-700">
                 {isTranslationJson(word.translation) ? (
@@ -84,14 +84,14 @@ export default function Card({
               </div>
             </div>
 
-            {/* Botones de confirmación */}
+            {/* Confirmation buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => handleAnswer(true)}
                 className="flex-1 flex items-center justify-center space-x-2 px-6 py-3 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-800/30 border border-green-200 dark:border-green-800/50 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
               >
                 <span>✅</span>
-                <span>La recordaba</span>
+                <span>Ich wusste es</span>
               </button>
               <button
                 onClick={() => handleAnswer(false)}
@@ -99,7 +99,7 @@ export default function Card({
                 className="flex-1 flex items-center justify-center space-x-2 px-6 py-3 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-800/30 border border-red-200 dark:border-red-800/50 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
               >
                 <span>❌</span>
-                <span>No la recordaba</span>
+                <span>Ich wusste es nicht</span>
               </button>
             </div>
           </div>

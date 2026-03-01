@@ -5,7 +5,7 @@ interface LoadingSpinnerProps {
 }
 
 export default function LoadingSpinner({
-  message = "Cargando...",
+  message = "Wird geladen...",
   size = "md",
   className = "",
 }: LoadingSpinnerProps) {

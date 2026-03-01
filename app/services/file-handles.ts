@@ -1,9 +1,11 @@
-const DB_NAME = "lingtext-handles";
+import { FILE_HANDLES_DB_NAME } from "~/config/app-identity";
+
+const DB_NAME = FILE_HANDLES_DB_NAME;
 const STORE_NAME = "handles";
 const DB_VERSION = 1;
 
 /**
- * Abre (o crea) la base de datos IndexedDB para guardar file handles.
+ * Opens (or creates) the IndexedDB database used to store file handles.
  */
 function openDB(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -27,7 +29,7 @@ function openDB(): Promise<IDBDatabase> {
 }
 
 /**
- * Guarda un FileSystemFileHandle asociado a un ID (id del texto).
+ * Stores a FileSystemFileHandle associated with a text ID.
  */
 export async function saveFileHandle(
   textId: string,
@@ -48,7 +50,7 @@ export async function saveFileHandle(
 }
 
 /**
- * Recupera un FileSystemFileHandle asociado a un ID.
+ * Retrieves a FileSystemFileHandle associated with a text ID.
  */
 export async function getFileHandle(
   textId: string
@@ -72,7 +74,7 @@ export async function getFileHandle(
 }
 
 /**
- * Elimina un handle (por ejemplo al borrar el texto).
+ * Deletes a saved handle (for example when deleting the text).
  */
 export async function deleteFileHandle(textId: string): Promise<void> {
   try {

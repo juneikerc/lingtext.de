@@ -28,7 +28,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
     {
       tagName: "link",
       rel: "canonical",
-      href: `https://lingtext.org/levels/${levelText.level.toLowerCase()}`,
+      href: `https://lingtext.de/levels/${levelText.level.toLowerCase()}`,
     },
   ];
 }
@@ -65,12 +65,12 @@ export default function Level({ loaderData }: Route.ComponentProps) {
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-              Volver al inicio
+              Zurück zur Startseite
             </a>
           </nav>
 
           <div className="inline-flex items-center px-3 py-1.5 mb-6 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 rounded-full border border-indigo-100 dark:border-indigo-800">
-            Nivel {levelText.level}
+            Niveau {levelText.level}
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-gray-100 mb-6 leading-tight">
@@ -101,7 +101,7 @@ export default function Level({ loaderData }: Route.ComponentProps) {
               </svg>
             </div>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
-              Textos de este nivel
+              Texte dieses Niveaus
             </h2>
           </div>
 

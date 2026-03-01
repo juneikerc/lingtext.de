@@ -16,24 +16,24 @@ export default function ReaderErrorBoundary({
           <span className="text-3xl">📖</span>
         </div>
         <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-          Error en el lector
+          Fehler im Reader
         </h2>
         <p className="text-gray-600 dark:text-gray-400 mb-6">
-          Ha ocurrido un problema al cargar el texto. Esto puede deberse a un
-          archivo corrupto o un problema de permisos.
+          Beim Laden des Textes ist ein Problem aufgetreten. Das kann an einer
+          beschaedigten Datei oder fehlenden Berechtigungen liegen.
         </p>
         <div className="space-y-3">
           <button
             onClick={() => window.location.reload()}
             className="w-full px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
           >
-            Reintentar
+            Erneut versuchen
           </button>
           <Link
             to="/"
             className="block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
           >
-            Volver a la biblioteca
+            Zurueck zur Bibliothek
           </Link>
         </div>
       </div>

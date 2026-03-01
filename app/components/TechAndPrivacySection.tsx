@@ -1,88 +1,76 @@
 export default function TechAndPrivacySection() {
   return (
     <section className="relative overflow-hidden py-20 sm:py-24 bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
-      {/* Elementos decorativos de fondo */}
       <div className="absolute inset-0">
         <div className="absolute -top-24 -left-24 h-96 w-96 rounded-full bg-indigo-500/10 dark:bg-indigo-400/5 blur-3xl"></div>
         <div className="absolute -bottom-24 -right-24 h-96 w-96 rounded-full bg-sky-500/10 dark:bg-sky-400/5 blur-3xl"></div>
       </div>
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Header elegante */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800">
             <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-            Tecnología & Privacidad
+            Technologie & Datenschutz
           </div>
           <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-gray-900 dark:text-gray-100">
-            Rendimiento y{" "}
+            Performance und{" "}
             <span className="text-indigo-600 dark:text-indigo-400">
-              Seguridad
+              Sicherheit
             </span>
           </h2>
           <p className="text-xl md:text-2xl leading-relaxed text-gray-600 dark:text-gray-400 max-w-4xl mx-auto font-light">
-            Tecnología moderna que respeta tu privacidad y maximiza tu
-            experiencia de aprendizaje
+            Moderne Technik, die deine Privatsphare respektiert und dein Lernen
+            beschleunigt.
           </p>
         </div>
 
-        {/* Descripción principal */}
         <div className="mb-16">
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-8 md:p-12">
             <p className="text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
               <span className="font-semibold text-indigo-600 dark:text-indigo-400">
                 LingText
               </span>{" "}
-              se construye sobre un stack moderno para ofrecer velocidad en
-              desarrollo y estabilidad en producción. El SSR de React Router
-              mejora la experiencia inicial de carga y la indexación; Vite
-              aporta recarga instantánea y bundling eficiente. En el navegador,
-              usamos <span className="font-semibold">SQLite WASM</span> con
-              persistencia en OPFS, Web Speech API y, cuando está disponible, la
-              API de traducción de Chrome.
+              nutzt einen modernen Stack fur schnelle Entwicklung und stabile
+              Produktion: React Router SSR, Vite, Tailwind und leichtgewichtigen
+              Zustand mit Zustand.
             </p>
             <p className="text-lg md:text-xl leading-relaxed text-gray-700 dark:text-gray-300">
-              La filosofía es{" "}
+              Wir arbeiten{" "}
               <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-                local‑first con propiedad de datos
+                local-first mit Datenhoheit
               </span>
-              . Tu biblioteca de textos, audio y vocabulario se almacenan en una
-              base de datos SQLite dentro de tu navegador. Puedes{" "}
-              <span className="font-semibold">
-                exportar el archivo .sqlite a tu PC
-              </span>{" "}
-              cuando quieras y llevarlo a otro dispositivo. La traducción remota
-              solo envía el término a traducir, nunca tus textos completos.
+              . Deine Texte, Audio-Daten und Vokabeln liegen lokal in SQLite im
+              Browser. Bei Remote-Ubersetzung wird nur der ausgewahlte Begriff
+              gesendet, nie dein kompletter Inhalt.
             </p>
           </div>
         </div>
 
-        {/* Grid de características técnicas */}
         <div className="grid gap-8 md:grid-cols-2 mb-16">
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-8">
             <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center mb-6">
               <span className="text-white text-xl">⚡</span>
             </div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Arquitectura Moderna
+              Moderne Architektur
             </h3>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-              React Router 7 con SSR, Vite 6 para el toolchain, Tailwind 4 para
-              estilos y Zustand para estado ligero. El servidor expone un
-              endpoint de traducción que usa OpenRouter cuando es necesario.
+              React Router 7 mit SSR, Vite als Toolchain und Tailwind fur
+              konsistente UI. Bei Bedarf wird OpenRouter fur Ubersetzungen
+              angebunden.
             </p>
             <div className="space-y-3">
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                SSR para mejor SEO
+                SSR fur bessere SEO
               </div>
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                Recarga instantánea en desarrollo
+                Schnelles Reloading im Development
               </div>
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                APIs nativas del navegador
+                Browsernahe APIs
               </div>
             </div>
           </div>
@@ -92,12 +80,11 @@ export default function TechAndPrivacySection() {
               <span className="text-white text-xl">🔒</span>
             </div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Tus Datos, Tu Control
+              Deine Daten, deine Kontrolle
             </h3>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-              Base de datos SQLite en tu navegador. Exporta/importa cuando
-              quieras. La traducción remota solo envía el término, nunca tus
-              textos completos.
+              SQLite im Browser, Export und Import bei Bedarf, keine zentrale
+              Datensammlung fur deine Bibliothek.
             </p>
             <div className="space-y-3">
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
@@ -106,11 +93,11 @@ export default function TechAndPrivacySection() {
               </div>
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                Exportar/Importar .sqlite
+                Export/Import als .sqlite
               </div>
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                Portable entre dispositivos
+                Portabel zwischen Geraeten
               </div>
             </div>
           </div>
@@ -122,26 +109,25 @@ export default function TechAndPrivacySection() {
               <span className="text-white text-xl">🎵</span>
             </div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Audio y Permisos
+              Audio und Berechtigungen
             </h3>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-              Si adjuntas audio como archivo local, el navegador puede pedir
-              permisos. Si estos caducan, el lector te ofrece re‑autorizar sin
-              perder contexto. Las URLs temporales se limpian para evitar fugas
-              de memoria.
+              Fur lokale Audiodateien fragt der Browser nach Rechten. Wenn
+              Berechtigungen ablaufen, kannst du sie im Reader schnell erneut
+              freigeben.
             </p>
             <div className="space-y-3">
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                Gestión inteligente de permisos
+                Intelligentes Rechte-Handling
               </div>
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                Limpieza automática de memoria
+                Automatische Speicherbereinigung
               </div>
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                Re-autorización sin perder contexto
+                Re-Autorisierung ohne Kontextverlust
               </div>
             </div>
           </div>
@@ -151,52 +137,50 @@ export default function TechAndPrivacySection() {
               <span className="text-white text-xl">🚀</span>
             </div>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Rendimiento Optimizado
+              Optimierte Laufzeit
             </h3>
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-              Tokenización y popups ligeros, carga diferida donde aplica, y uso
-              de APIs del navegador para minimizar red y mejorar la respuesta de
-              la interfaz mientras lees.
+              Leichte Tokenisierung, performante Popups und gezieltes Lazy
+              Loading halten die App wahrend des Lesens schnell und reaktionsstark.
             </p>
             <div className="space-y-3">
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                Interfaces ligeras y responsivas
+                Leichte und responsive UI
               </div>
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                Carga diferida inteligente
+                Intelligentes Lazy Loading
               </div>
               <div className="flex items-center text-sm text-gray-700 dark:text-gray-300">
                 <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
-                Minimización de dependencias externas
+                Wenige externe Abhangigkeiten
               </div>
             </div>
           </div>
         </div>
 
-        {/* Sección de confianza */}
         <div className="text-center mt-16">
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 shadow-sm">
             <div className="w-16 h-16 mx-auto mb-6 bg-indigo-600 rounded-2xl flex items-center justify-center">
               <span className="text-white text-2xl">🛡️</span>
             </div>
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Tu Privacidad es Nuestra Prioridad
+              Datenschutz zuerst
             </h3>
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-              Construimos LingText con el compromiso de proteger tus datos y
-              respetar tu privacidad en todo momento
+              LingText wird mit dem klaren Ziel entwickelt, deine Daten zu
+              schutzen und deine Privatsphare dauerhaft zu respektieren.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <span className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full">
-                💾 SQLite local
+                💾 Lokales SQLite
               </span>
               <span className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full">
-                📤 Exportar a PC
+                📤 Export auf PC
               </span>
               <span className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full">
-                🔄 Portable
+                🔄 Portabel
               </span>
             </div>
           </div>

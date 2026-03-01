@@ -39,7 +39,7 @@ export async function exportDatabase(): Promise<boolean> {
           ) => Promise<FileSystemFileHandle>;
         }
       ).showSaveFilePicker({
-        suggestedName: "lingtext-backup.sqlite",
+        suggestedName: "lingtext-de-backup.sqlite",
         types: [
           {
             description: "SQLite Database",
@@ -60,7 +60,7 @@ export async function exportDatabase(): Promise<boolean> {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "lingtext-backup.sqlite";
+      a.download = "lingtext-de-backup.sqlite";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

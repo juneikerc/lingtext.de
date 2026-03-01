@@ -5,13 +5,12 @@ import SongsManualManager from "~/components/songs/SongsManualManager";
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title:
-        "Aprender Inglés con Canciones | Letras + YouTube y Spotify | LingText",
+      title: "Englisch lernen mit Liedern | Lyrics + YouTube und Spotify | LingText",
     },
     {
       name: "description",
       content:
-        "Aprende inglés con canciones agregando letras manuales y enlaces de YouTube o Spotify. Practica vocabulario real, comprensión y traducción en contexto con LingText.",
+        "Lerne Englisch mit Liedern, indem du Lyrics und YouTube- oder Spotify-Links hinzufügst. Trainiere echtes Vokabular, Verstehen und Kontext-Ubersetzung mit LingText.",
     },
   ];
 }
@@ -19,71 +18,71 @@ export function meta({}: Route.MetaArgs) {
 export const links: Route.LinksFunction = () => [
   {
     rel: "canonical",
-    href: "https://lingtext.org/aprender-ingles-con-canciones",
+    href: "https://lingtext.de/englisch-lernen-mit-liedern",
   },
 ];
 
 const HOW_TO_STEPS = [
   {
-    title: "1. Agrega una canción en inglés",
+    title: "1. Englisches Lied hinzufugen",
     description:
-      "Pega el título, la letra y el enlace de YouTube o Spotify para guardar tu práctica personalizada.",
+      "Fuge Titel, Lyrics und einen YouTube- oder Spotify-Link ein, um deine personalisierte Ubung zu speichern.",
   },
   {
-    title: "2. Abre el lector interactivo",
+    title: "2. Interaktiven Reader offnen",
     description:
-      "Entra a la canción y reproduce el audio embebido mientras lees la letra completa en paralelo.",
+      "Offne den Song und spiele das eingebettete Audio ab, wahrend du parallel den kompletten Text liest.",
   },
   {
-    title: "3. Traduce y guarda vocabulario",
+    title: "3. Ubersetzen und Vokabeln speichern",
     description:
-      "Haz clic en palabras o frases para traducirlas y convertirlas en material de repaso activo.",
+      "Klicke auf Worter oder Phrasen, um sie zu ubersetzen und als aktives Wiederholungsmaterial zu speichern.",
   },
 ];
 
 const BENEFITS = [
   {
-    title: "Inglés real y natural",
+    title: "Echtes, naturliches Englisch",
     description:
-      "Las canciones exponen estructuras, vocabulario y pronunciación que sí aparecen en conversaciones reales.",
+      "Lieder zeigen Strukturen, Wortschatz und Aussprache, die wirklich in echten Gesprachen vorkommen.",
   },
   {
-    title: "Mejor memoria por repetición",
+    title: "Besseres Behalten durch Wiederholung",
     description:
-      "La música facilita recordar frases completas y patrones gramaticales gracias al ritmo y la repetición.",
+      "Musik hilft dir, komplette Satze und grammatische Muster durch Rhythmus und Wiederholung besser zu behalten.",
   },
   {
-    title: "Práctica contextual",
+    title: "Lernen im Kontext",
     description:
-      "No estudias palabras sueltas: entiendes expresiones dentro de una historia y una intención comunicativa.",
+      "Du lernst nicht isolierte Worter, sondern verstehst Ausdrucke innerhalb einer Geschichte und Absicht.",
   },
   {
-    title: "Flujo de estudio simple",
+    title: "Einfacher Lernfluss",
     description:
-      "En una sola pantalla tienes letra, audio embebido y traducción instantánea para estudiar sin fricción.",
+      "Auf einem Bildschirm hast du Lyrics, eingebettetes Audio und Sofort-Ubersetzung fur reibungsloses Lernen.",
   },
 ];
 
 const FAQS = [
   {
-    question: "¿Qué enlaces se pueden usar?",
+    question: "Welche Links konnen verwendet werden?",
     answer:
-      "La herramienta acepta enlaces válidos de YouTube y Spotify. El sistema normaliza el formato para intentar el embebido automáticamente.",
+      "Das Tool akzeptiert gultige YouTube- und Spotify-Links. Das Format wird automatisch normalisiert, um Einbettung zu versuchen.",
   },
   {
-    question: "¿Puedo usar letras de cualquier nivel?",
+    question: "Kann ich Lyrics jedes Niveaus verwenden?",
     answer:
-      "Sí. Puedes empezar con canciones lentas y vocabulario frecuente, y luego pasar a letras más complejas según tu nivel.",
+      "Ja. Du kannst mit langsamen Liedern und haufigem Wortschatz beginnen und danach zu komplexeren Texten wechseln.",
   },
   {
-    question: "¿Qué hago si un embebido no se reproduce?",
+    question: "Was mache ich, wenn ein Embed nicht abspielbar ist?",
     answer:
-      "Algunos contenidos bloquean reproducción embebida por políticas del proveedor. En ese caso, abre la fuente original o prueba otro enlace.",
+      "Manche Inhalte blockieren eingebettete Wiedergabe wegen Anbieter-Richtlinien. Offne dann die Originalquelle oder nutze einen anderen Link.",
   },
   {
-    question: "¿Por qué aprender inglés con canciones funciona?",
+    question: "Warum funktioniert Englischlernen mit Liedern?",
     answer:
-      "Porque combina input comprensible, repetición natural, emoción y contexto. Es una forma eficiente de mejorar comprensión y vocabulario.",
+      "Weil es verstandlichen Input, naturliche Wiederholung, Emotion und Kontext kombiniert. So verbesserst du Verstehen und Vokabular effizient.",
   },
 ];
 
@@ -99,38 +98,37 @@ export default function SongsPage() {
         <div className="relative max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800">
             <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-            Método práctico con música
+            Praktische Lernmethode mit Musik
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-gray-900 dark:text-gray-100">
-            Aprender inglés con canciones: letras, contexto y práctica real
+            Englisch lernen mit Liedern: Lyrics, Kontext und echte Praxis
           </h1>
 
           <p className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
-            Usa canciones en inglés para mejorar vocabulario, comprensión y
-            pronunciación con un flujo simple: agregas la letra, pegas un enlace
-            de YouTube o Spotify, y practicas traducción contextual dentro del
-            lector de LingText.
+            Nutze englische Lieder, um Wortschatz, Verstehen und Aussprache zu
+            verbessern: Lyrics einfugen, YouTube- oder Spotify-Link setzen und
+            Kontext-Ubersetzung direkt im LingText-Reader uben.
           </p>
 
           <p className="mt-4 text-base text-gray-600 dark:text-gray-400 max-w-4xl mx-auto leading-relaxed">
-            Esta herramienta está diseñada para estudiar inglés con contenido
-            que ya te gusta, aprovechar la repetición natural de la música y
-            convertir cada canción en una sesión efectiva de aprendizaje.
+            Dieses Tool ist dafur gemacht, mit Inhalten zu lernen, die du
+            ohnehin magst, naturliche Wiederholung zu nutzen und jedes Lied in
+            eine effektive Lerneinheit zu verwandeln.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href="#agregar-cancion-manual"
+              href="#lied-manuell-hinzufuegen"
               className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
-              Agregar mi primera canción
+              Mein erstes Lied hinzufugen
             </a>
             <a
-              href="#faq-canciones"
+              href="#faq-lieder"
               className="inline-flex items-center justify-center rounded-xl border border-gray-300 dark:border-gray-700 px-6 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
-              Resolver dudas comunes
+              Haufige Fragen
             </a>
           </div>
         </div>
@@ -142,14 +140,14 @@ export default function SongsPage() {
         <div className="mx-auto max-w-6xl px-6">
           <header className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
-              Cómo usar la herramienta
+              So nutzt du das Tool
             </p>
             <h2 className="mt-3 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-              Tu rutina para estudiar inglés con canciones en 3 pasos
+              Deine Routine in 3 Schritten
             </h2>
             <p className="mt-4 text-base text-gray-600 dark:text-gray-400">
-              Sigue este flujo para convertir cualquier canción en una sesión de
-              lectura y vocabulario enfocada en progreso real.
+              Folge diesem Ablauf und verwandle jedes Lied in eine fokussierte
+              Lese- und Vokabeleinheit mit messbarem Fortschritt.
             </p>
           </header>
 
@@ -175,10 +173,10 @@ export default function SongsPage() {
         <div className="mx-auto max-w-6xl px-6">
           <header className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
-              Ventajas clave
+              Zentrale Vorteile
             </p>
             <h2 className="mt-3 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-              Beneficios de aprender inglés con letras de canciones
+              Vorteile beim Lernen mit Songtexten
             </h2>
           </header>
 
@@ -204,36 +202,35 @@ export default function SongsPage() {
         <div className="mx-auto max-w-5xl px-6">
           <header className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
-              Recomendaciones prácticas
+              Praktische Empfehlungen
             </p>
             <h2 className="mt-3 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-              Qué canciones elegir para progresar más rápido
+              Welche Songs bringen dich schneller voran
             </h2>
           </header>
 
           <div className="mt-8 space-y-4 text-base leading-relaxed text-gray-600 dark:text-gray-400">
             <p>
-              Para un progreso constante, empieza con canciones de tempo
-              moderado, frases repetidas y pronunciación clara. Esto facilita
-              reconocer estructuras gramaticales y expresiones comunes.
+              Fur kontinuierlichen Fortschritt starte mit moderatem Tempo,
+              wiederholten Phrasen und klarer Aussprache. So erkennst du
+              Strukturen und haufige Ausdrucke leichter.
             </p>
             <p>
-              Si estás en nivel básico-intermedio, prioriza pop, acústico o
-              baladas con narrativa simple. En niveles avanzados, puedes usar
-              rap, indie o letras con metáforas para ampliar comprensión
-              semántica.
+              Auf Basis- oder Mittelstufe eignen sich Pop, akustische Songs
+              oder Balladen mit einfacher Erzahlstruktur. Fortgeschrittene
+              konnen Rap, Indie oder metaphorische Lyrics nutzen.
             </p>
             <p>
-              Lo importante no es la complejidad inicial, sino la constancia.
-              Trabaja cada canción en ciclos cortos: escucha, lectura,
-              traducción y repaso de vocabulario.
+              Entscheidend ist nicht die Anfangskomplexitat, sondern
+              Konsequenz. Arbeite jeden Song in kurzen Zyklen: Horen, Lesen,
+              Ubersetzen, Wortschatz wiederholen.
             </p>
           </div>
         </div>
       </section>
 
       <section
-        id="faq-canciones"
+        id="faq-lieder"
         className="relative overflow-hidden py-16 sm:py-20 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800"
       >
         <div className="mx-auto max-w-5xl px-6">
@@ -242,7 +239,7 @@ export default function SongsPage() {
               FAQ
             </p>
             <h2 className="mt-3 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-              Preguntas frecuentes sobre aprender inglés con canciones
+              Haufige Fragen zum Englischlernen mit Liedern
             </h2>
           </header>
 
@@ -267,24 +264,24 @@ export default function SongsPage() {
       <section className="relative overflow-hidden py-16 sm:py-20 bg-gray-50 dark:bg-gray-950">
         <div className="mx-auto max-w-5xl px-6 text-center">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-            Convierte tu música favorita en una rutina de inglés
+            Mach aus deiner Lieblingsmusik eine Englischroutine
           </h2>
           <p className="mt-4 text-base leading-relaxed text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Empieza hoy con una canción que ya conozcas y úsala para practicar
-            lectura, comprensión y vocabulario en un solo flujo.
+            Starte heute mit einem Song, den du schon kennst, und nutze ihn fur
+            Lesen, Verstehen und Wortschatz in einem einzigen Lernfluss.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
-              href="#agregar-cancion-manual"
+              href="#lied-manuell-hinzufuegen"
               className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
-              Comenzar ahora
+              Jetzt starten
             </a>
             <Link
               to="/"
               className="inline-flex items-center justify-center rounded-xl border border-gray-300 dark:border-gray-700 px-6 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
-              Volver al inicio
+              Zurück zur Startseite
             </Link>
           </div>
         </div>

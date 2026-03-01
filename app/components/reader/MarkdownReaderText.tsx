@@ -286,7 +286,7 @@ export default function MarkdownReaderText({
     <div className="relative">
       {showChrome ? <ReaderModeIndicator /> : null}
 
-      {/* Área de texto principal */}
+      {/* Main text area */}
       <ReaderContentShell
         compact={compact}
         contentClassName="prose prose-lg dark:prose-invert max-w-none"

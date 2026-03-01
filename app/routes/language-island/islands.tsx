@@ -7,13 +7,12 @@ import type { Route } from "./+types/islands";
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title:
-        "Language Island para aprender inglés | Estudio por oraciones | LingText",
+      title: "Language Island fur Englisch | Lernen mit Satzen | LingText",
     },
     {
       name: "description",
       content:
-        "Crea tus Language Islands con oraciones reales y estudia inglés con traducción contextual y audio por oración en LingText.",
+        "Erstelle Language Islands mit realen Satzen und lerne Englisch mit Kontext-Ubersetzung und Audio pro Satz in LingText.",
     },
   ];
 }
@@ -21,71 +20,71 @@ export function meta({}: Route.MetaArgs) {
 export const links: Route.LinksFunction = () => [
   {
     rel: "canonical",
-    href: "https://lingtext.org/aprender-con-language-island",
+    href: "https://lingtext.de/lernen-mit-language-island",
   },
 ];
 
 const HOW_TO_STEPS = [
   {
-    title: "1. Crea tu isla con una intención clara",
+    title: "1. Insel mit klarem Ziel erstellen",
     description:
-      "Define un tema específico: trabajo, viajes, entrevistas o conversaciones cotidianas para practicar lenguaje útil de forma enfocada.",
+      "Wahle ein konkretes Thema wie Arbeit, Reisen, Interviews oder Alltag, um nutzbare Sprache fokussiert zu uben.",
   },
   {
-    title: "2. Escribe una oración por línea",
+    title: "2. Einen Satz pro Zeile schreiben",
     description:
-      "Pega tus oraciones en inglés en el editor. Cada línea se convertirá en una unidad de práctica independiente.",
+      "Fuge deine englischen Satze in den Editor ein. Jede Zeile wird zu einer eigenen Ubungseinheit.",
   },
   {
-    title: "3. Estudia con traducción y audio",
+    title: "3. Mit Ubersetzung und Audio lernen",
     description:
-      "Abre la isla y trabaja oración por oración con traducción in-line y reproducción TTS para mejorar comprensión y pronunciación.",
+      "Offne die Insel und arbeite Satz fur Satz mit Inline-Ubersetzung und TTS, um Verstehen und Aussprache zu verbessern.",
   },
 ];
 
 const BENEFITS = [
   {
-    title: "Práctica hiper-contextual",
+    title: "Kontextnahes Lernen",
     description:
-      "Estudias exactamente el tipo de frases que quieres usar en tu vida real, no ejemplos genéricos fuera de contexto.",
+      "Du lernst genau die Satztypen, die du im Alltag brauchst, statt generischer Beispiele ohne Kontext.",
   },
   {
-    title: "Progreso medible por bloques",
+    title: "Messbarer Fortschritt in Blöcken",
     description:
-      "Cada oración es una mini tarea. Puedes repasar y detectar rápidamente en qué estructuras necesitas más trabajo.",
+      "Jeder Satz ist eine Mini-Aufgabe. Du erkennst schnell, welche Strukturen noch Ubung brauchen.",
   },
   {
-    title: "Mejor retención de patrones",
+    title: "Bessere Muster-Speicherung",
     description:
-      "Al repetir oraciones completas, interiorizas gramática y colocaciones naturales en lugar de memorizar palabras sueltas.",
+      "Durch Wiederholung ganzer Satze verinnerlichst du Grammatik und Kollokationen statt isolierter Worter.",
   },
   {
-    title: "Flujo simple y sin fricción",
+    title: "Einfacher, reibungsloser Ablauf",
     description:
-      "En una sola pantalla tienes tus oraciones, traducción por clic y TTS. Menos pasos, más tiempo de práctica efectiva.",
+      "Auf einem Bildschirm hast du Satze, Klick-Ubersetzung und TTS. Weniger Schritte, mehr effektive Praxis.",
   },
 ];
 
 const FAQS = [
   {
-    question: "¿Qué es exactamente una Language Island?",
+    question: "Was ist eine Language Island genau?",
     answer:
-      "Es un conjunto corto de oraciones relacionadas con un contexto específico. Te permite practicar lenguaje de alto valor comunicativo para situaciones reales.",
+      "Ein kurzes Set an Satzen in einem bestimmten Kontext. So trainierst du Sprache mit hohem Kommunikationswert fur reale Situationen.",
   },
   {
-    question: "¿Cuántas oraciones debe tener una isla?",
+    question: "Wie viele Satze sollte eine Insel haben?",
     answer:
-      "Puedes empezar con 5 a 15 oraciones. Lo importante es que sean frecuentes, útiles y que puedas repasarlas con constancia.",
+      "Starte mit 5 bis 15 Satzen. Wichtig ist, dass sie haufig, nutzlich und regelmassig wiederholbar sind.",
   },
   {
-    question: "¿Puedo editar una isla después de guardarla?",
+    question: "Kann ich eine Insel nach dem Speichern bearbeiten?",
     answer:
-      "Sí. Puedes editar título y oraciones en cualquier momento desde la biblioteca de islas.",
+      "Ja. Titel und Satze lassen sich jederzeit in der Inselbibliothek bearbeiten.",
   },
   {
-    question: "¿Se puede estudiar pronunciación con esta sección?",
+    question: "Kann ich damit auch Aussprache trainieren?",
     answer:
-      "Sí. En la ruta individual de cada isla puedes reproducir audio TTS de cada oración para practicar ritmo y entonación.",
+      "Ja. In jeder Insel kannst du pro Satz TTS-Audio abspielen und Rhythmus sowie Intonation uben.",
   },
 ];
 
@@ -101,37 +100,37 @@ export default function LanguageIslandsPage() {
         <div className="relative mx-auto max-w-5xl text-center">
           <div className="mb-6 inline-flex items-center rounded-full border border-gray-200 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300">
             <span className="mr-2 h-2 w-2 rounded-full bg-indigo-500"></span>
-            Método por micro-contextos
+            Methode mit Mikro-Kontexten
           </div>
 
           <h1 className="text-4xl font-extrabold leading-tight text-gray-900 dark:text-gray-100 md:text-5xl lg:text-6xl">
-            Language Island: estudia inglés oración por oración
+            Language Island: Englisch Satz fur Satz lernen
           </h1>
 
           <p className="mx-auto mt-6 max-w-4xl text-lg leading-relaxed text-gray-600 dark:text-gray-400 md:text-xl">
-            Crea tus propias islas con frases de situaciones reales y practica
-            comprensión, traducción y pronunciación en un flujo concreto que te
-            ayuda a hablar con mayor naturalidad.
+            Erstelle eigene Inseln mit Satzen aus realen Situationen und
+            trainiere Verstehen, Ubersetzung und Aussprache in einem klaren
+            Ablauf, der dir zu naturlicherem Sprechen hilft.
           </p>
 
           <p className="mx-auto mt-4 max-w-4xl text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            Cada oración se convierte en una unidad de práctica independiente,
-            ideal para consolidar estructuras frecuentes y acelerar tu progreso
-            en inglés funcional.
+            Jeder Satz wird zu einer eigenen Ubungseinheit. Ideal, um haufige
+            Strukturen zu festigen und schneller im funktionalen Englisch
+            voranzukommen.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <a
-              href="#agregar-isla-manual"
+              href="#insel-manuell-erstellen"
               className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
-              Crear mi primera isla
+              Meine erste Insel erstellen
             </a>
             <a
               href="#faq-language-island"
               className="inline-flex items-center justify-center rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 transition-colors duration-200 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:ring-offset-gray-950"
             >
-              Ver preguntas frecuentes
+              FAQ ansehen
             </a>
           </div>
         </div>
@@ -143,14 +142,14 @@ export default function LanguageIslandsPage() {
         <div className="mx-auto max-w-6xl px-6">
           <header className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
-              Cómo usar Language Island
+              So nutzt du Language Island
             </p>
             <h2 className="mt-3 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-              Rutina de estudio en 3 pasos
+              Lernroutine in 3 Schritten
             </h2>
             <p className="mt-4 text-base text-gray-600 dark:text-gray-400">
-              Diseña un ciclo corto y repetible para convertir oraciones en
-              memoria activa y producción real.
+              Nutze einen kurzen, wiederholbaren Zyklus, um Satze in aktives
+              Wissen und echte Sprachproduktion zu uberfuhren.
             </p>
           </header>
 
@@ -176,10 +175,10 @@ export default function LanguageIslandsPage() {
         <div className="mx-auto max-w-6xl px-6">
           <header className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
-              Ventajas clave
+              Zentrale Vorteile
             </p>
             <h2 className="mt-3 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-              Por qué estudiar con language islands funciona
+              Warum Lernen mit Language Islands funktioniert
             </h2>
           </header>
 
@@ -205,38 +204,37 @@ export default function LanguageIslandsPage() {
         <div className="mx-auto max-w-5xl px-6">
           <header className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
-              Estrategia de estudio
+              Lernstrategie
             </p>
             <h2 className="mt-3 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-              Cómo diseñar islas de alta utilidad
+              So baust du hochwirksame Inseln
             </h2>
           </header>
 
           <div className="mt-8 space-y-4 text-base leading-relaxed text-gray-600 dark:text-gray-400">
             <p>
-              Crea islas por situación: presentarte, pedir ayuda, negociar,
-              explicar un problema o mantener una charla social. Cuando el tema
-              es claro, la retención mejora y el vocabulario se vuelve más
-              transferible.
+              Baue Inseln nach Situationen: sich vorstellen, um Hilfe bitten,
+              verhandeln, ein Problem erklaren oder Small Talk fuhren. Klare
+              Themen verbessern Behalten und Transfer.
             </p>
             <p>
-              Mantén tus oraciones cortas y funcionales al inicio. Luego, añade
-              variaciones de tiempo verbal, matices de cortesía y conectores.
-              Así entrenas flexibilidad sin perder claridad.
+              Halte Satze anfangs kurz und funktional. Erweitere danach mit
+              Zeitformen, Hoflichkeitsnuancen und Konnektoren, ohne Klarheit zu
+              verlieren.
             </p>
             <p>
-              Repite cada isla en ciclos breves: leer, traducir, escuchar,
-              repetir en voz alta y revisar al día siguiente. La consistencia es
-              más importante que la cantidad.
+              Wiederhole jede Insel in kurzen Zyklen: lesen, ubersetzen, horen,
+              laut nachsprechen, am nachsten Tag wiederholen. Konstanz ist
+              wichtiger als Menge.
             </p>
           </div>
 
           <div className="mt-8">
             <Link
-              to="/aprender-ingles-con-canciones"
+              to="/englisch-lernen-mit-liedern"
               className="inline-flex items-center justify-center rounded-xl border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-700 transition-colors duration-200 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:ring-offset-gray-950"
             >
-              También quiero practicar con canciones
+              Ich mochte auch mit Liedern uben
             </Link>
           </div>
         </div>
@@ -252,7 +250,7 @@ export default function LanguageIslandsPage() {
               FAQ
             </p>
             <h2 className="mt-3 text-3xl font-bold text-gray-900 dark:text-gray-100 sm:text-4xl">
-              Preguntas frecuentes sobre language island
+              Haufige Fragen zu Language Islands
             </h2>
           </header>
 

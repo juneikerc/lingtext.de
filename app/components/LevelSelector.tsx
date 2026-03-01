@@ -4,40 +4,40 @@ const levels = [
   {
     id: "a1",
     name: "A1",
-    title: "Principiante",
+    title: "Anfaenger",
     description:
-      "Textos cortos y sencillos con vocabulario básico y cotidiano.",
+      "Kurze und einfache Texte mit grundlegendem Alltagswortschatz.",
     color: "bg-emerald-500",
   },
   {
     id: "a2",
     name: "A2",
-    title: "Elemental",
-    description: "Historias simples y descripciones de temas familiares.",
+    title: "Grundstufe",
+    description: "Einfache Geschichten und Beschreibungen vertrauter Themen.",
   },
   {
     id: "b1",
     name: "B1",
-    title: "Intermedio",
-    description: "Textos claros sobre temas de trabajo, estudio o ocio.",
+    title: "Mittelstufe",
+    description: "Klare Texte zu Arbeit, Studium oder Freizeit.",
   },
   {
     id: "b2",
     name: "B2",
-    title: "Intermedio Alto",
-    description: "Artículos detallados sobre temas complejos y abstractos.",
+    title: "Obere Mittelstufe",
+    description: "Detaillierte Artikel zu komplexen und abstrakten Themen.",
   },
   {
     id: "c1",
     name: "C1",
-    title: "Avanzado",
-    description: "Textos extensos y exigentes con significados implícitos.",
+    title: "Fortgeschritten",
+    description: "Laengere und anspruchsvolle Texte mit impliziten Bedeutungen.",
   },
   {
     id: "c2",
     name: "C2",
-    title: "Maestría",
-    description: "Cualquier tipo de texto complejo, literario o técnico.",
+    title: "Meisterstufe",
+    description: "Jede Art komplexer, literarischer oder technischer Texte.",
   },
 ];
 
@@ -57,18 +57,18 @@ export default function LevelSelector() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800 shadow-sm">
             <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-            Contenido Curado
+            Kuratierte Inhalte
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900 dark:text-gray-100">
-            Explora por{" "}
+            Entdecke nach{" "}
             <span className="text-indigo-600 dark:text-indigo-400">
-              Niveles
+              Niveaus
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            Encuentra lecturas adaptadas a tu nivel de inglés, desde
-            principiante hasta avanzado, para que progreses de manera efectiva y
-            sin frustraciones.
+            Finde Lesetexte passend zu deinem Englischniveau, von Anfaenger bis
+            fortgeschritten, damit du effektiv und ohne Frust Fortschritte
+            machst.
           </p>
         </div>
 

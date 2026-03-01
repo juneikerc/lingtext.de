@@ -10,54 +10,54 @@ export default function HeroSection({ className = "" }: HeroSectionProps) {
     <section
       className={`relative overflow-hidden bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 py-16 px-4 md:py-24 ${className}`}
     >
-      {/* Elementos decorativos de fondo */}
+      {/* Decorative background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[20%] left-[20%] w-64 h-64 bg-indigo-500/10 dark:bg-indigo-400/5 rounded-full blur-3xl"></div>
         <div className="absolute top-[70%] right-[20%] w-64 h-64 bg-sky-500/10 dark:bg-sky-400/5 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Contenedor principal */}
+      {/* Main container */}
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Contenido izquierdo */}
+        {/* Left content */}
         <div className="max-w-2xl">
-          {/* Badge destacado */}
+          {/* Highlight badge */}
           <div className="inline-flex items-center px-3 py-1.5 mb-6 text-xs font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800">
             <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2"></span>
-            Gratuito y Open Source
+            Kostenlos und Open Source
           </div>
 
-          {/* Título principal */}
+          {/* Main title */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-900 dark:text-gray-100">
             LingText{" "}
             <span className="text-indigo-600 dark:text-indigo-400">
-              Alternativa gratuita a LingQ
+              Kostenlose Alternative zu LingQ
             </span>
           </h1>
 
-          {/* Descripción */}
+          {/* Description */}
           <p className="text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-400 mb-8">
-            Aprende inglés de forma gratuita a través de la lectura. Agrega tus
-            propios textos y audios para sumergirte en el idioma con un método
-            probado y efectivo.
+            Lerne Englisch kostenlos durch Lesen. Fuege eigene Texte und Audios
+            hinzu, um mit einer bewaehrten und effektiven Methode in die Sprache
+            einzutauchen.
           </p>
 
-          {/* Botones CTA */}
+          {/* CTA buttons */}
           <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap">
             <a
               href="#levels"
               className="inline-flex items-center justify-center px-6 py-3 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
-              Comenzar a Leer
+              Mit dem Lesen starten
             </a>
             <Link
-              to="/aprender-ingles-con-canciones"
+              to="/englisch-lernen-mit-liedern"
               reloadDocument
               className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
-              Aprender con Canciones
+              Mit Liedern lernen
             </Link>
             <Link
-              to="/aprender-con-language-island"
+              to="/lernen-mit-language-island"
               reloadDocument
               className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
@@ -66,17 +66,17 @@ export default function HeroSection({ className = "" }: HeroSectionProps) {
           </div>
         </div>
 
-        {/* Ilustración derecha */}
+        {/* Right illustration */}
         <div className="relative h-96 lg:h-[500px] flex items-center justify-center">
-          {/* Círculo de conexión */}
+          {/* Connection circle */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-full"></div>
 
-          {/* Nodo central */}
+          {/* Center node */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-44 h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow-sm flex items-center justify-center font-semibold text-lg transition-colors duration-200">
             LingText
           </div>
 
-          {/* Nodo: Lectura Activa */}
+          {/* Node: Active reading */}
           <div className="absolute top-[15%] left-[15%] w-28 h-20 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-200 rounded-lg shadow-sm flex flex-col items-center justify-center gap-1 hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-colors duration-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -93,10 +93,10 @@ export default function HeroSection({ className = "" }: HeroSectionProps) {
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
             </svg>
-            <span className="text-xs font-medium">Lectura</span>
+            <span className="text-xs font-medium">Lesen</span>
           </div>
 
-          {/* Nodo: Audio */}
+          {/* Node: Audio */}
           <div className="absolute top-[25%] right-[8%] w-28 h-20 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-200 rounded-lg shadow-sm flex flex-col items-center justify-center gap-1 hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-colors duration-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +117,7 @@ export default function HeroSection({ className = "" }: HeroSectionProps) {
             <span className="text-xs font-medium">Audio</span>
           </div>
 
-          {/* Nodo: Traducción */}
+          {/* Node: Translation */}
           <div className="absolute bottom-[25%] left-[12%] w-28 h-20 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-200 rounded-lg shadow-sm flex flex-col items-center justify-center gap-1 hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-colors duration-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -138,10 +138,10 @@ export default function HeroSection({ className = "" }: HeroSectionProps) {
               <path d="m22 22-5-10-5 10"></path>
               <path d="M14 18h6"></path>
             </svg>
-            <span className="text-xs font-medium">Traducción</span>
+            <span className="text-xs font-medium">Übersetzung</span>
           </div>
 
-          {/* Nodo: Seguimiento */}
+          {/* Node: Tracking */}
           <div className="absolute bottom-[18%] right-[12%] w-28 h-20 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-200 rounded-lg shadow-sm flex flex-col items-center justify-center gap-1 hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-colors duration-200">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -159,7 +159,7 @@ export default function HeroSection({ className = "" }: HeroSectionProps) {
               <line x1="18" y1="20" x2="18" y2="4"></line>
               <line x1="6" y1="20" x2="6" y2="16"></line>
             </svg>
-            <span className="text-xs font-medium">Progreso</span>
+            <span className="text-xs font-medium">Fortschritt</span>
           </div>
         </div>
       </div>

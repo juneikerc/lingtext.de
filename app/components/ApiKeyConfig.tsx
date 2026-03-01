@@ -30,7 +30,7 @@ export default function ApiKeyConfig({ onClose }: ApiKeyConfigProps) {
 
   async function handleSave() {
     if (!apiKey.trim()) {
-      setError("Por favor ingresa una API key válida");
+      setError("Bitte gib einen gueltigen API-Key ein.");
       return;
     }
 
@@ -47,7 +47,7 @@ export default function ApiKeyConfig({ onClose }: ApiKeyConfigProps) {
 
       if (!response.ok) {
         if (response.status === 401) {
-          setError("API key inválida. Verifica que sea correcta.");
+          setError("Ungueltiger API-Key. Bitte pruefe deine Eingabe.");
           setSaving(false);
           return;
         }
@@ -57,14 +57,14 @@ export default function ApiKeyConfig({ onClose }: ApiKeyConfigProps) {
       setHasKey(true);
       onClose();
     } catch {
-      setError("Error al verificar la API key. Intenta de nuevo.");
+      setError("Fehler bei der API-Key-Pruefung. Bitte erneut versuchen.");
     } finally {
       setSaving(false);
     }
   }
 
   async function handleDelete() {
-    if (!confirm("¿Estás seguro de eliminar tu API key?")) return;
+    if (!confirm("Moechtest du deinen API-Key wirklich loeschen?")) return;
 
     await deleteOpenRouterApiKey();
     setApiKey("");
@@ -76,7 +76,7 @@ export default function ApiKeyConfig({ onClose }: ApiKeyConfigProps) {
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-md w-full p-6 space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-            Configurar OpenRouter
+            OpenRouter konfigurieren
           </h2>
           <button
             onClick={onClose}
@@ -99,7 +99,7 @@ export default function ApiKeyConfig({ onClose }: ApiKeyConfigProps) {
         </div>
 
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Para usar los traductores con IA necesitas tu propia API key de{" "}
+          Um KI-Uebersetzer zu nutzen, brauchst du deinen eigenen API-Key von{" "}
           <a
             href="https://openrouter.ai/keys"
             target="_blank"
@@ -108,7 +108,7 @@ export default function ApiKeyConfig({ onClose }: ApiKeyConfigProps) {
           >
             OpenRouter
           </a>
-          . Los modelos gratuitos no tienen costo.
+          . Kostenlose Modelle sind ohne Gebuehren nutzbar.
         </p>
 
         <div className="space-y-2">
@@ -179,7 +179,7 @@ export default function ApiKeyConfig({ onClose }: ApiKeyConfigProps) {
               onClick={handleDelete}
               className="px-4 py-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors text-sm font-medium"
             >
-              Eliminar
+              Löschen
             </button>
           )}
           <div className="flex space-x-2 ml-auto">
@@ -187,22 +187,22 @@ export default function ApiKeyConfig({ onClose }: ApiKeyConfigProps) {
               onClick={onClose}
               className="px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors text-sm font-medium"
             >
-              Cancelar
+              Abbrechen
             </button>
             <button
               onClick={handleSave}
               disabled={saving}
               className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 text-white rounded-lg transition-colors text-sm font-medium"
             >
-              {saving ? "Verificando..." : "Guardar"}
+              {saving ? "Wird geprueft..." : "Speichern"}
             </button>
           </div>
         </div>
 
         <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            Tu API key se guarda localmente en tu navegador y nunca se envía a
-            nuestros servidores.
+            Dein API-Key wird lokal im Browser gespeichert und niemals an
+            unsere Server gesendet.
           </p>
         </div>
       </div>

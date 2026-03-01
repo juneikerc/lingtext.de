@@ -45,7 +45,7 @@ export default function SongsManualManager() {
       setSongs(list);
     } catch (e) {
       console.error("[Songs] Failed to load songs:", e);
-      setError("No se pudieron cargar las canciones.");
+      setError("Lieder konnten nicht geladen werden.");
     } finally {
       setIsLoading(false);
     }
@@ -77,26 +77,26 @@ export default function SongsManualManager() {
     const rawUrl = form.sourceUrl.trim();
 
     if (!title || !lyrics || !rawUrl) {
-      setError("Título, letra y enlace son obligatorios.");
+      setError("Titel, Text und Link sind erforderlich.");
       return;
     }
 
     const titleValidation = validateTitle(title);
     if (!titleValidation.isValid) {
-      setError(titleValidation.error || "El título no es válido.");
+      setError(titleValidation.error || "Der Titel ist ungueltig.");
       return;
     }
 
     const contentValidation = validateTextContent(lyrics);
     if (!contentValidation.isValid) {
-      setError(contentValidation.error || "La letra no es válida.");
+      setError(contentValidation.error || "Der Liedtext ist ungueltig.");
       return;
     }
 
     if (contentValidation.warnings && contentValidation.warnings.length > 0) {
       const warningMessage = contentValidation.warnings.join("\n");
       const proceed = window.confirm(
-        `Advertencias encontradas:\n${warningMessage}\n\n¿Deseas continuar?`
+        `Hinweise gefunden:\n${warningMessage}\n\nMoechtest du fortfahren?`
       );
       if (!proceed) return;
     }
@@ -114,7 +114,7 @@ export default function SongsManualManager() {
       const now = Date.now();
 
       if (editingSongId && !editingSong) {
-        setError("La canción que intentas editar ya no existe.");
+        setError("Das zu bearbeitende Lied existiert nicht mehr.");
         return;
       }
 
@@ -128,7 +128,7 @@ export default function SongsManualManager() {
           embedUrl: embed.embedUrl,
           updatedAt: now,
         });
-        setSuccess("Canción actualizada correctamente.");
+        setSuccess("Lied erfolgreich aktualisiert.");
       } else {
         const newSong: SongItem = {
           id: crypto.randomUUID(),
@@ -141,14 +141,14 @@ export default function SongsManualManager() {
           updatedAt: now,
         };
         await addSong(newSong);
-        setSuccess("Canción guardada correctamente.");
+        setSuccess("Lied erfolgreich gespeichert.");
       }
 
       resetFormState();
       await refreshSongs();
     } catch (e) {
       console.error("[Songs] Failed to save song:", e);
-      setError("No se pudo guardar la canción. Inténtalo nuevamente.");
+      setError("Das Lied konnte nicht gespeichert werden. Bitte versuche es erneut.");
     } finally {
       setIsSaving(false);
     }
@@ -156,7 +156,7 @@ export default function SongsManualManager() {
 
   async function onDelete(songId: string) {
     const confirmed = window.confirm(
-      "¿Eliminar esta canción? Esta acción no se puede deshacer."
+      "Diesen Song löschen? Diese Aktion kann nicht rückgängig gemacht werden."
     );
     if (!confirmed) return;
 
@@ -168,16 +168,16 @@ export default function SongsManualManager() {
         resetFormState();
       }
       await refreshSongs();
-      setSuccess("Canción eliminada.");
+      setSuccess("Lied entfernt.");
     } catch (e) {
       console.error("[Songs] Failed to delete song:", e);
-      setError("No se pudo eliminar la canción.");
+      setError("Das Lied konnte nicht entfernt werden.");
     }
   }
 
   return (
     <section
-      id="agregar-cancion-manual"
+      id="lied-manuell-hinzufuegen"
       className="relative overflow-hidden py-12 px-4 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800"
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -189,14 +189,14 @@ export default function SongsManualManager() {
         <div className="text-center mb-10">
           <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800">
             <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-            Biblioteca de Canciones
+            Liedbibliothek
           </div>
           <h2 className="text-3xl md:text-4xl font-extrabold mb-3 text-gray-900 dark:text-gray-100">
-            Agrega canciones y practica con letras en inglés
+            Fuege Lieder hinzu und uebe mit englischen Songtexten
           </h2>
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Pega una letra, añade un enlace de YouTube o Spotify y abre tu
-            lector interactivo para traducir palabras y frases en contexto real.
+            Fuege Songtext und YouTube- oder Spotify-Link ein und oeffne deinen
+            interaktiven Reader, um Woerter und Phrasen im Kontext zu uebersetzen.
           </p>
         </div>
 
@@ -205,13 +205,13 @@ export default function SongsManualManager() {
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center mr-3">
               <span className="text-white text-sm">+</span>
             </div>
-            {editingSong ? "Editar canción" : "Agregar canción manualmente"}
+            {editingSong ? "Song bearbeiten" : "Lied manuell hinzufuegen"}
           </h3>
 
           <form className="space-y-5" onSubmit={onSubmit}>
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Título de la canción
+                Titel des Liedes
               </label>
               <input
                 type="text"
@@ -220,13 +220,13 @@ export default function SongsManualManager() {
                   setForm((prev) => ({ ...prev, title: event.target.value }))
                 }
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
-                placeholder="Ej: Coldplay - Yellow"
+                placeholder="z. B. Coldplay - Yellow"
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Enlace de YouTube o Spotify
+                YouTube- oder Spotify-Link
               </label>
               <input
                 type="url"
@@ -238,13 +238,13 @@ export default function SongsManualManager() {
                   }))
                 }
                 className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
-                placeholder="https://www.youtube.com/watch?v=... o https://open.spotify.com/track/..."
+                placeholder="https://www.youtube.com/watch?v=... oder https://open.spotify.com/track/..."
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                Letra en inglés
+                Englischer Songtext
               </label>
               <textarea
                 value={form.lyrics}
@@ -252,7 +252,7 @@ export default function SongsManualManager() {
                   setForm((prev) => ({ ...prev, lyrics: event.target.value }))
                 }
                 className="w-full min-h-[220px] px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-vertical transition-colors duration-200"
-                placeholder="Pega la letra completa..."
+                placeholder="Fuge den vollstandigen Songtext ein..."
               />
             </div>
 
@@ -275,7 +275,7 @@ export default function SongsManualManager() {
                   onClick={resetFormState}
                   className="px-5 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
                 >
-                  Cancelar edición
+                  Bearbeitung abbrechen
                 </button>
               ) : null}
 
@@ -285,19 +285,19 @@ export default function SongsManualManager() {
                 className="px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-colors duration-200 shadow-sm hover:shadow-md"
               >
                 {isSaving
-                  ? "Guardando..."
+                  ? "Speichert..."
                   : editingSong
-                    ? "Actualizar canción"
-                    : "Guardar canción"}
+                    ? "Lied aktualisieren"
+                    : "Song speichern"}
               </button>
             </div>
           </form>
         </div>
 
-        <div className="space-y-4" id="canciones-guardadas">
+        <div className="space-y-4" id="lieder-gespeichert">
           <div className="flex items-center justify-between gap-3">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              Canciones guardadas
+              Gespeicherte Lieder
             </h3>
             <span className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-900 px-3 py-1 rounded-full border border-gray-200 dark:border-gray-800">
               {songs.length} total
@@ -326,39 +326,39 @@ export default function SongsManualManager() {
                           {song.title}
                         </h4>
                         <div className="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">
-                          {new Date(song.updatedAt).toLocaleDateString("es-ES")}
+                          {new Date(song.updatedAt).toLocaleDateString("de-DE")}
                         </div>
                       </div>
                       <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-3">
                         {song.lyrics.substring(0, 180)}...
                       </p>
                       <span className="inline-flex items-center text-xs text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/20 px-3 py-1 rounded-full">
-                        Fuente:{" "}
+                        Quelle:{" "}
                         {song.provider === "youtube" ? "YouTube" : "Spotify"}
                       </span>
                     </div>
 
                     <div className="flex flex-wrap gap-2">
                       <Link
-                        to={`/aprender-ingles-con-canciones/${song.id}`}
+                        to={`/englisch-lernen-mit-liedern/${song.id}`}
                         reloadDocument
                         className="inline-flex items-center px-5 py-3 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
                       >
-                        Abrir lector
+                        Reader öffnen
                       </Link>
                       <button
                         type="button"
                         onClick={() => startEdit(song)}
                         className="px-4 py-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
                       >
-                        Editar
+                        Bearbeiten
                       </button>
                       <button
                         type="button"
                         onClick={() => void onDelete(song.id)}
                         className="px-4 py-3 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 font-medium hover:bg-red-100 dark:hover:bg-red-900/40 transition-colors duration-200"
                       >
-                        Eliminar
+                        Löschen
                       </button>
                     </div>
                   </div>
@@ -371,11 +371,11 @@ export default function SongsManualManager() {
                 <span className="text-3xl">🎵</span>
               </div>
               <h4 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-                Aún no tienes canciones
+                Du hast noch keine Lieder
               </h4>
               <p className="text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-                Empieza agregando una letra y un enlace para crear tu primera
-                práctica de inglés con música.
+                Starte mit Songtext und Link, um deine erste
+                Englischuebung mit Musik zu erstellen.
               </p>
             </div>
           )}

@@ -52,7 +52,7 @@ export default function LanguageIslandsManualManager() {
       setIslands(list);
     } catch (e) {
       console.error("[LanguageIsland] Failed to load islands:", e);
-      setError("No se pudieron cargar las islas.");
+      setError("Inseln konnten nicht geladen werden.");
     } finally {
       setIsLoading(false);
     }
@@ -82,26 +82,26 @@ export default function LanguageIslandsManualManager() {
     const rawSentencesText = form.sentencesText.trim();
 
     if (!title || !rawSentencesText) {
-      setError("Título y oraciones son obligatorios.");
+      setError("Titel und Saetze sind erforderlich.");
       return;
     }
 
     const titleValidation = validateTitle(title);
     if (!titleValidation.isValid) {
-      setError(titleValidation.error || "El título no es válido.");
+      setError(titleValidation.error || "Der Titel ist ungueltig.");
       return;
     }
 
     const contentValidation = validateTextContent(rawSentencesText);
     if (!contentValidation.isValid) {
-      setError(contentValidation.error || "Las oraciones no son válidas.");
+      setError(contentValidation.error || "Die Saetze sind ungueltig.");
       return;
     }
 
     if (contentValidation.warnings && contentValidation.warnings.length > 0) {
       const warningMessage = contentValidation.warnings.join("\n");
       const proceed = window.confirm(
-        `Advertencias encontradas:\n${warningMessage}\n\n¿Deseas continuar?`
+        `Hinweise gefunden:\n${warningMessage}\n\nMoechtest du fortfahren?`
       );
       if (!proceed) return;
     }
@@ -111,7 +111,7 @@ export default function LanguageIslandsManualManager() {
     const sentenceList = splitIslandSentences(normalizedText);
 
     if (sentenceList.length === 0) {
-      setError("Debes agregar al menos una oración (una por línea).");
+      setError("Du musst mindestens einen Satz hinzufuegen (eine Zeile pro Satz).");
       return;
     }
 
@@ -120,7 +120,7 @@ export default function LanguageIslandsManualManager() {
       const now = Date.now();
 
       if (editingIslandId && !editingIsland) {
-        setError("La isla que intentas editar ya no existe.");
+        setError("Die zu bearbeitende Insel existiert nicht mehr.");
         return;
       }
 
@@ -131,7 +131,7 @@ export default function LanguageIslandsManualManager() {
           sentencesText: normalizedText,
           updatedAt: now,
         });
-        setSuccess("Isla actualizada correctamente.");
+        setSuccess("Insel erfolgreich aktualisiert.");
       } else {
         const newIsland: LanguageIslandItem = {
           id: crypto.randomUUID(),
@@ -141,14 +141,14 @@ export default function LanguageIslandsManualManager() {
           updatedAt: now,
         };
         await addLanguageIsland(newIsland);
-        setSuccess("Isla guardada correctamente.");
+        setSuccess("Insel erfolgreich gespeichert.");
       }
 
       resetFormState();
       await refreshIslands();
     } catch (e) {
       console.error("[LanguageIsland] Failed to save island:", e);
-      setError("No se pudo guardar la isla. Inténtalo nuevamente.");
+      setError("Die Insel konnte nicht gespeichert werden. Bitte versuche es erneut.");
     } finally {
       setIsSaving(false);
     }
@@ -156,7 +156,7 @@ export default function LanguageIslandsManualManager() {
 
   async function onDelete(islandId: string) {
     const confirmed = window.confirm(
-      "¿Eliminar esta isla? Esta acción no se puede deshacer."
+      "Diese Insel löschen? Diese Aktion kann nicht rückgängig gemacht werden."
     );
     if (!confirmed) return;
 
@@ -169,16 +169,16 @@ export default function LanguageIslandsManualManager() {
         resetFormState();
       }
       await refreshIslands();
-      setSuccess("Isla eliminada.");
+      setSuccess("Insel entfernt.");
     } catch (e) {
       console.error("[LanguageIsland] Failed to delete island:", e);
-      setError("No se pudo eliminar la isla.");
+      setError("Die Insel konnte nicht entfernt werden.");
     }
   }
 
   return (
     <section
-      id="agregar-isla-manual"
+      id="insel-manuell-erstellen"
       className="relative overflow-hidden border-b border-gray-200 bg-white px-4 py-12 dark:border-gray-800 dark:bg-gray-950"
     >
       <div className="absolute inset-0 pointer-events-none">
@@ -190,14 +190,14 @@ export default function LanguageIslandsManualManager() {
         <div className="mb-10 text-center">
           <div className="mb-6 inline-flex items-center rounded-full border border-gray-200 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300">
             <span className="mr-2 h-2 w-2 rounded-full bg-indigo-500"></span>
-            Biblioteca de Islas
+            Inselbibliothek
           </div>
           <h2 className="mb-3 text-3xl font-extrabold text-gray-900 dark:text-gray-100 md:text-4xl">
-            Agrega tus language islands y estudia por oraciones
+            Erstelle deine Language Islands und lerne Satz fuer Satz
           </h2>
           <p className="mx-auto max-w-3xl text-base text-gray-600 dark:text-gray-400 md:text-lg">
-            Crea islas con una oración por línea para practicar traducción en
-            contexto, reforzar estructuras y trabajar pronunciación con TTS.
+            Erstelle Inseln mit einem Satz pro Zeile, um Uebersetzung im Kontext
+            zu trainieren, Strukturen zu festigen und Aussprache mit TTS zu ueben.
           </p>
         </div>
 
@@ -206,13 +206,13 @@ export default function LanguageIslandsManualManager() {
             <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600">
               <span className="text-sm text-white">+</span>
             </div>
-            {editingIsland ? "Editar isla" : "Agregar isla manualmente"}
+            {editingIsland ? "Insel bearbeiten" : "Insel manuell hinzufuegen"}
           </h3>
 
           <form className="space-y-5" onSubmit={onSubmit}>
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Título de la isla
+                Titel der Insel
               </label>
               <input
                 type="text"
@@ -221,13 +221,13 @@ export default function LanguageIslandsManualManager() {
                   setForm((prev) => ({ ...prev, title: event.target.value }))
                 }
                 className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 transition-colors duration-200 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100"
-                placeholder="Ej: Isla de conversaciones cotidianas"
+                placeholder="z. B. Insel fuer Alltagsgespraeche"
               />
             </div>
 
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Oraciones (una por línea)
+                Saetze (eine Zeile pro Satz)
               </label>
               <textarea
                 value={form.sentencesText}
@@ -243,8 +243,7 @@ export default function LanguageIslandsManualManager() {
                 }
               />
               <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                Consejo: cada línea se mostrará como una oración individual en
-                la ruta de estudio.
+                Tipp: Jede Zeile wird in der Lernansicht als eigener Satz angezeigt.
               </p>
             </div>
 
@@ -267,7 +266,7 @@ export default function LanguageIslandsManualManager() {
                   onClick={resetFormState}
                   className="rounded-xl bg-gray-100 px-5 py-3 font-semibold text-gray-700 transition-colors duration-200 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
                 >
-                  Cancelar edición
+                  Bearbeitung abbrechen
                 </button>
               ) : null}
 
@@ -277,19 +276,19 @@ export default function LanguageIslandsManualManager() {
                 className="rounded-xl bg-indigo-600 px-6 py-3 font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-indigo-700 hover:shadow-md disabled:cursor-not-allowed disabled:bg-gray-400 dark:disabled:bg-gray-600"
               >
                 {isSaving
-                  ? "Guardando..."
+                  ? "Speichert..."
                   : editingIsland
-                    ? "Actualizar isla"
-                    : "Guardar isla"}
+                    ? "Insel aktualisieren"
+                    : "Insel speichern"}
               </button>
             </div>
           </form>
         </div>
 
-        <div className="space-y-4" id="islas-guardadas">
+        <div className="space-y-4" id="inseln-gespeichert">
           <div className="flex items-center justify-between gap-3">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              Islas guardadas
+              Gespeicherte Inseln
             </h3>
             <span className="rounded-full border border-gray-200 bg-gray-100 px-3 py-1 text-sm text-gray-500 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400">
               {islands.length} total
@@ -323,7 +322,7 @@ export default function LanguageIslandsManualManager() {
                           </h4>
                           <div className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-500 dark:bg-gray-800 dark:text-gray-400">
                             {new Date(island.updatedAt).toLocaleDateString(
-                              "es-ES"
+                              "de-DE"
                             )}
                           </div>
                         </div>
@@ -333,31 +332,31 @@ export default function LanguageIslandsManualManager() {
                         </p>
 
                         <span className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300">
-                          {sentences.length} oraciones
+                          {sentences.length} Saetze
                         </span>
                       </div>
 
                       <div className="flex flex-wrap gap-2">
                         <Link
-                          to={`/aprender-con-language-island/${island.id}`}
+                          to={`/lernen-mit-language-island/${island.id}`}
                           reloadDocument
                           className="inline-flex items-center rounded-xl bg-indigo-600 px-5 py-3 font-medium text-white shadow-sm transition-colors duration-200 hover:bg-indigo-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
                         >
-                          Abrir isla
+                          Insel öffnen
                         </Link>
                         <button
                           type="button"
                           onClick={() => startEdit(island)}
                           className="rounded-xl bg-gray-100 px-4 py-3 font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
                         >
-                          Editar
+                          Bearbeiten
                         </button>
                         <button
                           type="button"
                           onClick={() => void onDelete(island.id)}
                           className="rounded-xl bg-red-50 px-4 py-3 font-medium text-red-700 transition-colors duration-200 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-300 dark:hover:bg-red-900/40"
                         >
-                          Eliminar
+                          Löschen
                         </button>
                       </div>
                     </div>
@@ -368,11 +367,11 @@ export default function LanguageIslandsManualManager() {
           ) : (
             <div className="rounded-2xl border border-gray-200 bg-white py-16 text-center shadow-sm dark:border-gray-800 dark:bg-gray-900">
               <h4 className="mb-3 text-2xl font-bold text-gray-900 dark:text-gray-100">
-                Aún no tienes islas
+                Du hast noch keine Inseln
               </h4>
               <p className="mx-auto max-w-xl text-gray-600 dark:text-gray-400">
-                Agrega una isla con tus oraciones favoritas para empezar a
-                estudiar con traducción contextual.
+                Fuege eine Insel mit deinen Lieblingssaetzen hinzu, um mit
+                kontextbezogener Uebersetzung zu lernen.
               </p>
             </div>
           )}

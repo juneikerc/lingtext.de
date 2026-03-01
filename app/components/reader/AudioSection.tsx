@@ -28,11 +28,11 @@ export default function AudioSection({
   const [isExpanded, setIsExpanded] = useState(false); // Mobile expand/collapse
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Determinar estrategia de preload basada en el tamaño del archivo
+  // Determine preload strategy based on file size
   useEffect(() => {
     if (fileSize) {
       const sizeMB = fileSize / (1024 * 1024);
-      // Para archivos muy grandes (>50MB), usar preload="none"
+      // For very large files (>50MB), use preload="none"
       if (sizeMB > 50) {
         setPreloadStrategy("none");
         setFileTooLarge(true);
@@ -49,7 +49,7 @@ export default function AudioSection({
     }
   }, [rate]);
 
-  // Limpiar errores cuando cambia la fuente
+  // Clear errors when source changes
   useEffect(() => {
     setAudioError(null);
     setIsLoading(false);
@@ -80,24 +80,24 @@ export default function AudioSection({
   const handleAudioError = (e: React.SyntheticEvent<HTMLAudioElement>) => {
     setIsLoading(false);
     const audioElement = e.currentTarget;
-    let errorMessage = "Error al cargar el audio";
+    let errorMessage = "Fehler beim Laden des Audios";
 
     if (audioElement.error) {
       switch (audioElement.error.code) {
         case MediaError.MEDIA_ERR_ABORTED:
-          errorMessage = "Reproducción abortada";
+          errorMessage = "Wiedergabe abgebrochen";
           break;
         case MediaError.MEDIA_ERR_NETWORK:
-          errorMessage = "Error de red al cargar el audio";
+          errorMessage = "Netzwerkfehler beim Laden des Audios";
           break;
         case MediaError.MEDIA_ERR_DECODE:
-          errorMessage = "Error al decodificar el audio";
+          errorMessage = "Fehler beim Dekodieren des Audios";
           break;
         case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
-          errorMessage = "Formato de audio no soportado";
+          errorMessage = "Audioformat wird nicht unterstuetzt";
           break;
         default:
-          errorMessage = "Error desconocido en el audio";
+          errorMessage = "Unbekannter Audiofehler";
       }
     }
 
@@ -107,8 +107,8 @@ export default function AudioSection({
 
   const handleAudioStalled = () => {
     setIsLoading(true);
-    setAudioError("Carga del audio detenida - intentando recuperar...");
-    // Intentar recuperar después de un breve delay
+    setAudioError("Audioladen unterbrochen - Wiederherstellung wird versucht...");
+    // Try recovering after a short delay
     setTimeout(() => {
       if (audioRef.current) {
         audioRef.current.load();
@@ -157,15 +157,15 @@ export default function AudioSection({
                   <span className="text-orange-500 shrink-0">🔒</span>
                   <span className="text-orange-600 dark:text-orange-400 truncate">
                     {isLocalFile
-                      ? "Permiso requerido para archivo local"
-                      : "Permiso requerido"}
+                      ? "Berechtigung fuer lokale Datei erforderlich"
+                      : "Berechtigung erforderlich"}
                   </span>
                 </>
               ) : (
                 <>
                   <span className="text-blue-500 shrink-0">📁</span>
                   <span className="text-blue-600 dark:text-blue-400 truncate">
-                    Archivo grande detectado
+                    Grosse Datei erkannt
                   </span>
                 </>
               )}
@@ -177,21 +177,21 @@ export default function AudioSection({
                   onClick={handleLoadAudio}
                   className="px-2 py-1 bg-red-100 hover:bg-red-200 dark:bg-red-900/40 dark:hover:bg-red-900/60 text-red-700 dark:text-red-300 rounded transition-colors"
                 >
-                  Reintentar
+                  Erneut versuchen
                 </button>
               ) : showReauthorize ? (
                 <button
                   onClick={onReauthorize}
                   className="px-2 py-1 bg-orange-100 hover:bg-orange-200 dark:bg-orange-900/40 dark:hover:bg-orange-900/60 text-orange-700 dark:text-orange-300 rounded transition-colors"
                 >
-                  Reautorizar
+                  Neu autorisieren
                 </button>
               ) : (
                 <button
                   onClick={handleLoadAudio}
                   className="px-2 py-1 bg-blue-100 hover:bg-blue-200 dark:bg-blue-900/40 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 rounded transition-colors"
                 >
-                  Cargar
+                  Laden
                 </button>
               )}
             </div>
@@ -228,7 +228,7 @@ export default function AudioSection({
                 onPlaying={handleAudioPlaying}
                 // onProgress={handleAudioProgress}
               >
-                Tu navegador no soporta audio HTML5
+                Dein Browser unterstuetzt kein HTML5-Audio
               </audio>
             </div>
           </div>
@@ -240,7 +240,7 @@ export default function AudioSection({
               <button
                 onClick={() => changeRate(-0.1)}
                 className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-white dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-shadow"
-                title="Más lento"
+                title="Langsamer"
               >
                 -
               </button>
@@ -250,7 +250,7 @@ export default function AudioSection({
               <button
                 onClick={() => changeRate(0.1)}
                 className="w-7 h-7 flex items-center justify-center rounded-md hover:bg-white dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300 transition-shadow"
-                title="Más rápido"
+                title="Schneller"
               >
                 +
               </button>

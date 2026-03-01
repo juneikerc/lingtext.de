@@ -4,6 +4,7 @@ import {
   type WordEntry,
   TRANSLATORS,
 } from "../types";
+import { APP_ORIGIN } from "~/config/app-identity";
 import { getPhrase, getWord } from "../services/db";
 import { getOpenRouterApiKey } from "../services/db";
 
@@ -103,7 +104,7 @@ export async function generateStory(
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
-          "HTTP-Referer": "https://lingtext.org",
+          "HTTP-Referer": APP_ORIGIN,
           "X-Title": "LingText Story Generator",
         },
         body: JSON.stringify({

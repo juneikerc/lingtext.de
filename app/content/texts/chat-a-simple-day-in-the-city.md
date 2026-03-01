@@ -1,7 +1,7 @@
 ---
 title: "A Simple Day in the City (CHAT)"
 level: "a1"
-sound: "https://images.lingtext.org/talk.wav"
+sound: "https://images.lingtext.de/talk.wav"
 ---
 
 **Anna:** Hello, Ben.

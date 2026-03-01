@@ -48,7 +48,7 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
     const prevSelected = prevSelectedRef.current;
     prevSelectedRef.current = selected;
 
-    // Solo alertar cuando el usuario cambia explícitamente a Chrome
+    // Only alert when the user explicitly switches to Chrome
     if (
       prevSelected !== null &&
       selected === TRANSLATORS.CHROME &&
@@ -56,10 +56,10 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
       !isChromeAIAvailable()
     ) {
       alert(
-        "El traductor nativo de Chrome requiere:\n" +
-          "- Navegador Google Chrome de escritorio\n" +
-          "- API de traducción activada en tu navegador\n\n" +
-          "Si no cumples esos requisitos, puedes usar el traductor gratis (MyMemory) o agregar una API Key de OpenRouter para los modelos con IA."
+        "Der native Chrome-Uebersetzer erfordert:\n" +
+          "- Google Chrome auf dem Desktop\n" +
+          "- Aktivierte Uebersetzungs-API im Browser\n\n" +
+          "Wenn diese Voraussetzungen fehlen, kannst du den kostenlosen Uebersetzer (MyMemory) nutzen oder einen OpenRouter-API-Key fuer KI-Modelle hinterlegen."
       );
     }
   }, [selected]);
@@ -81,7 +81,7 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
         }`}
       >
         <div className="mx-auto max-w-6xl w-full px-4 sm:px-6 lg:px-8">
-          {/* Primera fila compacta - Título y navegación */}
+          {/* Compact first row - title and navigation */}
           <div className="flex items-center justify-between py-2 sm:py-3 min-w-0">
             <div className="flex items-center space-x-3 min-w-0">
               <button
@@ -92,33 +92,33 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
                 <span className="text-sm group-hover:-translate-x-0.5 transition-transform duration-200">
                   ←
                 </span>
-                <span className="text-sm">Volver</span>
+                <span className="text-sm">Zurueck</span>
               </button>
 
               <div className="h-5 w-px bg-gray-300 dark:bg-gray-600"></div>
 
               <div className="flex-1 min-w-0">
                 <h1 className="text-lg md:text-xl font-bold text-gray-900 dark:text-gray-100 truncate w-full">
-                  {title || "Sin título"}
+                  {title || "Ohne Titel"}
                 </h1>
               </div>
             </div>
 
-            {/* Indicador de estado compacto */}
+            {/* Compact status indicator */}
             <div className="hidden sm:flex items-center space-x-1 px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-md text-xs font-medium">
               <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
-              <span>Listo</span>
+              <span>Bereit</span>
             </div>
           </div>
 
-          {/* Segunda fila compacta - Selector de traductor */}
+          {/* Compact second row - translator selector */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-t border-gray-200/50 dark:border-gray-700/50 pt-2">
             <div className="flex items-center space-x-2">
               <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded flex items-center justify-center">
                 <span className="text-white text-xs">🌐</span>
               </div>
               <strong className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                Traductor:
+                Übersetzer:
               </strong>
             </div>
 
@@ -128,27 +128,27 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
                 value={selected}
                 onChange={(e) => setSelected(e.target.value as TRANSLATORS)}
               >
-                <option value={TRANSLATORS.CHROME}>⚡ Rápido | Básico</option>
+                <option value={TRANSLATORS.CHROME}>⚡ Schnell | Basis</option>
                 <option value={TRANSLATORS.MYMEMORY}>
-                  🆓 Gratis (Poco Preciso) | MyMemory
+                  🆓 Kostenlos (Weniger praezise) | MyMemory
                 </option>
                 <option value={TRANSLATORS.MEDIUM}>
-                  🧠 Inteligente | Medio
+                  🧠 Intelligenter | Mittel
                 </option>
                 <option value={TRANSLATORS.SMART}>
-                  🚀 Muy Inteligente + costoso
+                  🚀 Sehr intelligent + teuer
                 </option>
               </select>
 
-              {/* Información compacta del traductor seleccionado */}
+              {/* Compact info for selected translator */}
               <div className="text-xs text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
                 {selected === TRANSLATORS.CHROME && "Nativo"}
-                {selected === TRANSLATORS.MYMEMORY && "Gratis"}
-                {selected === TRANSLATORS.MEDIUM && "IA Optimizada"}
-                {selected === TRANSLATORS.SMART && "IA Avanzada"}
+                {selected === TRANSLATORS.MYMEMORY && "Kostenlos"}
+                {selected === TRANSLATORS.MEDIUM && "Optimierte KI"}
+                {selected === TRANSLATORS.SMART && "Erweiterte KI"}
               </div>
 
-              {/* Botón de configuración de API Key */}
+              {/* API key config button */}
               <button
                 onClick={() => setShowApiKeyConfig(true)}
                 className={`flex items-center space-x-1 px-2 py-1 rounded text-xs font-medium transition-colors ${
@@ -156,7 +156,7 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
                     ? "bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 hover:bg-amber-200 dark:hover:bg-amber-900/50"
                     : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
                 }`}
-                title="Configurar API Key"
+                title="API-Key konfigurieren"
               >
                 <svg
                   className="w-3.5 h-3.5"
@@ -176,7 +176,7 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
             </div>
           </div>
 
-          {/* Aviso si falta API Key */}
+          {/* Notice when API key is missing */}
           {needsApiKey && (
             <div className="pb-4">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-800 rounded-xl shadow-sm gap-4">
@@ -198,11 +198,11 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-amber-900 dark:text-amber-100">
-                      Configuración requerida
+                      Konfiguration erforderlich
                     </h4>
                     <p className="text-xs text-amber-700 dark:text-amber-300 mt-0.5">
-                      Para usar traductores con IA avanzada, necesitas una clave
-                      de OpenRouter.
+                      Fuer Uebersetzer mit fortgeschrittener KI brauchst du
+                      einen OpenRouter-Schluessel.
                     </p>
                   </div>
                 </div>
@@ -214,13 +214,13 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
                     rel="noopener noreferrer"
                     className="flex-1 sm:flex-none text-center px-4 py-2 text-xs font-bold text-white bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-600 rounded-lg transition-colors shadow-sm"
                   >
-                    ¿Cómo obtenerla? (Tutorial)
+                    Wie bekomme ich ihn? (Tutorial)
                   </a>
                   <button
                     onClick={() => setShowApiKeyConfig(true)}
                     className="flex-1 sm:flex-none px-4 py-2 text-xs font-bold text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/50 hover:bg-amber-200 dark:hover:bg-amber-900/80 rounded-lg transition-colors border border-amber-200 dark:border-amber-800"
                   >
-                    Configurar ahora
+                    Jetzt konfigurieren
                   </button>
                 </div>
               </div>

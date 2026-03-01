@@ -32,12 +32,12 @@ const TOTAL_WORDS = 500;
 export function meta({}: Route.MetaArgs) {
   return [
     {
-      title: "500 palabras más usadas en inglés | audio, oración y significado",
+      title: "500 haeufigste englische Woerter | Audio, Satz und Bedeutung",
     },
     {
       name: "description",
       content:
-        "Aprende las 500 palabras más usadas en inglés con audio de palabra y oración, traducción y significado. Vocabulario más común para hablar inglés con fluidez.",
+        "Lerne die 500 haeufigsten englischen Woerter mit Wort- und Satzaudio, Uebersetzung und Bedeutung.",
     },
   ];
 }
@@ -45,7 +45,7 @@ export function meta({}: Route.MetaArgs) {
 export const links: Route.LinksFunction = () => [
   {
     rel: "canonical",
-    href: "https://lingtext.org/500-palabras-en-ingles",
+    href: "https://lingtext.de/500-englische-woerter",
   },
 ];
 
@@ -69,7 +69,7 @@ export function loader(): Word500Group[] {
     const to = start + chunk.length;
 
     groups.push({
-      title: `Palabras ${from}-${to}`,
+      title: `Wörter ${from}-${to}`,
       words: chunk,
     });
   }
@@ -123,14 +123,14 @@ function WordCard({
             #{item.index}
           </p>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 sm:text-xl">
-            {item.word || "Palabra no disponible"}
+            {item.word || "Wort nicht verfuegbar"}
           </h3>
         </div>
         <button
           type="button"
           className="inline-flex items-center justify-center rounded-xl bg-gray-50 p-3 text-gray-700 transition-colors duration-200 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus-visible:ring-offset-gray-950"
-          title="Reproducir palabra"
-          aria-label={`Reproducir palabra: ${item.word}`}
+          title="Wort abspielen"
+          aria-label={`Wort abspielen: ${item.word}`}
           disabled={!item.word}
           onClick={async () => {
             if (!item.word) return;
@@ -144,14 +144,14 @@ function WordCard({
       <div className="border-t border-gray-200 px-5 py-4 dark:border-gray-800">
         <details className="rounded-xl border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800/40">
           <summary className="cursor-pointer list-none px-4 py-3 text-sm font-medium text-gray-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-gray-200 dark:focus-visible:ring-offset-gray-900">
-            Significado / traducción de la palabra
+            Bedeutung / Uebersetzung des Wortes
           </summary>
           <div className="border-t border-gray-200 px-4 py-3 dark:border-gray-700">
             <p className="text-gray-700 dark:text-gray-300">
-              {wordTranslation || "Traducción no disponible"}
+              {wordTranslation || "Übersetzung nicht verfügbar"}
             </p>
             <p className="mt-3 whitespace-pre-line text-sm text-gray-600 dark:text-gray-400">
-              {item.definition || "Significado no disponible"}
+              {item.definition || "Bedeutung nicht verfuegbar"}
             </p>
           </div>
         </details>
@@ -162,14 +162,14 @@ function WordCard({
           <summary className="flex cursor-pointer list-none items-start justify-between gap-3 px-4 py-3">
             <div className="space-y-2">
               <p className="text-base text-gray-900 dark:text-gray-100">
-                {item.exampleSentence || "Oración no disponible"}
+                {item.exampleSentence || "Satz nicht verfuegbar"}
               </p>
             </div>
             <button
               type="button"
               className="inline-flex items-center justify-center rounded-lg bg-gray-50 px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus-visible:ring-offset-gray-950"
-              title="Reproducir oración"
-              aria-label={`Reproducir oración: ${item.exampleSentence}`}
+              title="Satz abspielen"
+              aria-label={`Satz abspielen: ${item.exampleSentence}`}
               disabled={!hasSentence}
               onClick={async (event) => {
                 event.preventDefault();
@@ -183,7 +183,7 @@ function WordCard({
           </summary>
           <div className="border-t border-indigo-100 px-4 py-3 dark:border-indigo-900/40">
             <p className="mt-2 rounded-lg bg-white px-3 py-2 text-gray-700 dark:bg-gray-800 dark:text-gray-300">
-              {item.translation || "Traducción no disponible"}
+              {item.translation || "Übersetzung nicht verfügbar"}
             </p>
           </div>
         </details>
@@ -224,14 +224,14 @@ export default function EnglishWords500Page({
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
-    doc.text("500 Palabras Mas Usadas en Ingles", 40, cursorY);
+    doc.text("500 haeufigste Woerter im Englischen", 40, cursorY);
     cursorY += 18;
 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(11);
     doc.setTextColor(75, 85, 99);
     doc.text(
-      "Incluye palabra, oracion, traduccion y significado.",
+      "Enthaelt Wort, Satz, Uebersetzung und Bedeutung.",
       40,
       cursorY
     );
@@ -249,12 +249,12 @@ export default function EnglishWords500Page({
 
       autoTable(doc, {
         startY: cursorY,
-        head: [["Palabra", "Oracion", "Traduccion", "Significado"]],
+        head: [["Wort", "Satz", "Uebersetzung", "Bedeutung"]],
         body: group.words.map((item) => [
-          item.word || "No disponible",
-          item.exampleSentence || "No disponible",
-          item.translation || "No disponible",
-          item.definition || "No disponible",
+          item.word || "Nicht verfuegbar",
+          item.exampleSentence || "Nicht verfuegbar",
+          item.translation || "Nicht verfuegbar",
+          item.definition || "Nicht verfuegbar",
         ]),
         margin: { left: 40, right: 40 },
         styles: { font: "helvetica", fontSize: 9, cellPadding: 6 },
@@ -281,7 +281,7 @@ export default function EnglishWords500Page({
       }
     });
 
-    doc.save("500-palabras-mas-usadas-en-ingles.pdf");
+    doc.save("500-haeufigste-woerter-im-englischen.pdf");
   }, [wordsByGroup]);
 
   return (
@@ -292,30 +292,29 @@ export default function EnglishWords500Page({
             <div className="flex flex-col gap-6">
               <div className="inline-flex items-center gap-3 self-start rounded-full border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300">
                 <span className="h-2 w-2 rounded-full bg-indigo-500" />
-                500 palabras de alta frecuencia del inglés
+                500 hochfrequente englische Woerter
               </div>
 
               <div className="space-y-4">
                 <h1 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
-                  500 Palabras Más Usadas en Inglés
+                  500 haeufigste englische Woerter
                 </h1>
                 <div className="space-y-4 text-base text-gray-600 dark:text-gray-400 sm:text-lg">
                   <p>
-                    Esta guía reúne las{" "}
+                    Diese Uebersicht enthaelt die{" "}
                     <strong className="font-semibold text-gray-900 dark:text-gray-100">
-                      500 palabras más usadas en inglés
+                      500 haeufigsten englischen Woerter
                     </strong>{" "}
-                    con enfoque práctico: escuchas la palabra, escuchas la
-                    oración y estudias su significado paso a paso.
+                    mit praxisnahem Fokus: Du hoerst das Wort, den Beispielsatz
+                    und lernst die Bedeutung Schritt fuer Schritt.
                   </p>
                   <p>
-                    Si buscas{" "}
+                    Wenn du{" "}
                     <strong className="font-semibold text-gray-900 dark:text-gray-100">
-                      palabras más comunes en inglés
+                      besonders haeufige englische Woerter
                     </strong>{" "}
-                    o vocabulario más usado para conversar, aquí tienes una
-                    lista útil para entrenar comprensión, pronunciación y
-                    memoria.
+                    fuer Gespraeche suchst, findest du hier eine nuetzliche
+                    Liste fuer Verstehen, Aussprache und Merkfaehigkeit.
                   </p>
                 </div>
               </div>
@@ -325,14 +324,14 @@ export default function EnglishWords500Page({
                   to="/"
                   className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-gray-700 transition-colors duration-200 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:ring-offset-gray-950"
                 >
-                  Volver al inicio
+                  Zurück zur Startseite
                 </Link>
                 <button
                   type="button"
                   onClick={onDownloadPdf}
                   className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 font-medium text-white shadow-sm transition-colors duration-200 hover:bg-indigo-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
                 >
-                  Descargar 500 palabras en inglés PDF
+                  500 englische Woerter als PDF herunterladen
                 </button>
               </div>
             </div>
@@ -343,9 +342,9 @@ export default function EnglishWords500Page({
           <div className="mx-auto max-w-5xl px-6">
             <details className="rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-200 hover:border-gray-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700">
               <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-lg font-semibold text-gray-900 dark:text-gray-100 sm:text-xl">
-                Tabla de contenidos
+                Inhaltsverzeichnis
                 <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  {wordsByGroup.length} bloques
+                  {wordsByGroup.length} Bloecke
                 </span>
               </summary>
               <div className="border-t border-gray-200 px-5 py-4 dark:border-gray-800">
@@ -384,7 +383,7 @@ export default function EnglishWords500Page({
                       {group.title}
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {group.words.length} palabras disponibles
+                      {group.words.length} Woerter verfuegbar
                     </p>
                   </div>
 
@@ -408,8 +407,8 @@ export default function EnglishWords500Page({
       <a
         href="#top"
         className="fixed bottom-6 right-6 inline-flex items-center justify-center rounded-xl bg-indigo-600 p-3 text-white shadow-sm transition-colors duration-200 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
-        aria-label="Volver al inicio"
-        title="Volver al inicio"
+        aria-label="Zurück zur Startseite"
+        title="Zurück zur Startseite"
       >
         ↑
       </a>

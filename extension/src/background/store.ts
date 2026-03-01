@@ -8,11 +8,11 @@ import { TRANSLATORS } from "@/types";
 
 const SCHEMA_VERSION = 2;
 const STORAGE_KEYS = {
-  VERSION: "lt2_schema_version",
-  WORDS: "lt2_words",
-  PHRASES: "lt2_phrases",
-  SETTINGS: "lt2_settings",
-  LAST_SYNC: "lt2_last_sync",
+  VERSION: "ltde_schema_version",
+  WORDS: "ltde_words",
+  PHRASES: "ltde_phrases",
+  SETTINGS: "ltde_settings",
+  LAST_SYNC: "ltde_last_sync",
 } as const;
 
 const defaultSettings: ExtensionSettings = {

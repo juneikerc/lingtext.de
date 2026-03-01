@@ -2,7 +2,9 @@
  * Core SQLite Database Engine and Initialization
  */
 
-export const DB_NAME = "lingtext.sqlite3";
+import { WEB_DB_NAME } from "~/config/app-identity";
+
+export const DB_NAME = WEB_DB_NAME;
 
 // SQLite WASM instance (singleton)
 // Using 'any' for SQLite types due to complex WASM type definitions

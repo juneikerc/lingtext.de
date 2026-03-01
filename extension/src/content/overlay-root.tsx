@@ -111,20 +111,20 @@ export default function OverlayRoot({ shadowRoot }: OverlayRootProps) {
         return;
       }
 
-      if (changes.lt2_words) {
-        const words = (changes.lt2_words.newValue as WordEntry[] | undefined) || [];
+      if (changes.ltde_words) {
+        const words = (changes.ltde_words.newValue as WordEntry[] | undefined) || [];
         setUnknownSet(new Set(words.map((word) => word.wordLower)));
       }
 
-      if (changes.lt2_phrases) {
+      if (changes.ltde_phrases) {
         const phraseEntries =
-          (changes.lt2_phrases.newValue as PhraseEntry[] | undefined) || [];
+          (changes.ltde_phrases.newValue as PhraseEntry[] | undefined) || [];
         setPhrases(phraseEntries.map((entry) => entry.parts));
       }
 
-      if (changes.lt2_settings) {
+      if (changes.ltde_settings) {
         const next =
-          (changes.lt2_settings.newValue as ExtensionSettings | undefined) ||
+          (changes.ltde_settings.newValue as ExtensionSettings | undefined) ||
           defaultSettings;
         setSettings({ ...defaultSettings, ...next, captionLanguage: "en" });
       }

@@ -3,7 +3,7 @@ slug: "input-comprensible"
 title: "¿Qué es el Input comprensible en el aprendizaje de idiomas"
 mainHeading: "Input comprensible: La clave para aprender un idioma efectivamente en 2026"
 metaDescription: "El input comprensible es un concepto clave en el aprendizaje de idiomas, introducido por Stephen Krashen. Se refiere a la exposición a un lenguaje que los estudiantes pueden entender, aunque contenga elementos ligeramente más avanzados."
-image: "https://images.lingtext.org/input-comprensible.jpg"
+image: "https://images.lingtext.de/input-comprensible.jpg"
 tags: ["Teoría", "Estrategias", "Stephen Krashen"]
 ---
 

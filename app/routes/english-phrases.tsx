@@ -7,11 +7,11 @@ import { speak } from "~/utils/tts";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "1000 frases mas usadas en ingles | + sonido y traducción" },
+    { title: "1000 haeufigste englische Phrasen | Audio und Uebersetzung" },
     {
       name: "description",
       content:
-        "Conoce las 1000 frases más usadas en inglés con traducción al español y audio para mejorar tu pronunciación. Aprende inglés de manera práctica y efectiva.",
+        "Lerne 1000 haeufige englische Phrasen mit Uebersetzung und Audio, um deine Aussprache zu verbessern.",
     },
   ];
 }
@@ -19,7 +19,7 @@ export function meta({}: Route.MetaArgs) {
 export const links: Route.LinksFunction = () => [
   {
     rel: "canonical",
-    href: "https://lingtext.org/1000-frases-en-ingles",
+    href: "https://lingtext.de/1000-englische-saetze",
   },
 ];
 
@@ -84,13 +84,13 @@ export default function EnglishPhrasesPage({
 
     doc.setFont("helvetica", "bold");
     doc.setFontSize(18);
-    doc.text("1000 Frases Mas Usadas en Ingles", 40, cursorY);
+    doc.text("1000 haeufige englische Phrasen", 40, cursorY);
     cursorY += 18;
 
     doc.setFont("helvetica", "normal");
     doc.setFontSize(11);
     doc.setTextColor(75, 85, 99);
-    doc.text("Frases con traduccion al espanol.", 40, cursorY);
+    doc.text("Phrasen mit Uebersetzung.", 40, cursorY);
     cursorY += 18;
 
     doc.setTextColor(17, 24, 39);
@@ -105,7 +105,7 @@ export default function EnglishPhrasesPage({
 
       autoTable(doc, {
         startY: cursorY,
-        head: [["Phrase", "Traduccion"]],
+        head: [["Phrase", "Uebersetzung"]],
         body: group.phrases.map((item) => [item.phrase, item.translation]),
         margin: { left: 40, right: 40 },
         styles: { font: "helvetica", fontSize: 10, cellPadding: 6 },
@@ -132,7 +132,7 @@ export default function EnglishPhrasesPage({
       }
     });
 
-    doc.save("1000-frases-en-ingles.pdf");
+    doc.save("1000-englische-saetze.pdf");
   }, [phrasesByCategory]);
 
   return (
@@ -143,26 +143,26 @@ export default function EnglishPhrasesPage({
             <div className="flex flex-col gap-6">
               <div className="inline-flex items-center gap-3 self-start rounded-full border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300">
                 <span className="h-2 w-2 rounded-full bg-indigo-500" />
-                Practica con audio
+                Uebe mit Audio
               </div>
               <div className="space-y-4">
                 <h1 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
-                  1000 Frases Más Usadas en Inglés
+                  1000 haeufige englische Phrasen
                 </h1>
                 <div className="space-y-4 text-base text-gray-600 dark:text-gray-400 sm:text-lg">
                   <p>
-                    Dominar el inglés va más allá de conocer vocabulario
-                    aislado. Las frases hechas y expresiones cotidianas son la
-                    clave para comunicarte con fluidez y naturalidad en
-                    situaciones reales.
+                    Englisch zu beherrschen geht ueber isolierten Wortschatz
+                    hinaus. Feste Wendungen und alltaegliche Ausdruecke sind
+                    entscheidend, um in echten Situationen fluessig und
+                    natuerlich zu kommunizieren.
                   </p>
                   <p>
-                    Esta colección de{" "}
+                    Diese Sammlung mit{" "}
                     <strong className="font-semibold text-gray-900 dark:text-gray-100">
-                      1000 frases esenciales
+                      1000 zentralen Phrasen
                     </strong>{" "}
-                    está organizada por categorías temáticas para facilitar tu
-                    aprendizaje progresivo.
+                    ist nach Themenkategorien geordnet, damit du Schritt fuer
+                    Schritt lernen kannst.
                   </p>
                 </div>
               </div>
@@ -171,7 +171,7 @@ export default function EnglishPhrasesPage({
                   to="/"
                   className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-gray-700 transition-colors duration-200 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:ring-offset-gray-950"
                 >
-                  Volver al inicio
+                  Zurück zur Startseite
                 </Link>
               </div>
               <div>
@@ -180,7 +180,7 @@ export default function EnglishPhrasesPage({
                   onClick={onDownloadPdf}
                   className="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 font-medium text-white shadow-sm transition-colors duration-200 hover:bg-indigo-700 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
                 >
-                  Descargar 1000 frases en ingles PDF
+                  1000 englische Phrasen als PDF herunterladen
                 </button>
               </div>
             </div>
@@ -191,9 +191,9 @@ export default function EnglishPhrasesPage({
           <div className="mx-auto max-w-5xl px-6">
             <details className="rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-200 hover:border-gray-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700">
               <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 text-left text-lg font-semibold text-gray-900 dark:text-gray-100 sm:text-xl">
-                Tabla de contenidos
+                Inhaltsverzeichnis
                 <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  {phrasesByCategory.length} categorías
+                  {phrasesByCategory.length} Kategorien
                 </span>
               </summary>
               <div className="border-t border-gray-200 px-5 py-4 dark:border-gray-800">
@@ -232,7 +232,7 @@ export default function EnglishPhrasesPage({
                       {group.category}
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {group.phrases.length} frases disponibles
+                      {group.phrases.length} Phrasen verfuegbar
                     </p>
                   </div>
 
@@ -249,8 +249,8 @@ export default function EnglishPhrasesPage({
                           <button
                             type="button"
                             className="inline-flex items-center justify-center rounded-xl bg-gray-50 p-3 text-gray-700 transition-colors duration-200 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 dark:focus-visible:ring-offset-gray-950"
-                            title="Reproducir frase"
-                            aria-label={`Reproducir frase: ${phrase.phrase}`}
+                            title="Phrase abspielen"
+                            aria-label={`Phrase abspielen: ${phrase.phrase}`}
                             onClick={async (event) => {
                               event.preventDefault();
                               event.stopPropagation();
@@ -275,8 +275,8 @@ export default function EnglishPhrasesPage({
       <a
         href="#top"
         className="fixed bottom-6 right-6 inline-flex items-center justify-center rounded-xl bg-indigo-600 p-3 text-white shadow-sm transition-colors duration-200 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
-        aria-label="Volver al inicio"
-        title="Volver al inicio"
+        aria-label="Zurück zur Startseite"
+        title="Zurück zur Startseite"
       >
         ↑
       </a>

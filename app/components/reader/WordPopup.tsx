@@ -47,21 +47,21 @@ export default function WordPopup({
             <div>
               <h3 className="font-bold text-lg">{popup.word}</h3>
               <p className="text-gray-600 dark:text-gray-400 text-sm">
-                Palabra seleccionada
+                Ausgewähltes Wort
               </p>
             </div>
           </div>
           <button
             className="p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200"
             onClick={(e) => onSpeak(popup.word, e)}
-            title="Escuchar pronunciación"
+            title="Aussprache anhören"
           >
             <span className="text-xl">🔊</span>
           </button>
           <button
             className="ml-1 p-2 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200"
             onClick={onClose}
-            title="Cerrar"
+            title="Schließen"
           >
             <span className="text-lg">✕</span>
           </button>
@@ -70,21 +70,21 @@ export default function WordPopup({
 
       {/* Contenido principal */}
       <div className="p-4">
-        {/* Traducción */}
+        {/* Translation */}
         <div className="mb-4">
           <div className="flex items-center space-x-2 mb-2">
             <div className="w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center">
-              <span className="text-white text-xs">🇪🇸</span>
+              <span className="text-white text-xs">🇩🇪</span>
             </div>
             <span className="font-semibold text-gray-700 dark:text-gray-300">
-              Traducción
+              Übersetzung
             </span>
           </div>
           <div className="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-lg p-3">
             {popup.isLoading ? (
               <div className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                 <span className="w-4 h-4 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-                <span>Traduciendo...</span>
+                <span>Übersetze...</span>
               </div>
             ) : isTranslationJson(popup.translation) ? (
               <div className="space-y-2">
@@ -112,14 +112,14 @@ export default function WordPopup({
           </div>
         </div>
 
-        {/* Estado de la palabra */}
+        {/* Word state */}
         <div className="mb-4">
           <div className="flex items-center space-x-2 mb-2">
             <div className="w-5 h-5 bg-gray-200 dark:bg-gray-600 rounded-lg flex items-center justify-center">
               <span className="text-white text-xs">🎯</span>
             </div>
             <span className="font-semibold text-gray-700 dark:text-gray-300">
-              Estado
+              Status
             </span>
           </div>
           <div
@@ -134,14 +134,14 @@ export default function WordPopup({
                 isUnknown ? "bg-orange-500" : "bg-green-500"
               }`}
             ></span>
-            {isUnknown ? "Por aprender" : "Conocida"}
+            {isUnknown ? "Zu lernen" : "Bekannt"}
           </div>
         </div>
 
-        {/* Acciones */}
+        {/* Actions */}
         <div className="space-y-2">
           <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-            Acciones rápidas:
+            Schnellaktionen:
           </div>
 
           <div className="grid grid-cols-1 gap-2">
@@ -156,7 +156,7 @@ export default function WordPopup({
                 disabled={popup.isLoading}
               >
                 <span>✅</span>
-                <span>Marcar como conocida</span>
+                <span>Als bekannt markieren</span>
               </button>
             ) : (
               <button
@@ -171,7 +171,7 @@ export default function WordPopup({
                 disabled={popup.isLoading}
               >
                 <span>🎓</span>
-                <span>Marcar para repasar</span>
+                <span>Zum Wiederholen markieren</span>
               </button>
             )}
 
@@ -180,7 +180,7 @@ export default function WordPopup({
               onClick={(e) => onSpeak(popup.word, e)}
             >
               <span>🔊</span>
-              <span>Escuchar de nuevo</span>
+              <span>Erneut anhören</span>
             </button>
           </div>
         </div>

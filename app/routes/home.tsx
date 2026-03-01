@@ -9,11 +9,11 @@ import ContactCTA from "~/components/ContactCTA";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Alternativa gratuita a LingQ | LingText" },
+    { title: "Kostenlose Alternative zu LingQ | LingText" },
     {
       name: "description",
       content:
-        "LingText es una alternativa gratuita a LingQ que te permite aprender inglés leyendo textos locales o por URL, con traducción instantánea, TTS y repaso.",
+        "LingText ist eine kostenlose Alternative zu LingQ, mit der du Englisch durch lokale Texte oder URLs lernst, inklusive Sofortuebersetzung, TTS und Wiederholung.",
     },
   ];
 }
@@ -21,7 +21,7 @@ export function meta({}: Route.MetaArgs) {
 export const links: Route.LinksFunction = () => [
   {
     rel: "canonical",
-    href: "https://lingtext.org",
+    href: "https://lingtext.de",
   },
 ];
 

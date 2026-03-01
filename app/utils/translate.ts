@@ -1,5 +1,10 @@
 import { TRANSLATORS } from "../types";
 import { getOpenRouterApiKey } from "../services/db";
+import {
+  APP_ORIGIN,
+  SOURCE_LANGUAGE,
+  TARGET_LANGUAGE,
+} from "~/config/app-identity";
 
 export async function translateWithMyMemory(
   term: string
@@ -12,7 +17,7 @@ export async function translateWithMyMemory(
   try {
     const url = new URL("https://api.mymemory.translated.net/get");
     url.searchParams.set("q", sanitizedText);
-    url.searchParams.set("langpair", "en|es");
+    url.searchParams.set("langpair", `${SOURCE_LANGUAGE}|${TARGET_LANGUAGE}`);
 
     const response = await fetch(url.toString());
 
@@ -83,8 +88,8 @@ export async function translateFromChrome(
       try {
         // @ts-expect-error Translator is a new Chrome API not in TS types yet
         const translator = await Translator.create({
-          sourceLanguage: "en",
-          targetLanguage: "es",
+          sourceLanguage: SOURCE_LANGUAGE,
+          targetLanguage: TARGET_LANGUAGE,
         });
         const result = await translator.translate(term);
         return result;
@@ -130,7 +135,7 @@ export async function translateWithOpenRouter(
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
-          "HTTP-Referer": "https://lingtext.org",
+          "HTTP-Referer": APP_ORIGIN,
           "X-Title": "LingText",
         },
         body: JSON.stringify({
@@ -138,7 +143,7 @@ export async function translateWithOpenRouter(
           messages: [
             {
               role: "user",
-              content: `You are a machine that outputs strict JSON. You receive an English word and output its Spanish translations grouped by grammatical category as a list of strings.
+              content: `You are a machine that outputs strict JSON. You receive an English word and output its German translations grouped by grammatical category as a list of strings.
 Rules:
 1. Use only valid JSON.
 2. Values must be arrays of strings.
@@ -153,8 +158,8 @@ Assistant:
 {
   "word": "run",
   "info": {
-    "Verb": ["correr", "ejecutar", "administrar"],
-    "Noun": ["carrera", "recorrido", "racha"]
+    "Verb": ["laufen", "rennen", "betreiben"],
+    "Noun": ["Lauf", "Durchlauf", "Serie"]
   }
 }
 
@@ -163,10 +168,10 @@ Assistant:
 {
   "word": "fast",
   "info": {
-    "Adjective": ["rápido", "veloz", "adelantado"],
-    "Adverb": ["rápidamente"],
-    "Noun": ["ayuno"],
-    "Verb": ["ayunar"]
+    "Adjective": ["schnell", "rasch"],
+    "Adverb": ["schnell"],
+    "Noun": ["Fasten"],
+    "Verb": ["fasten"]
   }
 }
 
@@ -175,11 +180,11 @@ Assistant:
 {
   "word": "beautiful",
   "info": {
-    "Adjective": ["hermoso", "bello", "bonito"]
+    "Adjective": ["schön", "wunderschön", "hübsch"]
   }
 }
           
-translate this word to spanish: ${sanitizedText} (respond only with the translation no additional text)`,
+translate this word to german: ${sanitizedText} (respond only with the translation no additional text)`,
             },
           ],
           max_tokens: 100,
@@ -204,7 +209,6 @@ translate this word to spanish: ${sanitizedText} (respond only with the translat
     const data = (await response.json()) as {
       choices?: Array<{ message?: { content?: string } }>;
     };
-    console.log(data);
     const translation = data.choices?.[0]?.message?.content?.trim();
 
     if (!translation) {
@@ -220,7 +224,7 @@ translate this word to spanish: ${sanitizedText} (respond only with the translat
   }
 }
 
-// Unificado: según "selected" usa Chrome si está disponible; si no, usa OpenRouter con la API key del usuario.
+// Unified flow: use Chrome when selected and available; otherwise use OpenRouter with user's API key.
 export async function translateTerm(
   term: string,
   selected: TRANSLATORS
@@ -234,7 +238,7 @@ export async function translateTerm(
     const freeValue = (free.translation || "").trim();
     if (freeValue) return { translation: freeValue };
 
-    // Fallback automático al modelo por defecto si Chrome no existe o falla
+    // Automatic fallback to default remote model if Chrome is unavailable or fails
     return translateWithOpenRouter(term, TRANSLATORS.MEDIUM);
   }
 
@@ -242,6 +246,6 @@ export async function translateTerm(
     return translateWithMyMemory(term);
   }
 
-  // Selección explícita de modelo remoto usando OpenRouter directamente
+  // Explicit remote-model selection via OpenRouter
   return translateWithOpenRouter(term, selected);
 }

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { TRANSLATOR_STORAGE_KEY } from "~/config/app-identity";
 import { TRANSLATORS } from "../types";
 import { isChromeAIAvailable } from "../utils/translate";
 
@@ -29,7 +30,7 @@ export const useTranslatorStore = create<TranslatorSelectorState>()(
       setSelected: (selected) => set({ selected }),
     }),
     {
-      name: "lingtext.translator",
+      name: TRANSLATOR_STORAGE_KEY,
       storage,
       partialize: (state) => ({ selected: state.selected }),
       migrate: (persistedState) => {

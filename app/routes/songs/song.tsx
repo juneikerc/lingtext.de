@@ -103,16 +103,16 @@ function loadYouTubeIframeApi(): Promise<YouTubeNamespace> {
 export function meta({ loaderData }: Route.MetaArgs) {
   if (!loaderData?.song) {
     return [
-      { title: "Canción no encontrada | LingText" },
+      { title: "Lied nicht gefunden | LingText" },
       { name: "robots", content: "noindex" },
     ];
   }
 
   return [
-    { title: `${loaderData.song.title} | Canciones | LingText` },
+    { title: `${loaderData.song.title} | Lieder | LingText` },
     {
       name: "description",
-      content: "Practica inglés con canciones y traducción contextual.",
+      content: "Lerne Englisch mit Liedern und kontextbezogener Uebersetzung.",
     },
     { name: "robots", content: "noindex" },
   ];
@@ -120,7 +120,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
 
 export async function clientLoader({ params }: Route.ClientLoaderArgs) {
   const song = await getSong(params.id);
-  document.title = song?.title || "Canción no encontrada";
+  document.title = song?.title || "Lied nicht gefunden";
   return { song: song ?? null };
 }
 
@@ -221,7 +221,7 @@ export default function SongPage({ loaderData }: Route.ComponentProps) {
         playerRef.current = instance;
       })
       .catch((error) => {
-        console.warn("No se pudo inicializar el control de YouTube:", error);
+        console.warn("YouTube-Steuerung konnte nicht initialisiert werden:", error);
       });
 
     return () => {
@@ -275,16 +275,16 @@ export default function SongPage({ loaderData }: Route.ComponentProps) {
       <main className="min-h-screen bg-gray-50 px-4 py-12 dark:bg-gray-950">
         <div className="mx-auto max-w-2xl rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm dark:border-gray-800 dark:bg-gray-900">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            Canción no encontrada
+            Lied nicht gefunden
           </h1>
           <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
-            Esta canción no existe o fue eliminada.
+            Dieses Lied existiert nicht oder wurde entfernt.
           </p>
           <Link
-            to="/aprender-ingles-con-canciones"
+            to="/englisch-lernen-mit-liedern"
             className="mt-6 inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
           >
-            Volver a canciones
+            Zurueck zu Liedern
           </Link>
         </div>
       </main>
@@ -320,9 +320,9 @@ export default function SongPage({ loaderData }: Route.ComponentProps) {
                     type="button"
                     onClick={() => setIsMiniPlayerHidden(true)}
                     className="absolute right-2 top-2 z-10 rounded-lg border border-gray-300 bg-white/95 px-2 py-1 text-xs font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:border-gray-700 dark:bg-gray-900/90 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:ring-offset-gray-900"
-                    aria-label="Ocultar mini reproductor"
+                    aria-label="Miniplayer ausblenden"
                   >
-                    Ocultar
+                    Ausblenden
                   </button>
                 )}
                 <iframe
@@ -343,12 +343,12 @@ export default function SongPage({ loaderData }: Route.ComponentProps) {
             </div>
           ) : (
             <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-700 dark:border-amber-900/60 dark:bg-amber-900/20 dark:text-amber-300">
-              No pudimos generar el embebido para este enlace. Prueba editar la
-              canción con una URL válida de YouTube o Spotify.
+              Das Embed konnte fuer diesen Link nicht erzeugt werden. Bearbeite
+              das Lied bitte mit einer gueltigen YouTube- oder Spotify-URL.
             </div>
           )}
           <p className="mt-3 text-xs text-gray-600 dark:text-gray-400">
-            Fuente original:{" "}
+            Originalquelle:{" "}
             <a
               href={song.sourceUrl}
               target="_blank"
@@ -359,16 +359,16 @@ export default function SongPage({ loaderData }: Route.ComponentProps) {
             </a>
           </p>
           <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-            Si aparece el mensaje{" "}
-            <span className="font-semibold">“refused to connect”</span>, ese
-            contenido tiene el embebido bloqueado por el proveedor (por ejemplo,
-            algunos videos con copyright). En ese caso usa otro enlace o abre la
-            fuente original.
+            Wenn die Meldung{" "}
+            <span className="font-semibold">“refused to connect”</span>{" "}
+            erscheint, ist das Embed durch den Anbieter blockiert (z. B. bei
+            manchen urheberrechtlich geschuetzten Videos). Nutze dann einen
+            anderen Link oder oeffne die Originalquelle.
           </p>
           <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
             {provider === "youtube"
-              ? "Atajos de teclado globales: J (-5s), K (play/pausa), L (+5s)."
-              : "Atajos de teclado globales disponibles solo para videos de YouTube."}
+              ? "Globale Tastaturkuerzel: J (-5s), K (Play/Pause), L (+5s)."
+              : "Globale Tastaturkuerzel sind nur fuer YouTube-Videos verfuegbar."}
           </p>
         </div>
       </section>
@@ -379,7 +379,7 @@ export default function SongPage({ loaderData }: Route.ComponentProps) {
           onClick={() => setIsMiniPlayerHidden(false)}
           className="fixed bottom-3 right-3 z-40 rounded-xl border border-gray-300 bg-white/95 px-3 py-2 text-xs font-semibold text-gray-700 shadow-lg transition-colors duration-200 hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:border-gray-700 dark:bg-gray-900/95 dark:text-gray-200 dark:hover:bg-gray-800 dark:focus-visible:ring-offset-gray-900"
         >
-          Mostrar reproductor
+          Player anzeigen
         </button>
       )}
 

@@ -1,15 +1,16 @@
 /**
- * Hook para sincronización con la extensión de Chrome
+ * Hook for synchronization with the Chrome extension.
  *
- * Flujo:
- * 1. La extensión envía LINGTEXT_EXTENSION_SYNC_REQUEST o LINGTEXT_SYNC_REQUEST
- * 2. La web obtiene los datos de la extensión
- * 3. La web hace merge (newer wins) con sus datos locales
- * 4. La web guarda el resultado y lo envía de vuelta a la extensión
- * 5. La extensión reemplaza su caché con el estado final
+ * Flow:
+ * 1. Extension sends LINGTEXT_EXTENSION_SYNC_REQUEST or LINGTEXT_SYNC_REQUEST.
+ * 2. Web app reads extension data.
+ * 3. Web app merges with local data (newer wins).
+ * 4. Web app saves merged state and sends it back to extension.
+ * 5. Extension replaces its cache with final state.
  */
 
 import { useEffect, useCallback } from "react";
+import { APP_DOMAIN } from "~/config/app-identity";
 import {
   getAllUnknownWords,
   getAllPhrases,
@@ -32,20 +33,20 @@ export function useExtensionSync() {
     });
 
     try {
-      // Obtener datos actuales de la web
+      // Read current web data
       const webWords = await getAllUnknownWords();
       const webPhrases = await getAllPhrases();
       const apiKey = await getOpenRouterApiKey();
 
-      // Merge strategy: newer wins (basado en addedAt)
+      // Merge strategy: newer wins (based on addedAt)
       const wordMap = new Map<string, WordEntry>();
 
-      // Primero agregar palabras de la web
+      // First add web words
       for (const word of webWords) {
         wordMap.set(word.wordLower, word);
       }
 
-      // Luego agregar/actualizar con palabras de la extensión (si son más nuevas)
+      // Then add/update with extension words (if newer)
       for (const word of extensionData.words) {
         const existing = wordMap.get(word.wordLower);
         if (!existing || word.addedAt > existing.addedAt) {
@@ -55,12 +56,12 @@ export function useExtensionSync() {
 
       const phraseMap = new Map<string, PhraseEntry>();
 
-      // Primero agregar frases de la web
+      // First add web phrases
       for (const phrase of webPhrases) {
         phraseMap.set(phrase.phraseLower, phrase);
       }
 
-      // Luego agregar/actualizar con frases de la extensión (si son más nuevas)
+      // Then add/update with extension phrases (if newer)
       for (const phrase of extensionData.phrases) {
         const existing = phraseMap.get(phrase.phraseLower);
         if (!existing || phrase.addedAt > existing.addedAt) {
@@ -71,7 +72,7 @@ export function useExtensionSync() {
       const mergedWords = Array.from(wordMap.values());
       const mergedPhrases = Array.from(phraseMap.values());
 
-      // Guardar en la base de datos de la web
+      // Persist into web database
       for (const word of mergedWords) {
         await putUnknownWord(word);
       }
@@ -84,7 +85,7 @@ export function useExtensionSync() {
         phrases: mergedPhrases.length,
       });
 
-      // Enviar estado final a la extensión
+      // Send final state back to extension
       window.postMessage(
         {
           type: "LINGTEXT_SYNC_COMPLETE",
@@ -105,10 +106,10 @@ export function useExtensionSync() {
     if (typeof window === "undefined") return;
 
     const handleMessage = async (event: MessageEvent) => {
-      // Solo aceptar mensajes del mismo origen
+      // Only accept messages from same origin
       if (
         event.origin !== window.location.origin &&
-        !event.origin.includes("lingtext.org") &&
+        !event.origin.includes(APP_DOMAIN) &&
         !event.origin.includes("localhost")
       ) {
         return;
@@ -122,13 +123,13 @@ export function useExtensionSync() {
           break;
 
         case "LINGTEXT_EXTENSION_SYNC_REQUEST":
-          // La extensión solicita sincronización (desde el popup)
-          // Primero pedimos los datos de la extensión
+          // Extension requests sync (from popup)
+          // First request data from extension
           window.postMessage({ type: "LINGTEXT_SYNC_REQUEST" }, "*");
           break;
 
         case "LINGTEXT_SYNC_RESPONSE":
-          // Recibimos los datos de la extensión, hacer merge
+          // Received extension data: perform merge
           if (payload) {
             await handleSync(payload as ExtensionSyncData);
           }
@@ -142,7 +143,7 @@ export function useExtensionSync() {
 
     window.addEventListener("message", handleMessage);
 
-    // Notificar que la web está lista para sincronizar
+    // Notify that the web app is ready to sync
     window.postMessage({ type: "LINGTEXT_WEB_READY" }, "*");
 
     return () => {

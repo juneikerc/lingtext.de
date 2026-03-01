@@ -9,11 +9,11 @@ const ReviewMode = lazy(() => import("~/components/ReviewMode"));
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Repaso de vocabulario | LingText" },
+    { title: "Wortschatz-Wiederholung | LingText" },
     {
       name: "description",
       content:
-        "Repasa las palabras que has marcado como desconocidas durante tu tiempo de lectura.",
+        "Wiederhole die Woerter, die du waehrend des Lesens als unbekannt markiert hast.",
     },
     {
       name: "robots",
@@ -37,12 +37,12 @@ function ReviewSkeleton() {
         <div className="text-center mb-8">
           <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800">
             <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-            Preparando sesión de repaso...
+            Wiederholungssitzung wird vorbereitet...
           </div>
           <h1 className="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">
-            Repaso de{" "}
+            Wiederholung von{" "}
             <span className="text-indigo-600 dark:text-indigo-400">
-              Vocabulario
+              Wortschatz
             </span>
           </h1>
         </div>
@@ -196,13 +196,13 @@ export default function Review() {
   const limitReached = data?.limitReached ?? false;
 
   // ============================================================
-  // ESTADO: SIN PALABRAS (Dos variantes: Fin real o Límite)
+  // STATE: NO WORDS (two variants: real finish or limit reached)
   // ============================================================
   if (words.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-4">
-          {/* ÍCONO */}
+          {/* Icon */}
           <div
             className={`w-24 h-24 mx-auto mb-6 rounded-2xl flex items-center justify-center border shadow-sm ${
               limitReached
@@ -213,19 +213,19 @@ export default function Review() {
             <span className="text-4xl">{limitReached ? "🛑" : "🎉"}</span>
           </div>
 
-          {/* TÍTULO */}
+          {/* Title */}
           <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            {limitReached ? "Límite diario alcanzado" : "¡Todo al día!"}
+            {limitReached ? "Tageslimit erreicht" : "Alles erledigt!"}
           </h2>
 
-          {/* DESCRIPCIÓN */}
+          {/* Description */}
           <p className="text-gray-600 dark:text-gray-400 mb-8">
             {limitReached
-              ? `Has estudiado ${dailyStats.newCardsStudied} palabras nuevas hoy. Es importante descansar para asimilar lo aprendido.`
-              : "No hay más repasos pendientes por ahora. Has hecho un excelente trabajo manteniendo tu rutina."}
+              ? `Du hast heute ${dailyStats.newCardsStudied} neue Woerter gelernt. Eine Pause hilft, das Gelernte zu festigen.`
+              : "Aktuell sind keine Wiederholungen mehr offen. Gute Arbeit mit deiner Routine."}
           </p>
 
-          {/* TARJETA DE ESTADÍSTICAS DIARIAS */}
+          {/* Daily stats card */}
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-6 mb-8">
             <div className="grid grid-cols-2 gap-4 divide-x divide-gray-200 dark:divide-gray-700">
               <div className="text-center">
@@ -233,36 +233,36 @@ export default function Review() {
                   {dailyStats.newCardsStudied}
                 </div>
                 <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                  Nuevas Hoy
+                  Neu heute
                 </div>
               </div>
               <div className="text-center pl-4">
                 <div className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-1">
-                  {/* Aquí podrías sumar repasos si guardaras esa estadística en dailyStats también */}
+                  {/* Reviews could be added here if that stat is tracked in dailyStats */}
                   Done
                 </div>
                 <div className="text-xs uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                  Estado
+                  Status
                 </div>
               </div>
             </div>
           </div>
 
-          {/* BOTONES DE ACCIÓN */}
+          {/* Action buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/words"
               className="inline-flex items-center justify-center px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl hover:bg-indigo-700 transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
-              <span>📚 Gestionar vocabulario</span>
+              <span>📚 Wortschatz verwalten</span>
             </Link>
 
-            {/* Si hay límite alcanzado, sugerimos seguir leyendo */}
+            {/* If limit is reached, suggest continuing with reading */}
             <Link
               to="/"
               className="inline-flex items-center justify-center px-6 py-3 font-medium rounded-xl bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
-              <span>📖 Leer textos</span>
+              <span>📖 Texte lesen</span>
             </Link>
           </div>
         </div>

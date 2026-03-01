@@ -63,25 +63,25 @@ export default function ReviewMode({
     setProcessing(true);
 
     try {
-      // Calidad simplificada: 5 (perfecto) o 1 (fallo)
-      // Podrías añadir botones para "Difícil" (3) o "Fácil" (4) en el futuro
+      // Vereinfachte Qualitaet: 5 (perfekt) oder 1 (Fehler)
+      // Optional koennen spaeter Buttons fuer "Schwer" (3) oder "Leicht" (4) hinzugefuegt werden
       const quality = remembered ? 5 : 1;
 
-      // Detectar si es carta NUEVA (sin datos previos)
+      // Pruefen, ob es eine NEUE Karte ist (ohne vorherige Daten)
       const isNewCard = !currentWord.srData;
 
       const newSrData = calculateNextReview(currentWord.srData, quality);
 
       if (remembered) {
-        // --- ACIERTO ---
+        // --- RICHTIG ---
 
-        // Guardar en BD
+        // In DB speichern
         if (currentWord.isPhrase) {
           const existing = await getPhrase(currentWord.wordLower);
           if (existing) {
             await putPhrase({ ...existing, srData: newSrData });
           } else {
-            // Reconstrucción de frase si no existía en store
+            // Phrase rekonstruieren, falls sie im Store nicht existiert
             const parts = tokenize(currentWord.word)
               .filter((t) => t.isWord)
               .map((t) => t.lower || normalizeWord(t.text));
@@ -106,7 +106,7 @@ export default function ReviewMode({
           });
         }
 
-        // Incrementar contador de límites DIARIOS solo si era nueva
+        // Tageszaehler nur bei neuer Karte erhoehen
         if (isNewCard) {
           await incrementNewCardsCount();
         }
@@ -117,7 +117,7 @@ export default function ReviewMode({
           total: prev.total + 1,
         }));
 
-        // Avanzar
+        // Weiter
         setTimeout(() => {
           if (currentIndex < words.length - 1) {
             onNext();
@@ -126,14 +126,14 @@ export default function ReviewMode({
           }
         }, 1000);
       } else {
-        // --- FALLO ---
+        // --- FEHLER ---
         setSessionStats((prev) => ({
           ...prev,
           incorrect: prev.incorrect + 1,
           total: prev.total + 1,
         }));
 
-        // Reencolar para verla de nuevo en esta misma sesión
+        // Fuer diese Sitzung erneut einreihen
         onRetryWord(currentWord);
 
         setTimeout(() => {
@@ -145,7 +145,7 @@ export default function ReviewMode({
         }, 2000);
       }
     } catch (err) {
-      console.error("Error al guardar repaso:", err);
+      console.error("Fehler beim Speichern der Wiederholung:", err);
     } finally {
       setProcessing(false);
     }
@@ -171,7 +171,7 @@ export default function ReviewMode({
     }
   };
 
-  // Pantalla de "Sesión Terminada"
+  // "Sitzung abgeschlossen" screen
   if (!currentWord) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-950 flex items-center justify-center">
@@ -180,17 +180,17 @@ export default function ReviewMode({
             <span className="text-4xl">🎉</span>
           </div>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-            ¡Sesión al día!
+            Sitzung abgeschlossen!
           </h2>
           <p className="text-gray-600 dark:text-gray-400 mb-8 text-lg">
-            Has repasado todas las palabras pendientes y cumplido tu cuota de
-            nuevas palabras por hoy.
+            Du hast alle faelligen Woerter wiederholt und dein heutiges
+            Kontingent neuer Woerter erreicht.
           </p>
 
           <div className="grid grid-cols-2 gap-4 mb-8 text-left bg-gray-50 dark:bg-gray-800/60 border border-gray-200 dark:border-gray-700 p-4 rounded-xl">
             <div>
               <div className="text-xs text-gray-500 uppercase font-bold tracking-wider">
-                Aciertos
+                Richtig
               </div>
               <div className="text-2xl font-bold text-green-600">
                 {sessionStats.correct}
@@ -198,7 +198,7 @@ export default function ReviewMode({
             </div>
             <div>
               <div className="text-xs text-gray-500 uppercase font-bold tracking-wider">
-                Repasos
+                Wiederholungen
               </div>
               <div className="text-2xl font-bold text-indigo-600">
                 {sessionStats.total}
@@ -210,7 +210,7 @@ export default function ReviewMode({
             to="/words"
             className="inline-flex items-center justify-center w-full px-6 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-offset-gray-950"
           >
-            Volver a la Biblioteca
+            Zurueck zur Bibliothek
           </Link>
         </div>
       </div>
@@ -226,13 +226,13 @@ export default function ReviewMode({
         </div>
 
         <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
-          {/* Header Simplificado */}
+          {/* Simplified header */}
           <div className="flex items-center justify-between mb-8">
             <Link
               to="/words"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 font-medium border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-offset-gray-950"
             >
-              ← Salir
+              ← Verlassen
             </Link>
             <div className="text-sm font-mono text-gray-400">
               {currentIndex + 1} / {totalWords}
@@ -241,47 +241,47 @@ export default function ReviewMode({
 
           <div className="text-center mb-10">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-              Repaso Espaciado
+              Spaced Repetition
             </h1>
-            {/* Indicador de Nueva vs Repaso */}
+            {/* Indicator: New vs Review */}
             <div className="flex justify-center">
               {!currentWord.srData ? (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-300">
-                  ✨ NUEVA PALABRA
+                  ✨ NEUES WORT
                 </span>
               ) : (
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-300">
-                  🔄 REPASO
+                  🔄 WIEDERHOLUNG
                 </span>
               )}
             </div>
           </div>
 
-          {/* Estadísticas de la palabra (Opcional: solo mostrar si es repaso) */}
+          {/* Word statistics (optional: only for review cards) */}
           {currentWord.srData && (
             <div className="flex justify-center gap-6 mb-8 text-sm text-gray-500 dark:text-gray-400">
               <div className="flex flex-col items-center">
                 <span className="font-bold text-gray-900 dark:text-gray-100">
                   {currentWord.srData.repetitions}
                 </span>
-                <span className="text-xs">Repeticiones</span>
+                <span className="text-xs">Wiederholungen</span>
               </div>
               <div className="flex flex-col items-center">
                 <span className="font-bold text-gray-900 dark:text-gray-100">
                   {currentWord.srData.interval}d
                 </span>
-                <span className="text-xs">Intervalo</span>
+                <span className="text-xs">Intervall</span>
               </div>
               <div className="flex flex-col items-center">
                 <span className="font-bold text-gray-900 dark:text-gray-100">
                   {formatTimeUntilReview(currentWord.srData.nextReview)}
                 </span>
-                <span className="text-xs">Próximo</span>
+                <span className="text-xs">Naechste</span>
               </div>
             </div>
           )}
 
-          {/* Tarjeta Principal */}
+          {/* Main card */}
           <Card
             word={currentWord}
             showTranslation={showTranslation}

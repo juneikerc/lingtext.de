@@ -1,7 +1,7 @@
 ---
 title: "A Turning Point in Our Lives (Reflective Conversation)"
 level: "b1"
-sound: "https://images.lingtext.org/talk-2.wav"
+sound: "https://images.lingtext.de/talk-2.wav"
 ---
 
 **Daniel:** Hi Sofia, thanks for meeting me today. I know it’s been a while since we last talked properly.

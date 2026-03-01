@@ -48,7 +48,7 @@ export function validateTextContent(
     return {
       isValid: false,
 
-      error: "El archivo está vacío o no contiene texto válido.",
+      error: "Die Datei ist leer oder enthaelt keinen gueltigen Text.",
     };
   }
 
@@ -62,7 +62,7 @@ export function validateTextContent(
     return {
       isValid: false,
 
-      error: `El archivo es demasiado grande (${(contentSize / 1024 / 1024).toFixed(2)}MB). Máximo permitido: 5MB para mejor rendimiento.`,
+      error: `Die Datei ist zu gross (${(contentSize / 1024 / 1024).toFixed(2)}MB). Maximal erlaubt: 5MB fuer bessere Performance.`,
     };
   }
 
@@ -74,7 +74,7 @@ export function validateTextContent(
 
   if (htmlTagCount > totalLines * 0.1) {
     warnings.push(
-      "El archivo contiene muchas etiquetas HTML. El lector funciona mejor con texto plano."
+      "Die Datei enthaelt viele HTML-Tags. Der Reader funktioniert am besten mit Klartext."
     );
   }
 
@@ -86,14 +86,14 @@ export function validateTextContent(
 
   if (longLines.length > 0) {
     warnings.push(
-      `${longLines.length} línea(s) muy largas detectadas. Podrían afectar el rendimiento de lectura.`
+      `${longLines.length} sehr lange Zeile(n) erkannt. Das kann die Lese-Performance beeintraechtigen.`
     );
   }
 
   // Check encoding issues (UX warning)
 
   const encodingIssues = [
-    /Ã¡|Ã©|Ã­|Ã³|Ãº/g, // Common UTF-8 mojibake
+    /\u00c3\u00a1|\u00c3\u00a9|\u00c3\u00ad|\u00c3\u00b3|\u00c3\u00ba/g, // Common UTF-8 mojibake
 
     /â€™|â€œ|â€/g, // Smart quotes mojibake
   ];
@@ -101,7 +101,7 @@ export function validateTextContent(
   for (const pattern of encodingIssues) {
     if (pattern.test(content)) {
       warnings.push(
-        "Posibles problemas de codificación detectados. Verifica que el archivo esté en UTF-8."
+        "Moegliche Kodierungsprobleme erkannt. Bitte pruefe, ob die Datei UTF-8 verwendet."
       );
 
       break;
@@ -126,7 +126,7 @@ export function validateTitle(title: string): ValidationResult {
     return {
       isValid: false,
 
-      error: "El título no puede estar vacío.",
+      error: "Der Titel darf nicht leer sein.",
     };
   }
 
@@ -136,7 +136,7 @@ export function validateTitle(title: string): ValidationResult {
     return {
       isValid: false,
 
-      error: "El título no puede tener más de 200 caracteres.",
+      error: "Der Titel darf nicht mehr als 200 Zeichen haben.",
     };
   }
 
@@ -148,7 +148,7 @@ export function validateTitle(title: string): ValidationResult {
     return {
       isValid: false,
 
-      error: "El título contiene caracteres no permitidos.",
+      error: "Der Titel enthaelt nicht erlaubte Zeichen.",
     };
   }
 
@@ -207,7 +207,7 @@ export function validateFileType(
 
   if (!hasTextExtension) {
     warnings.push(
-      `Archivo con extensión inusual detectado. Se recomienda usar archivos .txt para mejor compatibilidad.`
+      `Datei mit ungewoehnlicher Endung erkannt. Fuer bessere Kompatibilitaet werden .txt-Dateien empfohlen.`
     );
   }
 
@@ -219,7 +219,7 @@ export function validateFileType(
     return {
       isValid: false,
 
-      error: `Archivo demasiado grande (${(file.size / 1024 / 1024).toFixed(2)}MB). Máximo recomendado: 10MB para mejor rendimiento.`,
+      error: `Datei zu gross (${(file.size / 1024 / 1024).toFixed(2)}MB). Empfohlenes Maximum: 10MB fuer bessere Performance.`,
     };
   }
 

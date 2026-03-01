@@ -3,11 +3,11 @@ import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Contacto | LingText" },
+    { title: "Kontakt | LingText" },
     {
       name: "description",
       content:
-        "¿Tienes dudas sobre cómo usar LingText? Escríbeme y te ayudo a sacarle el máximo provecho a tu aprendizaje de inglés.",
+        "Hast du Fragen zur Nutzung von LingText? Schreib mir und ich helfe dir, das Beste aus deinem Englischlernen herauszuholen.",
     },
   ];
 }
@@ -27,53 +27,39 @@ export default function Contact() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800">
             <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-            Siempre disponible
+            Immer erreichbar
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 text-gray-900 dark:text-gray-100">
             <span className="text-indigo-600 dark:text-indigo-400">
-              Hablemos
+              Lass uns sprechen
             </span>
           </h1>
           <p className="text-xl md:text-2xl leading-relaxed text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light">
-            Aprender un idioma puede ser confuso a veces. Si tienes dudas sobre
-            cómo usar LingText, estoy aquí para ayudarte.
+            Sprachenlernen kann manchmal verwirrend sein. Wenn du Fragen zu LingText hast, helfe ich dir gern.
           </p>
         </div>
 
-        {/* Contenido principal */}
+        {/* Main content */}
         <div className="space-y-8">
-          {/* Sección de bienvenida */}
+          {/* Welcome section */}
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-8 md:p-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-              ¿En qué puedo ayudarte?
+              Wie kann ich dir helfen?
             </h2>
             <div className="space-y-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
               <p>
-                Sé lo frustrante que puede ser quedarse atascado cuando estás
-                motivado para aprender. Por eso quiero que sepas que{" "}
-                <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-                  cualquier duda que tengas es válida
-                </span>
-                , por pequeña que parezca.
+                Ich weiß, wie frustrierend es ist, trotz Motivation festzustecken. Deshalb gilt: Jede Frage ist legitim, auch wenn sie klein wirkt.
               </p>
               <p>
-                Tal vez no sabes cómo agregar un texto nuevo, o quieres entender
-                mejor cómo funciona la repetición espaciada. Quizás el audio no
-                te carga bien, o simplemente quieres saber si hay una forma más
-                eficiente de usar la app.{" "}
-                <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-                  Sea lo que sea, escríbeme.
-                </span>
+                Vielleicht weißt du nicht, wie man einen neuen Text hinzufugt, oder du willst besser verstehen, wie Spaced Repetition funktioniert. Vielleicht ladt Audio nicht richtig, oder du suchst einfach einen effizienteren Workflow. Schreib mir in jedem Fall.
               </p>
               <p>
-                LingText es un proyecto que construyo con cariño, y tu feedback
-                me ayuda a mejorarlo. Cada pregunta que me haces me muestra qué
-                partes de la app necesitan ser más claras o intuitivas.
+                LingText ist ein Herzensprojekt, und dein Feedback hilft mir, es besser zu machen. Jede Frage zeigt mir, welche Teile klarer und intuitiver werden mussen.
               </p>
             </div>
           </div>
 
-          {/* Tarjeta de contacto */}
+          {/* Contact card */}
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 md:p-12 shadow-sm">
             <div className="flex flex-col md:flex-row items-center gap-8">
               {/* Icono de correo */}
@@ -97,14 +83,13 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Información de contacto */}
+              {/* Contact info */}
               <div className="text-center md:text-left flex-1">
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-3">
-                  Escríbeme directamente
+                  Schreib mir direkt
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Respondo todos los correos personalmente. Normalmente en menos
-                  de 24 horas.
+                  Ich beantworte alle E-Mails personlich, in der Regel in weniger als 24 Stunden.
                 </p>
                 <a
                   href="mailto:juneikerc@gmail.com"
@@ -130,35 +115,20 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Sección sobre mí */}
+          {/* About me section */}
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-8 md:p-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-              Un poco sobre mí
+              Ein paar Worte uber mich
             </h2>
             <div className="space-y-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
               <p>
-                Soy{" "}
-                <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-                  Juneiker
-                </span>
-                , desarrollador web y la persona detrás de LingText. Creé esta
-                herramienta porque yo mismo pasé por la frustración de buscar
-                apps de aprendizaje que fueran gratuitas, respetaran mi
-                privacidad y me dejaran usar mis propios materiales.
+                Ich bin <span className="font-semibold text-indigo-600 dark:text-indigo-400">Juneiker</span>, Webentwickler und die Person hinter LingText. Ich habe das Tool gebaut, weil ich selbst nach kostenlosen Lern-Apps gesucht habe, die Privatsphare respektieren und eigenes Material erlauben.
               </p>
               <p>
-                Creo firmemente en el aprendizaje a través de la lectura —es
-                como aprendí inglés— y quería una herramienta que hiciera ese
-                proceso más fluido. Así nació LingText: una app{" "}
-                <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-                  local-first
-                </span>
-                , donde tus datos son tuyos y el aprendizaje ocurre sin
-                interrupciones.
+                Ich glaube fest an Lernen durch Lesen - so habe ich Englisch gelernt. Deshalb entstand LingText als <span className="font-semibold text-indigo-600 dark:text-indigo-400">local-first</span> App, bei der deine Daten dir gehoren und Lernen ohne Unterbrechungen funktioniert.
               </p>
               <p>
-                Si quieres conocer más sobre mi trabajo o ver otros proyectos en
-                los que estoy involucrado, visita mi web:
+                Wenn du mehr uber meine Arbeit sehen willst, besuche meine Website:
               </p>
               <a
                 href="https://juneikerc.com"
@@ -186,49 +156,42 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Preguntas frecuentes rápidas */}
+          {/* Quick FAQ */}
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-8 md:p-12">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
-              Antes de escribir, quizás esto te ayude
+              Bevor du schreibst, hilft dir vielleicht das hier
             </h2>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="p-6 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200 dark:border-gray-700">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  ¿Cómo agrego un texto nuevo?
+                  Wie fige ich einen neuen Text hinzu?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  En la página principal, busca el botón "Agregar texto" en la
-                  biblioteca. Puedes pegar contenido directamente o importar un
-                  archivo .txt.
+                  Auf der Startseite findest du in der Bibliothek den Button zum Hinzufugen von Texten. Du kannst Inhalt direkt einfugen oder eine .txt-Datei importieren.
                 </p>
               </div>
               <div className="p-6 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200 dark:border-gray-700">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  ¿Mis datos están seguros?
+                  Sind meine Daten sicher?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Absolutamente. Todo se guarda en tu navegador usando SQLite.
-                  Nada se envía a servidores externos excepto las palabras que
-                  traduces.
+                  Ja. Alles wird lokal im Browser mit SQLite gespeichert. An externe Server werden nur die zu ubersetzenden Worter gesendet.
                 </p>
               </div>
               <div className="p-6 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200 dark:border-gray-700">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  ¿Puedo usar LingText en el móvil?
+                  Kann ich LingText mobil nutzen?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Sí, la app es responsive. Sin embargo, algunas funciones como
-                  el audio local funcionan mejor en Chrome de escritorio.
+                  Ja, die App ist responsiv. Einige Funktionen wie lokales Audio laufen auf Desktop-Chrome am besten.
                 </p>
               </div>
               <div className="p-6 bg-gray-50 dark:bg-gray-800/60 rounded-2xl border border-gray-200 dark:border-gray-700">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                  ¿Cómo funciona la repetición espaciada?
+                  Wie funktioniert Spaced Repetition?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Usa el algoritmo SM-2. Las palabras que marcas como
-                  desconocidas aparecerán en sesiones de repaso con intervalos
-                  optimizados para tu memoria.
+                  LingText nutzt den SM-2-Algorithmus. Als unbekannt markierte Worter erscheinen in Wiederholungen mit fur dein Gedachtnis optimierten Intervallen.
                 </p>
               </div>
             </div>
@@ -237,10 +200,10 @@ export default function Contact() {
           {/* CTA final */}
           <div className="text-center pt-8">
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
-              ¿Todavía tienes dudas? No lo pienses más.
+              Noch Fragen? Dann schreib mir direkt.
             </p>
             <a
-              href="mailto:juneikerc@gmail.com?subject=Duda sobre LingText"
+              href="mailto:juneikerc@gmail.com?subject=Frage%20zu%20LingText"
               className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors duration-200 shadow-sm hover:shadow-md text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
             >
               <svg
@@ -257,7 +220,7 @@ export default function Contact() {
                 <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path>
                 <path d="m21.854 2.147-10.94 10.939"></path>
               </svg>
-              Envíame un correo
+              Schick mir eine E-Mail
             </a>
             <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
               juneikerc@gmail.com
@@ -284,7 +247,7 @@ export default function Contact() {
                 <path d="m12 19-7-7 7-7"></path>
                 <path d="M19 12H5"></path>
               </svg>
-              Volver a la biblioteca
+              Zuruck zur Bibliothek
             </Link>
           </div>
         </div>

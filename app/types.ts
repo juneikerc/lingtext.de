@@ -10,7 +10,7 @@ export interface TextItem {
   id: string;
   title: string;
   content: string;
-  format?: "txt" | "markdown"; // Formato del contenido
+  format?: "txt" | "markdown"; // Content format
   createdAt: number;
   audioRef?: AudioRef | null;
 }
@@ -45,14 +45,14 @@ export interface VoiceParams {
 }
 
 export interface SpacedRepetitionData {
-  easeFactor: number; // Factor de facilidad (por defecto 2.5)
-  interval: number; // Intervalo actual en días
-  repetitions: number; // Número de repeticiones exitosas
-  nextReview: number; // Timestamp del próximo repaso
+  easeFactor: number; // Ease factor (default 2.5)
+  interval: number; // Current interval in days
+  repetitions: number; // Number of successful repetitions
+  nextReview: number; // Timestamp of the next review
   reviewHistory: Array<{
-    date: number; // Timestamp de la revisión
-    quality: number; // Calidad de la respuesta (0-5, donde 5 es perfecta)
-    interval: number; // Intervalo usado en esa revisión
+    date: number; // Review timestamp
+    quality: number; // Answer quality (0-5, where 5 is perfect)
+    interval: number; // Interval used for that review
   }>;
 }
 
@@ -63,25 +63,25 @@ export interface WordEntry {
   status: "unknown";
   addedAt: number;
   voice?: VoiceParams;
-  // Datos del algoritmo de repetición espaciada
+  // Spaced repetition algorithm data
   srData?: SpacedRepetitionData;
-  // Flag opcional para indicar que este item representa una frase en el UI de repaso
+  // Optional flag indicating this item is a phrase in the review UI
   isPhrase?: boolean;
 }
 
-// Nueva entidad para frases compuestas
+// Entity for composed phrases
 export interface PhraseEntry {
-  // Frase original tal como la seleccionó el usuario
+  // Original phrase as selected by the user
   phrase: string;
-  // Clave normalizada en minúsculas sin puntuación, separada por espacios
+  // Normalized lowercase key without punctuation, space-separated
   phraseLower: string;
-  // Traducción de la frase
+  // Phrase translation
   translation: string;
-  // Partes (palabras) normalizadas que componen la frase, en orden
+  // Normalized component words in order
   parts: string[];
-  // Fecha en la que se añadió
+  // Creation timestamp
   addedAt: number;
-  // Datos del algoritmo de repetición espaciada para frases
+  // Spaced repetition data for phrases
   srData?: SpacedRepetitionData;
 }
 

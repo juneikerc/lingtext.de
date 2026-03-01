@@ -1,21 +1,22 @@
 import { addText, putUnknownWord, getAllTexts } from "~/services/db";
+import { SEED_STORAGE_KEY } from "~/config/app-identity";
 import type { AudioRef, TextItem, WordEntry } from "~/types";
 import { uid } from "~/utils/id";
 
-const SEED_KEY = "lingtext:seeded:v2"; // Bumped version for SQLite migration
+const SEED_KEY = SEED_STORAGE_KEY;
 
 function makeDefaultWords(): Array<Pick<WordEntry, "word" | "translation">> {
   return [
-    { word: "mundane", translation: "mundano" },
-    { word: "ache", translation: "dolor" },
-    { word: "tilt", translation: "inclinar" },
-    { word: "earnest", translation: "serio" },
-    { word: "incantation", translation: "encantamiento" },
-    { word: "ledger", translation: "libro mayor" },
-    { word: "cathedral", translation: "catedral" },
-    { word: "cavity", translation: "cavidad" },
-    { word: "intricate", translation: "intrincado" },
-    { word: "bead", translation: "cuenta (de vidrio)" },
+    { word: "mundane", translation: "alltäglich" },
+    { word: "ache", translation: "Schmerz" },
+    { word: "tilt", translation: "neigen" },
+    { word: "earnest", translation: "ernsthaft" },
+    { word: "incantation", translation: "Beschwörung" },
+    { word: "ledger", translation: "Hauptbuch" },
+    { word: "cathedral", translation: "Kathedrale" },
+    { word: "cavity", translation: "Hohlraum" },
+    { word: "intricate", translation: "kompliziert" },
+    { word: "bead", translation: "Perle" },
   ];
 }
 

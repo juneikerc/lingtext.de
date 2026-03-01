@@ -6,7 +6,7 @@ import {
 } from "~/services/db";
 import type { WordEntry, PhraseEntry } from "~/types";
 
-// CONFIGURACIÓN: Aquí defines tu límite por defecto (ej. 15)
+// CONFIG: default daily limit for new cards (e.g. 15)
 const DEFAULT_NEW_LIMIT = 7;
 
 export async function generateSessionDeck(
@@ -16,55 +16,55 @@ export async function generateSessionDeck(
   stats: DailyStats;
   limitReached: boolean;
 }> {
-  // 1. Cargar todo el contenido y las estadísticas
+  // 1. Load all content and daily stats
   const [words, phrases, dailyStats] = await Promise.all([
     getAllUnknownWords(),
     getAllPhrases(),
     getDailyStats(),
   ]);
 
-  // Unificar palabras y frases
+  // Merge words and phrases into one list
   const allItems = [...words, ...phrases] as WordEntry[];
   const now = Date.now();
 
   // ---------------------------------------------------------
-  // PASO A: REPASOS (Prioridad Máxima - Sin límite)
-  // Incluimos TODAS las palabras cuya fecha de revisión ya pasó
+  // STEP A: REVIEWS (highest priority - unlimited)
+  // Include all items whose review date is due
   // ---------------------------------------------------------
   const reviewsDue = allItems
     .filter((item) => item.srData && item.srData.nextReview <= now)
-    .sort((a, b) => a.srData!.nextReview - b.srData!.nextReview); // Las más antiguas primero
+    .sort((a, b) => a.srData!.nextReview - b.srData!.nextReview); // Oldest first
 
   // ---------------------------------------------------------
-  // PASO B: NUEVAS TARJETAS (Limitadas por día)
-  // Son las que no tienen srData
+  // STEP B: NEW CARDS (daily limited)
+  // Items without srData
   // ---------------------------------------------------------
   const newItems = allItems.filter((item) => !item.srData);
 
-  // Ver cuántas nuevas ya estudiamos hoy según la DB
+  // Read how many new cards were already studied today
   const newCardsDoneToday = dailyStats.newCardsStudied;
 
-  // Calcular cupo restante (Ej: 15 límite - 5 hechas = 10 restantes)
+  // Calculate remaining quota (e.g. 15 limit - 5 done = 10 left)
   const remainingSlots = Math.max(0, limitNew - newCardsDoneToday);
 
-  // Tomar solo las necesarias del montón de nuevas
+  // Take only as many as needed
   const newItemsToStudy = newItems.slice(0, remainingSlots);
 
   // ---------------------------------------------------------
-  // PASO C: ARMAR EL MAZO FINAL
+  // STEP C: BUILD FINAL DECK
   // ---------------------------------------------------------
 
-  // Opción 1: Estilo Clásico (Primero repasos, luego nuevas)
+  // Option 1: classic order (reviews first, then new cards)
   const deck = [...reviewsDue, ...newItemsToStudy];
 
-  /* Opción 2: Mezclado (Si prefieres que salgan salpicadas)
+  /* Option 2: mixed order (if you prefer interleaving)
    const deck = [...reviewsDue, ...newItemsToStudy].sort(() => Math.random() - 0.5);
   */
 
   return {
     deck,
     stats: dailyStats,
-    // True si hay más palabras nuevas disponibles pero el límite diario nos detuvo
+    // True if there are more new items available but daily limit stopped us
     limitReached: remainingSlots === 0 && newItems.length > 0,
   };
 }

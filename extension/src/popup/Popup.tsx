@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { APP_ORIGIN } from "@/config/app-identity";
 import type { ExtensionSettings, PhraseEntry, WordEntry } from "@/types";
 import { TRANSLATORS } from "@/types";
 import { TRANSLATOR_LABELS } from "@/utils/translate";
@@ -30,14 +31,14 @@ export default function Popup() {
       chrome.runtime.sendMessage({ type: "LT2_GET_WORDS" }) as Promise<WordEntry[]>,
       chrome.runtime.sendMessage({ type: "LT2_GET_PHRASES" }) as Promise<PhraseEntry[]>,
       chrome.runtime.sendMessage({ type: "LT2_GET_SETTINGS" }) as Promise<ExtensionSettings>,
-      chrome.storage.local.get("lt2_last_sync"),
+      chrome.storage.local.get("ltde_last_sync"),
     ]);
 
     setStats({ words: words.length, phrases: phrases.length });
     setSettings({ ...defaultSettings, ...currentSettings, captionLanguage: "en" });
 
-    const syncTs = syncInfo.lt2_last_sync as number | undefined;
-    setLastSync(syncTs ? new Date(syncTs).toLocaleString() : null);
+    const syncTs = syncInfo.ltde_last_sync as number | undefined;
+    setLastSync(syncTs ? new Date(syncTs).toLocaleString("de-DE") : null);
   };
 
   const updateSettings = async (patch: Partial<ExtensionSettings>) => {
@@ -50,7 +51,7 @@ export default function Popup() {
   };
 
   const openLingText = () => {
-    chrome.tabs.create({ url: "https://lingtext.org" });
+    chrome.tabs.create({ url: APP_ORIGIN });
   };
 
   const handleSync = async () => {
@@ -58,26 +59,26 @@ export default function Popup() {
     setSyncStatus(null);
 
     try {
-      const beforeResult = await chrome.storage.local.get("lt2_last_sync");
+      const beforeResult = await chrome.storage.local.get("ltde_last_sync");
       const before =
-        typeof beforeResult.lt2_last_sync === "number"
-          ? (beforeResult.lt2_last_sync as number)
+        typeof beforeResult.ltde_last_sync === "number"
+          ? (beforeResult.ltde_last_sync as number)
           : 0;
 
       const tabs = await chrome.tabs.query({
-        url: ["https://lingtext.org/*", "http://localhost:*/*"],
+        url: [`${APP_ORIGIN}/*`, "http://localhost:*/*"],
       });
 
       if (tabs.length === 0 || !tabs[0].id) {
-        setSyncStatus("Abriendo LingText...");
-        await chrome.tabs.create({ url: "https://lingtext.org" });
-        setSyncStatus("Abre LingText y vuelve a sincronizar");
+        setSyncStatus("LingText wird geöffnet...");
+        await chrome.tabs.create({ url: APP_ORIGIN });
+        setSyncStatus("Öffne LingText und synchronisiere erneut");
         setSyncing(false);
         return;
       }
 
       await chrome.tabs.sendMessage(tabs[0].id, { type: "TRIGGER_SYNC" });
-      setSyncStatus("Sincronizando...");
+      setSyncStatus("Synchronisierung läuft...");
 
       const updatedTs = await new Promise<number>((resolve, reject) => {
         let timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -98,11 +99,11 @@ export default function Popup() {
           changes: { [key: string]: chrome.storage.StorageChange },
           areaName: string
         ) => {
-          if (areaName !== "local" || !changes.lt2_last_sync) {
+          if (areaName !== "local" || !changes.ltde_last_sync) {
             return;
           }
 
-          const ts = changes.lt2_last_sync.newValue;
+          const ts = changes.ltde_last_sync.newValue;
           if (typeof ts === "number" && ts > before) {
             cleanup(listener);
             resolve(ts);
@@ -116,8 +117,8 @@ export default function Popup() {
           reject(new Error("SYNC_TIMEOUT"));
         }, 30000);
 
-        chrome.storage.local.get("lt2_last_sync").then((result) => {
-          const ts = result.lt2_last_sync;
+        chrome.storage.local.get("ltde_last_sync").then((result) => {
+          const ts = result.ltde_last_sync;
           if (typeof ts === "number" && ts > before) {
             cleanup(listener);
             resolve(ts);
@@ -126,12 +127,12 @@ export default function Popup() {
       });
 
       await loadAll();
-      setLastSync(new Date(updatedTs).toLocaleString());
-      setSyncStatus("✓ Sincronizado");
+      setLastSync(new Date(updatedTs).toLocaleString("de-DE"));
+      setSyncStatus("✓ Synchronisiert");
       setSyncing(false);
     } catch (error) {
       console.error("[LingText Popup] Sync failed:", error);
-      setSyncStatus("Error al sincronizar");
+      setSyncStatus("Synchronisierung fehlgeschlagen");
       setSyncing(false);
     }
   };
@@ -148,21 +149,21 @@ export default function Popup() {
 
       <main className="popup-body">
         <section className="stats">
-          <h2>Tu vocabulario</h2>
+          <h2>Dein Vokabular</h2>
           <div className="stats-grid">
             <div className="stat-card">
               <span className="stat-value">{stats.words}</span>
-              <span className="stat-label">Palabras</span>
+              <span className="stat-label">Wörter</span>
             </div>
             <div className="stat-card">
               <span className="stat-value">{stats.phrases}</span>
-              <span className="stat-label">Frases</span>
+              <span className="stat-label">Phrasen</span>
             </div>
           </div>
         </section>
 
         <section className="translator-section">
-          <h2>Traductor</h2>
+          <h2>Übersetzer</h2>
           <select
             className="translator-select"
             value={settings.translator}
@@ -201,43 +202,43 @@ export default function Popup() {
                 rel="noopener"
                 className="api-key-link"
               >
-                Obtener API Key →
+                API-Schlüssel holen →
               </a>
             </div>
           )}
         </section>
 
         <section className="sync-section">
-          <h2>Sincronización</h2>
-          {lastSync && <p className="last-sync">Última sync: {lastSync}</p>}
+          <h2>Synchronisierung</h2>
+          {lastSync && <p className="last-sync">Letzte Sync: {lastSync}</p>}
           {syncStatus && <p className="sync-status">{syncStatus}</p>}
           <div className="sync-buttons">
             <button className="btn btn-primary" onClick={handleSync} disabled={syncing}>
-              {syncing ? "Sincronizando..." : "🔄 Sincronizar"}
+              {syncing ? "Synchronisiere..." : "🔄 Synchronisieren"}
             </button>
             <button className="btn btn-secondary" onClick={openLingText}>
-              Abrir LingText
+              LingText öffnen
             </button>
           </div>
           <p className="sync-hint">
-            La web es la fuente de verdad. Al sincronizar, la extensión se
-            actualiza con el estado final.
+            Die Web-App ist die Quelle der Wahrheit. Bei der Synchronisierung
+            wird die Erweiterung auf den finalen Zustand aktualisiert.
           </p>
         </section>
 
         <section className="help-section">
-          <h2>Cómo usar</h2>
+          <h2>So funktioniert es</h2>
           <ol>
-            <li>Activa los subtítulos en inglés en YouTube</li>
-            <li>Haz clic en palabras para traducirlas</li>
-            <li>Guarda palabras y frases para repasarlas</li>
+            <li>Aktiviere englische Untertitel auf YouTube</li>
+            <li>Klicke auf Wörter, um sie zu übersetzen</li>
+            <li>Speichere Wörter und Phrasen zum Wiederholen</li>
           </ol>
         </section>
       </main>
 
       <footer className="popup-footer">
-        <a href="https://lingtext.org" target="_blank" rel="noopener">
-          lingtext.org
+        <a href={APP_ORIGIN} target="_blank" rel="noopener">
+          lingtext.de
         </a>
       </footer>
     </div>

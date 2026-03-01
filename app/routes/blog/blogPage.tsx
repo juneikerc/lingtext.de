@@ -10,17 +10,17 @@ export function meta() {
   return [
     {
       title:
-        "Blog sobre aprendizaje de inglés: Estrategias y Recursos | LingText",
+        "Englisch-Lernblog: Strategien und Ressourcen | LingText",
     },
     {
       name: "description",
       content:
-        "Mejora tu inglés con LingText. Artículos sobre estrategias de aprendizaje, vocabulario en contexto, gramática práctica y consejos para dominar el idioma.",
+        "Verbessere dein Englisch mit LingText. Artikel zu Lernstrategien, Wortschatz im Kontext, praktischer Grammatik und klaren Tipps.",
     },
     {
       tagName: "link",
       rel: "canonical",
-      href: `https://lingtext.org/blog`,
+      href: `https://lingtext.de/blog`,
     },
   ];
 }
@@ -57,15 +57,14 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-              Volver al inicio
+              Zurück zur Startseite
             </a>
           </nav>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-gray-100 tracking-tight mb-6">
-            Blog de Aprendizaje de Inglés
+            Blog fur Englischlernen
           </h1>
           <p className="max-w-2xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-400">
-            Explora estrategias, recursos gratuitos y consejos prácticos para
-            mejorar tu comprensión y fluidez en inglés de manera efectiva.
+            Entdecke Strategien, kostenlose Ressourcen und praktische Tipps, um dein Englischverstehen und deine Sprachflussigkeit gezielt zu verbessern.
           </p>
         </div>
       </header>
@@ -102,7 +101,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
                     </p>
                   </div>
                   <div className="mt-auto flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400">
-                    Leer más
+                    Mehr lesen
                     <svg
                       className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"
                       fill="none"
@@ -129,41 +128,33 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
-              ¿Por qué seguir el blog de LingText?
+              Warum dem LingText-Blog folgen?
             </h2>
             <div className="space-y-12">
               <div className="prose dark:prose-invert max-w-none">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                  Aprendizaje basado en contenido real
+                  Lernen mit realen Inhalten
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  En LingText creemos que la mejor forma de aprender inglés es a
-                  través de la inmersión en contenido que te interese. Nuestro
-                  blog complementa esta filosofía ofreciendo guías sobre cómo
-                  aprovechar textos, videos y herramientas de IA para acelerar
-                  tu adquisición del lenguaje.
+                  Wir glauben, dass der beste Weg zu Englisch über Immersion in relevante Inhalte führt. Unser Blog ergänzt das mit Guides zu Texten, Videos und KI-Tools fur schnelleres Lernen.
                 </p>
               </div>
 
               <div className="prose dark:prose-invert max-w-none">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                  Estrategias de Repetición Espaciada
+                  Spaced-Repetition-Strategien
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  No se trata solo de leer, sino de recordar lo que aprendes.
-                  Exploramos técnicas avanzadas como el sistema SM-2 y cómo
-                  aplicarlo a tu vocabulario diario para que las nuevas palabras
-                  se queden en tu memoria a largo plazo.
+                  Es geht nicht nur ums Lesen, sondern ums Behalten. Wir zeigen, wie du SM-2 auf deinen Alltagsschatz anwendest, damit neue Worter langfristig sitzen.
                 </p>
               </div>
 
               <div className="prose dark:prose-invert max-w-none">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
-                  Tecnología y Lingüística
+                  Technologie und Linguistik
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  Te mantenemos al tanto de cómo la tecnología puede ser tu
-                  mejor aliada en el camino hacia la fluidez.
+                  Wir zeigen dir, wie Technologie dein starkster Partner auf dem Weg zur Sprachflussigkeit wird.
                 </p>
               </div>
             </div>
@@ -171,18 +162,16 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
             {/* Final CTA-like SEO block */}
             <div className="mt-20 p-8 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 text-center">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                Lleva tu inglés al siguiente nivel
+                Bring dein Englisch aufs nachste Level
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-8">
-                LingText no es solo un blog, es una herramienta completa para
-                leer, ver y aprender. Únete a cientos de estudiantes que ya
-                están mejorando su comprensión lectora y auditiva.
+                LingText ist nicht nur ein Blog, sondern ein komplettes Lernwerkzeug. Viele Lernende verbessern bereits Lese- und Horverstehen damit.
               </p>
               <Link
                 to="/"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
               >
-                Comenzar a aprender gratis
+                Kostenlos starten
               </Link>
             </div>
           </div>
@@ -191,8 +180,7 @@ export default function Blog({ loaderData }: Route.ComponentProps) {
 
       <footer className="py-12 border-t border-gray-200 dark:border-gray-800 text-center text-gray-500 dark:text-gray-400 text-sm">
         <p>
-          © {new Date().getFullYear()} LingText. Tu compañero en el aprendizaje
-          de idiomas.
+          © {new Date().getFullYear()} LingText. Dein Begleiter beim Sprachenlernen.
         </p>
       </footer>
     </main>

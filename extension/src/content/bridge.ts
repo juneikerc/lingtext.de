@@ -1,5 +1,5 @@
 /**
- * Bridge content script for lingtext.org/localhost pages.
+ * Bridge content script for lingtext.de/localhost pages.
  * Keeps the existing web postMessage protocol and maps it to LT2 runtime messages.
  */
 
@@ -9,6 +9,7 @@ import type {
   TRANSLATORS,
   WordEntry,
 } from "@/types";
+import { APP_DOMAIN } from "@/config/app-identity";
 
 interface SyncCompletePayload {
   words: WordEntry[];
@@ -26,8 +27,8 @@ function isAllowedOrigin(origin: string): boolean {
     const { hostname } = new URL(origin);
     return (
       hostname === "localhost" ||
-      hostname === "lingtext.org" ||
-      hostname.endsWith(".lingtext.org")
+      hostname === APP_DOMAIN ||
+      hostname.endsWith(`.${APP_DOMAIN}`)
     );
   } catch {
     return false;

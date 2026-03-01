@@ -12,7 +12,7 @@ import ReaderWordTokens from "./ReaderWordTokens";
 interface ReaderTextProps {
   content: string;
   unknownSet: Set<string>;
-  // Lista de frases guardadas, cada una como lista de partes en lower
+  // Saved phrases, each represented as an array of lowercase parts
   phrases: string[][];
   onWordClick: (e: React.MouseEvent<HTMLSpanElement>) => void;
   showChrome?: boolean;
@@ -36,7 +36,7 @@ export default function ReaderText({
     <div className="relative">
       {showChrome ? <ReaderModeIndicator /> : null}
 
-      {/* Área de texto principal */}
+      {/* Main text area */}
       <ReaderContentShell compact={compact}>
         {content.split("\n\n").map((paragraph, paragraphIndex) => (
           <p

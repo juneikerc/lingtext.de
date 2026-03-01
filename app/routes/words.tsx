@@ -14,11 +14,11 @@ const UnknownWordsSection = lazy(
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Gestión de vocabulario | LingText" },
+    { title: "Wortschatzverwaltung | LingText" },
     {
       name: "description",
       content:
-        "Gestiona tus palabras desconocidas marcadas durante tu tiempo de lectura.",
+        "Verwalte unbekannte Woerter, die du waehrend des Lesens markiert hast.",
     },
     {
       name: "robots",
@@ -42,16 +42,16 @@ function WordsSkeleton() {
         <div className="text-center mb-12">
           <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800">
             <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-            Cargando vocabulario...
+            Wortschatz wird geladen...
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">
-            Tu{" "}
+            Dein{" "}
             <span className="text-indigo-600 dark:text-indigo-400">
-              Vocabulario
+              Wortschatz
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Preparando tu lista de palabras...
+            Deine Wortliste wird vorbereitet...
           </p>
         </div>
 

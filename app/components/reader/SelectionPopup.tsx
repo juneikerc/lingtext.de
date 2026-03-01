@@ -38,12 +38,12 @@ export default function SelectionPopup({
               <span className="text-white text-xs">📝</span>
             </div>
             <span className="font-semibold text-gray-700 dark:text-gray-300">
-              Texto seleccionado
+              Ausgewählter Text
             </span>
             <button
               className="ml-auto p-1.5 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200"
               onClick={onClose}
-              title="Cerrar"
+              title="Schließen"
             >
               <span className="text-sm">✕</span>
             </button>
@@ -70,7 +70,7 @@ export default function SelectionPopup({
                 {selPopup.isLoading ? (
                   <div className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <span className="w-4 h-4 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
-                    <span>Traduciendo...</span>
+                    <span>Übersetze...</span>
                   </div>
                 ) : isTranslationJson(selPopup.translation) ? (
                   <div className="space-y-2">
@@ -97,7 +97,7 @@ export default function SelectionPopup({
                 )}
               </div>
             </div>
-            {/* Acciones para la selección */}
+            {/* Selection actions */}
             <div className="mt-4 flex gap-2 justify-center">
               <button
                 className={`px-4 py-2 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg border border-green-200 dark:border-green-800 transition-colors ${
@@ -108,17 +108,17 @@ export default function SelectionPopup({
                 onClick={() =>
                   onSavePhrase(selPopup.text, selPopup.translation)
                 }
-                title="Guardar como frase compuesta"
+                title="Als zusammengesetzte Phrase speichern"
                 disabled={selPopup.isLoading}
               >
-                Guardar palabra compuesta | frase
+                Zusammengesetztes Wort | Phrase speichern
               </button>
               <button
                 className="px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                 onClick={onClose}
-                title="Cerrar"
+                title="Schließen"
               >
-                Cerrar
+                Schließen
               </button>
             </div>
           </div>

@@ -17,23 +17,23 @@ const TEXT_TYPE_OPTIONS: Array<{
 }> = [
   {
     value: "short-story",
-    label: "Cuento corto",
-    description: "Narrativa ficticia con personajes y trama",
+    label: "Kurzgeschichte",
+    description: "Fiktionale Erzahlung mit Figuren und Handlung",
   },
   {
     value: "article",
-    label: "Artículo periodístico",
-    description: "Texto informativo sobre un tema específico",
+    label: "Artikel",
+    description: "Informierender Text zu einem konkreten Thema",
   },
   {
     value: "conversation",
-    label: "Conversación",
-    description: "Diálogo entre dos o más personajes",
+    label: "Gesprach",
+    description: "Dialog zwischen zwei oder mehr Personen",
   },
   {
     value: "blog-post",
-    label: "Post de blog",
-    description: "Artículo de opinión o experiencia personal",
+    label: "Blogbeitrag",
+    description: "Meinungs- oder Erfahrungsbeitrag",
   },
   {
     value: "email",
@@ -47,11 +47,11 @@ const LEVEL_OPTIONS: Array<{
   label: string;
   description: string;
 }> = [
-  { value: "A2", label: "A2", description: "Básico" },
-  { value: "B1", label: "B1", description: "Intermedio" },
-  { value: "B2", label: "B2", description: "Intermedio-alto" },
-  { value: "C1", label: "C1", description: "Avanzado" },
-  { value: "C2", label: "C2", description: "Proficiente" },
+  { value: "A2", label: "A2", description: "Grundstufe" },
+  { value: "B1", label: "B1", description: "Mittelstufe" },
+  { value: "B2", label: "B2", description: "Mittelstufe-alto" },
+  { value: "C1", label: "C1", description: "Fortgeschritten" },
+  { value: "C2", label: "C2", description: "Sehr fortgeschritten" },
 ];
 
 export default function StoryGenerator({
@@ -115,7 +115,7 @@ export default function StoryGenerator({
       setGeneratedTexts(textIds);
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Error desconocido al generar"
+        err instanceof Error ? err.message : "Unbekannter Fehler bei der Generierung"
       );
     } finally {
       setIsGenerating(false);
@@ -142,10 +142,10 @@ export default function StoryGenerator({
               <span className="text-3xl">✅</span>
             </div>
             <h3 className="text-2xl font-bold text-center text-gray-900 dark:text-gray-100 mb-2">
-              ¡Historias Generadas!
+              Stories erstellt!
             </h3>
             <p className="text-center text-gray-600 dark:text-gray-400 mb-6">
-              Se han generado {generatedTexts.length} texto(s) correctamente
+              Es wurden erfolgreich {generatedTexts.length} Text(e) erstellt
             </p>
             <div className="space-y-2 mb-6">
               {generatedTexts.map((id, index) => (
@@ -157,7 +157,7 @@ export default function StoryGenerator({
                   <div className="flex items-center gap-3">
                     <span className="text-lg">📖</span>
                     <span className="font-medium text-gray-900 dark:text-gray-100">
-                      Historia {index + 1}
+                      Story {index + 1}
                     </span>
                   </div>
                   <span className="text-indigo-600 dark:text-indigo-400">
@@ -171,13 +171,13 @@ export default function StoryGenerator({
                 onClick={handleReset}
                 className="flex-1 px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
               >
-                Generar más
+                Mehr generieren
               </button>
               <button
                 onClick={onClose}
                 className="flex-1 px-4 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors duration-200"
               >
-                Cerrar
+                Schließen
               </button>
             </div>
           </div>
@@ -192,7 +192,7 @@ export default function StoryGenerator({
         <div className="p-6">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              ✨ Generar Historia
+              ✨ Story generieren
             </h3>
             <button
               onClick={onClose}
@@ -204,7 +204,7 @@ export default function StoryGenerator({
 
           <div className="mb-6 p-4 bg-indigo-50 dark:bg-indigo-900/10 rounded-xl border border-indigo-100 dark:border-indigo-900/30">
             <p className="text-sm font-medium text-indigo-800 dark:text-indigo-300 mb-2">
-              Palabras seleccionadas ({selectedWords.length}):
+              Worter ausgewahlt ({selectedWords.length}):
             </p>
             <div className="flex flex-wrap gap-1">
               {selectedWordEntries.map((w) => (
@@ -225,29 +225,29 @@ export default function StoryGenerator({
                 <div className="flex-1">
                   <p className="text-sm font-bold text-red-800 dark:text-red-300 mb-2">
                     {error === "NO_API_KEY"
-                      ? "API Key no configurada"
+                      ? "API-Key nicht konfiguriert"
                       : error === "INVALID_API_KEY"
-                        ? "API Key inválida"
+                        ? "API-Key ungultig"
                         : error === "RATE_LIMITED"
-                          ? "Límite alcanzado"
+                          ? "Limit erreicht"
                           : error === "NETWORK_ERROR"
-                            ? "Error de conexión"
+                            ? "Verbindungsfehler"
                             : error === "API_ERROR"
-                              ? "Error en la API"
-                              : "Error desconocido"}
+                              ? "API-Fehler"
+                              : "Unbekannter Fehler"}
                   </p>
                   <p className="text-sm text-red-700 dark:text-red-400">
                     {error === "NO_API_KEY"
-                      ? "Necesitas configurar tu API key de OpenRouter para generar historias. Ve a la página de inicio y configura tu clave en la sección de API Key."
+                      ? "Du musst deinen OpenRouter-API-Key konfigurieren, um Stories zu generieren. Gehe zur Startseite und trage ihn im API-Key-Bereich ein."
                       : error === "INVALID_API_KEY"
-                        ? "La API key que configuraste no es válida. Por favor verifica que hayas copiado la clave correctamente."
+                        ? "Der konfigurierte API-Key ist ungultig. Bitte prufe ihn und kopiere ihn erneut."
                         : error === "RATE_LIMITED"
-                          ? "Has superado el límite de peticiones de la API. Por favor espera unos minutos antes de intentar de nuevo."
+                          ? "Du hast das API-Anfragelimit erreicht. Bitte warte ein paar Minuten und versuche es erneut."
                           : error === "NETWORK_ERROR"
-                            ? "No se pudo conectar con el servidor. Por favor verifica tu conexión a internet y vuelve a intentarlo."
+                            ? "Verbindung zum Server fehlgeschlagen. Bitte prufe deine Internetverbindung und versuche es erneut."
                             : error === "API_ERROR"
-                              ? "Ocurrió un error en el servidor de OpenRouter. Por favor intenta nuevamente en unos minutos."
-                              : "Ocurrió un error inesperado. Por favor vuelve a intentarlo."}
+                              ? "Beim OpenRouter-Server ist ein Fehler aufgetreten. Bitte versuche es in wenigen Minuten erneut."
+                              : "Es ist ein unerwarteter Fehler aufgetreten. Bitte versuche es erneut."}
                   </p>
                 </div>
               </div>
@@ -267,10 +267,10 @@ export default function StoryGenerator({
                 </div>
               </div>
               <p className="text-gray-600 dark:text-gray-400 text-sm">
-                Generando texto {progress.current} de {progress.total}...
+                Text wird generiert {progress.current} de {progress.total}...
               </p>
               <p className="text-gray-500 dark:text-gray-500 text-xs mt-1">
-                Esto puede tardar unos segundos
+                Das kann einige Sekunden dauern
               </p>
             </div>
           )}
@@ -279,7 +279,7 @@ export default function StoryGenerator({
             <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                  Tipo de texto
+                  Texttyp
                 </label>
                 <div className="space-y-2">
                   {TEXT_TYPE_OPTIONS.map((option) => (
@@ -315,7 +315,7 @@ export default function StoryGenerator({
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Tema (opcional)
+                  Thema (optional)
                 </label>
                 <input
                   type="text"
@@ -326,17 +326,17 @@ export default function StoryGenerator({
                       customTheme: e.target.value,
                     })
                   }
-                  placeholder="Ej: tecnología, naturaleza, aventuras..."
+                  placeholder="z. B. Technik, Natur, Abenteuer..."
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  Si no especificas, la IA decidirá el tema
+                  Wenn du kein Thema angibst, entscheidet die KI.
                 </p>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Longitud mínima (palabras)
+                  Minimale Lange (Worter)
                 </label>
                 <input
                   type="number"
@@ -353,7 +353,7 @@ export default function StoryGenerator({
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors duration-200"
                 />
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  Recomendado: 400-800 palabras
+                  Empfohlen: 400-800 Worter
                 </p>
               </div>
 
@@ -403,7 +403,7 @@ export default function StoryGenerator({
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                  Número de textos
+                  Anzahl der Texte
                 </label>
                 <div className="grid grid-cols-3 gap-2">
                   {[1, 2, 3].map((count) => (
@@ -446,13 +446,13 @@ export default function StoryGenerator({
                   onClick={onClose}
                   className="flex-1 px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
                 >
-                  Cancelar
+                  Abbrechen
                 </button>
                 <button
                   onClick={handleGenerate}
                   className="flex-1 px-4 py-3 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition-colors duration-200 shadow-sm hover:shadow-md"
                 >
-                  🚀 Generar
+                  🚀 Generieren
                 </button>
               </div>
             </div>

@@ -1,6 +1,6 @@
 # LingText: Aprende inglés leyendo, con traducción instantánea, TTS y repaso espaciado
 
-[LingText](https://lingtext.org) es una aplicación web full‑stack enfocada en aprender inglés a través de la lectura activa. Combina biblioteca de textos, traducción de palabras o selecciones al español, Text‑to‑Speech (TTS), gestión de vocabulario con repetición espaciada, y exportación/importación de tu base de datos SQLite.
+[LingText](https://lingtext.de) es una aplicación web full‑stack enfocada en aprender inglés a través de la lectura activa. Combina biblioteca de textos, traducción de palabras o selecciones al español, Text‑to‑Speech (TTS), gestión de vocabulario con repetición espaciada, y exportación/importación de tu base de datos SQLite.
 
 Su objetivo es ayudar a construir vocabulario en contexto, minimizando fricción: seleccionas o haces click sobre palabras mientras lees, escuchas la pronunciación, guardas lo desconocido y lo repasas con un algoritmo de repetición espaciada.
 
@@ -104,7 +104,7 @@ Su objetivo es ayudar a construir vocabulario en contexto, minimizando fricción
 
 ## Modelo de datos (SQLite WASM)
 
-Base de datos SQLite almacenada en OPFS del navegador (`lingtext.sqlite3`):
+Base de datos SQLite almacenada en OPFS del navegador (`lingtext-de.sqlite3`):
 
 - Tabla `texts` (`id`, `title`, `content`, `format`, `created_at`, `audio_ref`).
 - Tabla `words` (`word_lower`, `word`, `translation`, `status`, `added_at`, `voice`, `sr_data`).

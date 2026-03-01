@@ -207,14 +207,14 @@ export default function Library() {
         const info = await getDatabaseInfo();
         setDbMessage({
           type: "success",
-          text: `Base de datos exportada (${info.textCount} textos, ${info.wordCount} palabras)`,
+          text: `Datenbank exportiert (${info.textCount} Texte, ${info.wordCount} Woerter)`,
         });
       }
       // If not success, user cancelled - no message needed
     } catch (error) {
       setDbMessage({
         type: "error",
-        text: `Error al exportar: ${(error as Error).message}`,
+        text: `Fehler beim Export: ${(error as Error).message}`,
       });
     } finally {
       setIsExporting(false);
@@ -224,12 +224,12 @@ export default function Library() {
   // Database import handler
   async function handleImportDatabase() {
     const confirmed = window.confirm(
-      "⚠️ Importar una base de datos reemplazará TODOS tus datos actuales.\n\n" +
-        "Esto incluye:\n" +
-        "• Todos tus textos\n" +
-        "• Todas tus palabras guardadas\n" +
-        "• Tu progreso de aprendizaje\n\n" +
-        "¿Estás seguro de que deseas continuar?"
+      "⚠️ Das Importieren einer Datenbank ersetzt ALLE aktuellen Daten.\n\n" +
+        "Das umfasst:\n" +
+        "• Alle deine Texte\n" +
+        "• Alle gespeicherten Woerter\n" +
+        "• Deinen Lernfortschritt\n\n" +
+        "Moechtest du wirklich fortfahren?"
     );
 
     if (!confirmed) return;
@@ -241,7 +241,7 @@ export default function Library() {
       if (success) {
         setDbMessage({
           type: "success",
-          text: "Base de datos importada correctamente. Recargando...",
+          text: "Datenbank erfolgreich importiert. Lade neu...",
         });
         // Reload to reflect new data
         setTimeout(() => window.location.reload(), 1500);
@@ -250,7 +250,7 @@ export default function Library() {
     } catch (error) {
       setDbMessage({
         type: "error",
-        text: `Error al importar: ${(error as Error).message}`,
+        text: `Fehler beim Import: ${(error as Error).message}`,
       });
     } finally {
       setIsImporting(false);
@@ -279,24 +279,24 @@ export default function Library() {
     if (!content.trim()) return;
 
     // Validate title
-    const titleValidation = validateTitle(title.trim() || "Texto sin título");
+    const titleValidation = validateTitle(title.trim() || "Text ohne Titel");
     if (!titleValidation.isValid) {
-      alert(`Error en el título: ${titleValidation.error}`);
+      alert(`Titelfehler: ${titleValidation.error}`);
       return;
     }
 
     // Validate and sanitize content
     const contentValidation = validateTextContent(content.trim());
     if (!contentValidation.isValid) {
-      alert(`Error en el contenido: ${contentValidation.error}`);
+      alert(`Inhaltsfehler: ${contentValidation.error}`);
       return;
     }
 
     // Show warnings if any
     if (contentValidation.warnings && contentValidation.warnings.length > 0) {
       const warningMessage =
-        "Advertencias encontradas:\n" + contentValidation.warnings.join("\n");
-      const proceed = confirm(warningMessage + "\n\n¿Deseas continuar?");
+        "Hinweise gefunden:\n" + contentValidation.warnings.join("\n");
+      const proceed = confirm(warningMessage + "\n\nMochtest du fortfahren?");
       if (!proceed) return;
     }
 
@@ -306,7 +306,7 @@ export default function Library() {
       const textToEdit = texts.find((text) => text.id === editingTextId);
 
       if (!textToEdit) {
-        alert("El texto que intentas editar ya no existe.");
+        alert("Der zu bearbeitende Text existiert nicht mehr.");
         resetFormState();
         await refresh();
         return;
@@ -314,7 +314,7 @@ export default function Library() {
 
       const updatedText: TextItem = {
         ...textToEdit,
-        title: title.trim() || "Texto sin título",
+        title: title.trim() || "Text ohne Titel",
         content: sanitizedContent,
         format: inputFormat,
       };
@@ -327,7 +327,7 @@ export default function Library() {
 
     const text: TextItem = {
       id: crypto.randomUUID(),
-      title: title.trim() || "Texto sin título",
+      title: title.trim() || "Text ohne Titel",
       content: sanitizedContent,
       format: inputFormat,
       createdAt: Date.now(),
@@ -347,7 +347,7 @@ export default function Library() {
       // Validate file type and size
       const fileValidation = validateFileType(file);
       if (!fileValidation.isValid) {
-        alert(`Error en el archivo: ${fileValidation.error}`);
+        alert(`Dateifehler: ${fileValidation.error}`);
         e.target.value = "";
         return;
       }
@@ -358,7 +358,7 @@ export default function Library() {
       // Validate content
       const contentValidation = validateTextContent(text, file.name);
       if (!contentValidation.isValid) {
-        alert(`Error en el contenido del archivo: ${contentValidation.error}`);
+        alert(`Inhaltsfehler in der Datei: ${contentValidation.error}`);
         e.target.value = "";
         return;
       }
@@ -366,10 +366,10 @@ export default function Library() {
       // Show warnings if any
       if (contentValidation.warnings && contentValidation.warnings.length > 0) {
         const warningMessage =
-          "Advertencias encontradas en el archivo:\n" +
+          "Hinweise in der Datei:\n" +
           contentValidation.warnings.join("\n");
         const proceed = confirm(
-          warningMessage + "\n\n¿Deseas continuar con la importación?"
+          warningMessage + "\n\nImport trotzdem fortsetzen?"
         );
         if (!proceed) {
           e.target.value = "";
@@ -380,7 +380,7 @@ export default function Library() {
       // Validate title
       const titleValidation = validateTitle(filename);
       if (!titleValidation.isValid) {
-        alert(`Error en el nombre del archivo: ${titleValidation.error}`);
+        alert(`Fehler im Dateinamen: ${titleValidation.error}`);
         e.target.value = "";
         return;
       }
@@ -392,14 +392,14 @@ export default function Library() {
     } catch (error) {
       console.error("Error importing file:", error);
       alert(
-        "Error al importar el archivo. Verifica que sea un archivo de texto válido."
+        "Fehler beim Import der Datei. Bitte pruefe, ob es eine gueltige Textdatei ist."
       );
       e.target.value = "";
     }
   }
 
   async function onAttachAudioUrl(textId: string) {
-    const url = window.prompt("Pega la URL del audio (mp3/m4a/ogg/etc.):");
+    const url = window.prompt("Audio-URL einfugen (mp3/m4a/ogg/etc.):");
     if (!url) return;
     const ref: AudioRef = { type: "url", url };
     await updateTextAudioRef(textId, ref);
@@ -462,7 +462,7 @@ export default function Library() {
   }
 
   async function onDeleteText(id: string) {
-    if (!confirm("¿Eliminar este texto? Esta acción no se puede deshacer."))
+    if (!confirm("Diesen Text löschen? Diese Aktion kann nicht rückgängig gemacht werden."))
       return;
     await deleteText(id);
     await deleteFileHandle(id);
@@ -486,16 +486,13 @@ export default function Library() {
           <div className="text-center mb-12">
             <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800">
               <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-              Cargando biblioteca...
+              Bibliothek wird geladen...
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">
-              Tus{" "}
-              <span className="text-indigo-600 dark:text-indigo-400">
-                Textos
-              </span>
+              Deine <span className="text-indigo-600 dark:text-indigo-400">Texte</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Preparando tu colección personal...
+              Deine personliche Sammlung wird vorbereitet...
             </p>
           </div>
 
@@ -546,26 +543,24 @@ export default function Library() {
 
   return (
     <section className="relative overflow-hidden py-12 px-4 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
-      {/* Elementos decorativos de fondo */}
+      {/* Decorative background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-32 h-32 bg-indigo-500/10 dark:bg-indigo-400/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 right-10 w-40 h-40 bg-sky-500/10 dark:bg-sky-400/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative max-w-4xl mx-auto">
-        {/* Header elegante */}
+        {/* Main header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center px-4 py-2 mb-6 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-900 rounded-full border border-gray-200 dark:border-gray-800">
             <span className="w-2 h-2 bg-indigo-500 rounded-full mr-2"></span>
-            Biblioteca Personal
+            Personliche Bibliothek
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900 dark:text-gray-100">
-            Agrega tus propios{" "}
-            <span className="text-indigo-600 dark:text-indigo-400">Textos</span>
+            Fuge deine eigenen <span className="text-indigo-600 dark:text-indigo-400">Texte</span> hinzu
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Crea tu colección personal de lecturas para aprender inglés de forma
-            inmersiva
+            Baue deine eigene Lesesammlung fur immersives Englischlernen auf.
           </p>
         </div>
 
@@ -580,11 +575,11 @@ export default function Library() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900 dark:text-gray-100">
-                      Backup de Base de Datos
+                      Datenbank-Backup
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Guarda o restaura todos tus datos (textos, palabras,
-                      progreso)
+                      Sichere oder stelle alle Daten wieder her (Texte, Woerter,
+                      Fortschritt)
                     </p>
                   </div>
                 </div>
@@ -618,10 +613,10 @@ export default function Library() {
                   <span className="text-2xl">📤</span>
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-gray-100">
-                      Exportar Backup
+                      Backup exportieren
                     </h4>
                     <p className="text-xs text-gray-600 dark:text-gray-400">
-                      Descarga tu base de datos como archivo .sqlite
+                      Lade deine Datenbank als .sqlite-Datei herunter
                     </p>
                   </div>
                 </div>
@@ -651,10 +646,10 @@ export default function Library() {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         ></path>
                       </svg>
-                      Exportando...
+                      Exportiere...
                     </>
                   ) : (
-                    "Guardar en PC"
+                    "Auf PC speichern"
                   )}
                 </button>
               </div>
@@ -665,10 +660,10 @@ export default function Library() {
                   <span className="text-2xl">📥</span>
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-gray-100">
-                      Restaurar Backup
+                      Backup wiederherstellen
                     </h4>
                     <p className="text-xs text-gray-600 dark:text-gray-400">
-                      ⚠️ Reemplaza todos los datos actuales
+                      ⚠️ Ersetzt alle aktuellen Daten
                     </p>
                   </div>
                 </div>
@@ -698,10 +693,10 @@ export default function Library() {
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                         ></path>
                       </svg>
-                      Importando...
+                      Importiere...
                     </>
                   ) : (
-                    "Cargar desde PC"
+                    "Vom PC laden"
                   )}
                 </button>
               </div>
@@ -722,7 +717,7 @@ export default function Library() {
           </div>
         </details>
 
-        {/* Formulario de agregar/editar texto */}
+        {/* Form to add/edit texts */}
         <div
           id="library-text-form"
           className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-8 mb-12"
@@ -731,13 +726,12 @@ export default function Library() {
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center mr-3">
               <span className="text-white text-sm">+</span>
             </div>
-            {isEditing ? "Editar Texto" : "Agregar Nuevo Texto"}
+            {isEditing ? "Text bearbeiten" : "Neuen Text hinzufugen"}
           </h3>
 
           {isEditing ? (
             <div className="mb-4 rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-3 text-sm text-indigo-800 dark:border-indigo-900/60 dark:bg-indigo-900/20 dark:text-indigo-300">
-              Estás editando un texto existente. Guarda los cambios o cancela
-              la edición.
+              Du bearbeitest einen bestehenden Text. Speichere die Anderungen oder brich ab.
             </div>
           ) : null}
 
@@ -745,12 +739,12 @@ export default function Library() {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Título del texto
+                  Titel des Textes
                 </label>
                 <input
                   ref={titleInputRef}
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400"
-                  placeholder="Ej: The Great Gatsby - Chapter 1"
+                  placeholder="z. B. The Great Gatsby - Chapter 1"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -760,10 +754,10 @@ export default function Library() {
               <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/60 rounded-xl border border-gray-200 dark:border-gray-700">
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    ¿Tienes un archivo .txt?
+                    Hast du eine .txt-Datei?
                   </p>
                   <p className="text-xs text-gray-600 dark:text-gray-400">
-                    Importa directamente un archivo de texto plano
+                    Importiere direkt eine reine Textdatei
                   </p>
                 </div>
                 <button
@@ -771,7 +765,7 @@ export default function Library() {
                   onClick={() => fileInputRef.current?.click()}
                   type="button"
                 >
-                  📄 Cargar .txt
+                  📄 .txt laden
                 </button>
                 <input
                   ref={fileInputRef}
@@ -783,7 +777,7 @@ export default function Library() {
               </div>
             </div>
 
-            {/* Tabs para cambiar entre texto plano y markdown */}
+            {/* Tabs fur Klartext und Markdown */}
             <div className="flex gap-2 mb-2">
               <button
                 type="button"
@@ -794,7 +788,7 @@ export default function Library() {
                     : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
                 }`}
               >
-                📝 Texto Plano
+                📝 Klartext
               </button>
               <button
                 type="button"
@@ -813,8 +807,8 @@ export default function Library() {
               className="w-full min-h-[140px] px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-vertical transition-all duration-200 placeholder-gray-500 dark:placeholder-gray-400 font-mono"
               placeholder={
                 inputFormat === "markdown"
-                  ? "Pega aquí tu texto en inglés con formato Markdown...\n\nEjemplo:\n# Título\n**negrita** *cursiva* [enlace](url)\n- lista\n> cita"
-                  : "Pega aquí tu texto en inglés..."
+                  ? "Paste hier deinen englischen Text im Markdown-Format ein...\n\nBeispiel:\n# Titel\n**fett** *kursiv* [link](url)\n- liste\n> zitat"
+                  : "Paste hier deinen englischen Text ein..."
               }
               value={content}
               onChange={(e) => setContent(e.target.value)}
@@ -827,7 +821,7 @@ export default function Library() {
                   onClick={resetFormState}
                   type="button"
                 >
-                  Cancelar edición
+                  Bearbeitung abbrechen
                 </button>
               ) : null}
               <button
@@ -836,13 +830,13 @@ export default function Library() {
                 disabled={!content.trim()}
                 type="button"
               >
-                {isEditing ? "Guardar cambios" : "Crear Texto"}
+                {isEditing ? "Änderungen speichern" : "Text erstellen"}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Lista de textos */}
+        {/* Text list */}
         <div id="library" className="space-y-4">
           {texts.length > 0 ? (
             texts.map((t) => (
@@ -869,7 +863,7 @@ export default function Library() {
                   {t.audioRef ? (
                     <div className="mt-3 flex items-center text-sm text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900/20 px-3 py-1 rounded-full w-fit">
                       <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                      Audio conectado:{" "}
+                      Audio verbunden:{" "}
                       {t.audioRef.type === "url" ? "URL" : t.audioRef.name}
                     </div>
                   ) : null}
@@ -881,7 +875,7 @@ export default function Library() {
                     >
                       <summary className="list-none cursor-pointer inline-flex items-center px-4 py-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950">
                         <VolumeIcon className="w-4 h-4 mr-1.5" aria-hidden="true" />
-                        Agregar audio
+                        Audio hinzufugen
                         <ChevronDownIcon
                           className="w-4 h-4 ml-1.5 transition-transform group-open/audio:rotate-180"
                           aria-hidden="true"
@@ -894,14 +888,14 @@ export default function Library() {
                           onClick={() => void onAudioMenuAction(t.id, "file")}
                           type="button"
                         >
-                          Desde archivo
+                          Aus Datei
                         </button>
                         <button
                           className="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
                           onClick={() => void onAudioMenuAction(t.id, "url")}
                           type="button"
                         >
-                          Desde URL
+                          Von URL
                         </button>
                         {t.audioRef ? (
                           <button
@@ -913,7 +907,7 @@ export default function Library() {
                               className="w-4 h-4 mr-1.5"
                               aria-hidden="true"
                             />
-                            Quitar audio
+                            Audio entfernen
                           </button>
                         ) : null}
                       </div>
@@ -925,7 +919,7 @@ export default function Library() {
                       type="button"
                     >
                       <PencilIcon className="w-4 h-4 mr-1.5" aria-hidden="true" />
-                      Editar
+                      Bearbeiten
                     </button>
 
                     <button
@@ -934,7 +928,7 @@ export default function Library() {
                       type="button"
                     >
                       <TrashIcon className="w-4 h-4 mr-1.5" aria-hidden="true" />
-                      Eliminar
+                      Löschen
                     </button>
 
                     <Link
@@ -942,7 +936,7 @@ export default function Library() {
                       className="inline-flex items-center px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
                     >
                       <BookIcon className="w-4 h-4 mr-2" aria-hidden="true" />
-                      Leer ahora
+                      Jetzt lesen
                     </Link>
                   </div>
                 </div>
@@ -954,18 +948,18 @@ export default function Library() {
                 <span className="text-4xl">📚</span>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                Tu biblioteca está vacía
+                Deine Bibliothek ist leer
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
-                Comienza agregando tu primer texto para comenzar tu viaje de
-                aprendizaje en inglés
+                Fuege deinen ersten Text hinzu und starte deine Reise beim
+                Englischlernen
               </p>
               <div className="flex justify-center">
                 <button
                   className="px-8 py-4 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-colors duration-200 shadow-sm hover:shadow-md"
                   onClick={() => titleInputRef.current?.focus()}
                 >
-                  ✨ Crear Primer Texto
+                  ✨ Ersten Text erstellen
                 </button>
               </div>
             </div>

@@ -9,6 +9,7 @@ import { allTexts } from "~/lib/content/runtime";
 import { formatSlug } from "~/helpers/formatSlug";
 import { type TextCollection, type TextItem } from "~/types";
 import { formatAudioRef } from "~/utils/format-audio-ref";
+import { TEXT_WELCOME_MODAL_KEY } from "~/config/app-identity";
 
 const Reader = lazy(() => import("~/components/Reader"));
 
@@ -46,7 +47,7 @@ export async function clientLoader({
   const id = params.id;
   const text = await getText(id);
 
-  document.title = text?.title || "Sin título";
+  document.title = text?.title || "Ohne Titel";
 
   const audioUrl = await formatAudioRef(text?.audioRef as AudioRef | null);
 
@@ -68,8 +69,7 @@ export default function Text({ loaderData }: Route.ComponentProps) {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const storageKey = "lingtext_texts_welcome_modal_v1";
-    const hasSeenModal = window.localStorage.getItem(storageKey);
+    const hasSeenModal = window.localStorage.getItem(TEXT_WELCOME_MODAL_KEY);
 
     if (!hasSeenModal) {
       setShowWelcomeModal(true);
@@ -77,8 +77,7 @@ export default function Text({ loaderData }: Route.ComponentProps) {
   }, []);
 
   const handleCloseModal = () => {
-    const storageKey = "lingtext_texts_welcome_modal_v1";
-    window.localStorage.setItem(storageKey, "true");
+    window.localStorage.setItem(TEXT_WELCOME_MODAL_KEY, "true");
     setShowWelcomeModal(false);
   };
 
@@ -94,29 +93,29 @@ export default function Text({ loaderData }: Route.ComponentProps) {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
-                  Nota importante
+                  Wichtiger Hinweis
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold text-gray-900 dark:text-gray-100">
-                  Mejor experiencia en desktop
+                  Beste Erfahrung auf Desktop
                 </h2>
               </div>
               <button
                 type="button"
                 className="rounded-full p-2 text-gray-500 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200"
                 onClick={handleCloseModal}
-                aria-label="Cerrar"
+                aria-label="Schließen"
               >
                 <span aria-hidden="true">✕</span>
               </button>
             </div>
             <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
               <p>
-                LingText funciona en cualquier dispositivo y navegador, pero la
-                mejor experiencia se obtiene en desktop/PC usando Chrome.
+                LingText funktioniert auf jedem Geraet und in jedem Browser,
+                aber die beste Erfahrung bekommst du auf Desktop/PC mit Chrome.
               </p>
               <p>
-                Si tienes preguntas o quieres compartir feedback, puedes unirte
-                a la comunidad en nuestro grupo de Facebook.
+                Wenn du Fragen hast oder Feedback teilen moechtest, kannst du
+                unserer Community in der Facebook-Gruppe beitreten.
               </p>
             </div>
             <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
@@ -126,14 +125,14 @@ export default function Text({ loaderData }: Route.ComponentProps) {
                 target="_blank"
                 rel="noreferrer"
               >
-                Ir al grupo de Facebook
+                Zur Facebook-Gruppe
               </a>
               <button
                 type="button"
                 className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-indigo-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-2"
                 onClick={handleCloseModal}
               >
-                Entendido
+                Verstanden
               </button>
             </div>
           </div>

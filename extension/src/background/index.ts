@@ -3,6 +3,7 @@
  */
 
 import type { ExtensionMessage } from "@/types";
+import { APP_DOMAIN } from "@/config/app-identity";
 
 import { handleMessage } from "./router";
 import { initializeStore } from "./store";
@@ -14,8 +15,8 @@ function isAllowedOrigin(origin: string): boolean {
     const { hostname } = new URL(origin);
     return (
       hostname === "localhost" ||
-      hostname === "lingtext.org" ||
-      hostname.endsWith(".lingtext.org")
+      hostname === APP_DOMAIN ||
+      hostname.endsWith(`.${APP_DOMAIN}`)
     );
   } catch {
     return false;

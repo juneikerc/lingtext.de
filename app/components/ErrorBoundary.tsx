@@ -41,30 +41,29 @@ export class ErrorBoundary extends Component<Props, State> {
               <span className="text-3xl">⚠️</span>
             </div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Algo salió mal
+              Etwas ist schiefgelaufen
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Ha ocurrido un error inesperado. Por favor, intenta recargar la
-              página.
+              Ein unerwarteter Fehler ist aufgetreten. Bitte lade die Seite neu.
             </p>
             <div className="space-y-3">
               <button
                 onClick={() => window.location.reload()}
                 className="w-full px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
               >
-                Recargar página
+                Seite neu laden
               </button>
               <Link
                 to="/"
                 className="block w-full px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors"
               >
-                Ir al inicio
+                Zur Startseite
               </Link>
             </div>
             {import.meta.env.DEV && this.state.error && (
               <details className="mt-6 text-left">
                 <summary className="cursor-pointer text-sm text-gray-500 hover:text-gray-700">
-                  Detalles del error (desarrollo)
+                  Fehlerdetails (Entwicklung)
                 </summary>
                 <pre className="mt-2 p-3 bg-gray-100 dark:bg-gray-900 rounded text-xs overflow-auto">
                   {this.state.error.stack}

@@ -20,7 +20,7 @@ export default function Footer() {
     <footer className="bg-gray-950 text-gray-300 border-t border-gray-800">
       <div className="max-w-6xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo y descripción */}
+          {/* Logo and description */}
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
               <div className="text-2xl font-bold text-gray-100">
@@ -28,9 +28,9 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
-              La alternativa gratuita y moderna a LingQ. Aprende inglés leyendo
-              textos con traducción instantánea, audio integrado y seguimiento
-              de progreso inteligente.
+              Die kostenlose und moderne Alternative zu LingQ. Lerne Englisch
+              durch Lesen mit sofortiger Uebersetzung, integriertem Audio und
+              intelligentem Fortschrittstracking.
             </p>
             <div className="flex space-x-4">
               <a
@@ -62,10 +62,10 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Niveles */}
+          {/* Levels */}
           <div>
             <h3 className="text-lg font-semibold text-gray-100 mb-4">
-              Textos por nivel
+              Texte nach Niveau
             </h3>
             <ul className="space-y-2">
               <li>
@@ -73,7 +73,7 @@ export default function Footer() {
                   href="/levels/a1"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Nivel A1
+                  Niveau A1
                 </a>
               </li>
               <li>
@@ -81,7 +81,7 @@ export default function Footer() {
                   href="/levels/a2"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Nivel A2
+                  Niveau A2
                 </a>
               </li>
               <li>
@@ -89,7 +89,7 @@ export default function Footer() {
                   href="/levels/b1"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Nivel B1
+                  Niveau B1
                 </a>
               </li>
               <li>
@@ -97,7 +97,7 @@ export default function Footer() {
                   href="/levels/b2"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Nivel B2
+                  Niveau B2
                 </a>
               </li>
               <li>
@@ -105,7 +105,7 @@ export default function Footer() {
                   href="/levels/c1"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Nivel C1
+                  Niveau C1
                 </a>
               </li>
               <li>
@@ -113,16 +113,16 @@ export default function Footer() {
                   href="/levels/c2"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Nivel C2
+                  Niveau C2
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Enlaces útiles */}
+          {/* Useful links */}
           <div>
             <h3 className="text-lg font-semibold text-gray-100 mb-4">
-              Producto
+              Produkt
             </h3>
             <ul className="space-y-2">
               <li>
@@ -130,7 +130,7 @@ export default function Footer() {
                   href="/#levels"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Construye tú Biblioteca
+                  Baue deine Bibliothek auf
                 </a>
               </li>
               <li>
@@ -138,46 +138,46 @@ export default function Footer() {
                   href="/words"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Estadísticas
+                  Statistiken
                 </a>
               </li>
               <li></li>
             </ul>
           </div>
 
-          {/* Recursos */}
+          {/* Resources */}
           <div>
             <h3 className="text-lg font-semibold text-gray-100 mb-4">
-              Recursos
+              Ressourcen
             </h3>
             <ul className="space-y-2">
               <li>
                 <a
-                  href="/1000-frases-en-ingles"
+                  href="/1000-englische-saetze"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  1000 frases en inglés
+                  1000 englische Phrasen
                 </a>
               </li>
               <li>
                 <a
-                  href="/500-palabras-en-ingles"
+                  href="/500-englische-woerter"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  500 palabra en inglés
+                  500 englische Woerter
                 </a>
               </li>
               <li>
                 <a
-                  href="/comunidad"
+                  href="/gemeinschaft"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Comunidad
+                  Gemeinschaft
                 </a>
               </li>
               <li>
                 <a
-                  href="/aprender-con-language-island"
+                  href="/lernen-mit-language-island"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
                   Language Island
@@ -185,10 +185,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/contacto"
+                  to="/kontakt"
                   className="text-gray-300 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 >
-                  Contacto
+                  Kontakt
                 </Link>
               </li>
               <li>
@@ -203,24 +203,24 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Barra inferior */}
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <div className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {currentYear} LingText. Todos los derechos reservados.
-          </div>
-          <div className="flex space-x-6 text-sm">
+          {/* Bottom bar */}
+          <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div className="text-gray-400 text-sm mb-4 md:mb-0">
+              © {currentYear} LingText. Alle Rechte vorbehalten.
+            </div>
+            <div className="flex space-x-6 text-sm">
             <a
               href="#"
               className="text-gray-400 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
-            >
-              Privacidad
-            </a>
+              >
+                Datenschutz
+              </a>
             <a
               href="#"
               className="text-gray-400 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
-            >
-              Términos
-            </a>
+              >
+                Nutzungsbedingungen
+              </a>
             <a
               href="#"
               className="text-gray-400 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
@@ -235,11 +235,11 @@ export default function Footer() {
           <div className="flex items-center justify-center">
             <div className="text-center">
               <div className="text-indigo-300 font-semibold mb-1">
-                💡 ¿Sabías?
+                💡 Schon gewusst?
               </div>
               <div className="text-gray-300 text-sm">
-                LingText es completamente gratuito y open source. ¡Ayúdanos a
-                mejorar!
+                LingText ist komplett kostenlos und Open Source. Hilf uns, es
+                weiter zu verbessern.
               </div>
             </div>
           </div>

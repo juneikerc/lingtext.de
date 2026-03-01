@@ -52,19 +52,19 @@ export default function SelectionPopup({
         </button>
       </div>
 
-      {/* Traducción */}
+      {/* Translation */}
       <div className="lingtext-selection-translation">
-        <div className="lingtext-popup-label">🇪🇸 Traducción</div>
+        <div className="lingtext-popup-label">🇩🇪 Übersetzung</div>
         <div className="lingtext-translation-content">{displayTranslation}</div>
       </div>
 
-      {/* Acciones */}
+      {/* Actions */}
       <div className="lingtext-selection-actions">
         <button
           className="lingtext-btn lingtext-btn-save"
           onClick={() => onSave(popup.text, popup.translation)}
         >
-          💾 Guardar frase
+          💾 Phrase speichern
         </button>
       </div>
     </div>

@@ -14,11 +14,11 @@ import StoryGenerator from "./StoryGenerator";
 
 interface UnknownWordsSectionProps {
   words: WordEntry[];
-  dailyStats: DailyStats; // <--- NUEVA PROP
+  dailyStats: DailyStats; // <--- new prop
   onRemove: (wordLower: string) => void;
 }
 
-// Configuración del límite (debería coincidir con tu scheduler)
+// Limit-Konfiguration (sollte mit dem Scheduler ubereinstimmen)
 const DAILY_NEW_WORD_LIMIT = 7;
 const MAX_WORDS_FOR_STORY = 20;
 
@@ -48,32 +48,32 @@ export default function UnknownWordsSection({
     setSelectedWords(new Set());
   };
 
-  // Calculamos las estadísticas "PARA HOY"
+  // Berechnung der heutigen Statistiken
   const stats = useMemo(() => {
     const now = Date.now();
 
-    // 1. Repasos Vencidos (Sin límite, hay que hacerlos todos)
+    // 1. Fallige Wiederholungen (ohne Limit)
     const reviewsDue = words.filter(
       (w) => w.srData && w.srData.nextReview <= now
     ).length;
 
-    // 2. Palabras Nuevas (Total disponible en BD)
+    // 2. Neue Worter (gesamt in DB)
     const totalNewWordsInDb = words.filter((w) => !w.srData).length;
 
-    // 3. Cuota de Nuevas Restante para hoy
-    // (Límite - Lo que ya hiciste hoy)
+    // 3. Verbleibendes Tageskontingent fur neue Worter
+    // (Tageslimit - bereits heute gelernt)
     const newQuotaRemaining = Math.max(
       0,
       DAILY_NEW_WORD_LIMIT - dailyStats.newCardsStudied
     );
 
-    // 4. Nuevas Reales a mostrar hoy (Mínimo entre lo que hay en BD y la cuota)
+    // 4. Neue Worter fur heute (Minimum aus DB und Kontingent)
     const newCardsAvailableToday = Math.min(
       newQuotaRemaining,
       totalNewWordsInDb
     );
 
-    // 5. Total de la sesión de hoy
+    // 5. Gesamtsumme fur die heutige Sitzung
     const totalDueToday = reviewsDue + newCardsAvailableToday;
 
     return {
@@ -102,11 +102,11 @@ export default function UnknownWordsSection({
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200 font-medium border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
               >
                 <span className="text-lg">←</span>
-                <span>Volver</span>
+                <span>Zuruck</span>
               </Link>
 
               <div className="flex items-center space-x-4">
-                {/* Botón Principal de Repaso */}
+                {/* Main review button */}
                 <Link
                   to="/review"
                   className={`inline-flex items-center justify-center px-6 py-3 font-medium rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950 ${
@@ -114,11 +114,11 @@ export default function UnknownWordsSection({
                       ? "bg-indigo-600 text-white hover:bg-indigo-700"
                       : "bg-gray-200 text-gray-500 cursor-not-allowed dark:bg-gray-800 dark:text-gray-400"
                   }`}
-                  // Deshabilitar navegación si no hay nada, o dejar que el loader de /review muestre el mensaje de "Todo listo"
+                  // Navigation deaktivieren, wenn nichts offen ist
                 >
                   <span className="relative z-10 flex items-center space-x-2">
                     <span>{stats.totalDueToday > 0 ? "🚀" : "✅"}</span>
-                    <span>Estudiar Hoy ({stats.totalDueToday})</span>
+                    <span>Heute lernen ({stats.totalDueToday})</span>
                   </span>
                 </Link>
               </div>
@@ -126,35 +126,35 @@ export default function UnknownWordsSection({
 
             <div className="text-center mb-8">
               <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">
-                Tu{" "}
+                Deine{" "}
                 <span className="text-indigo-600 dark:text-indigo-400">
-                  Colección
+                  Sammlung
                 </span>
               </h1>
               <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                 {stats.totalCollection === 0
-                  ? "Tu biblioteca está vacía. ¡Lee textos para añadir palabras!"
+                  ? "Deine Bibliothek ist leer. Lies Texte, um Worter hinzuzufugen!"
                   : stats.totalDueToday === 0
-                    ? "¡Has completado todos tus objetivos por hoy!"
-                    : `Tienes ${stats.reviewsDue} repasos y puedes aprender ${stats.newCardsAvailableToday} palabras nuevas más hoy.`}
+                    ? "Du hast alle heutigen Ziele erreicht!"
+                    : `Du hast ${stats.reviewsDue} Wiederholungen offen und kannst heute noch ${stats.newCardsAvailableToday} neue Worter lernen.`}
               </p>
             </div>
           </div>
 
           {words.length === 0 ? (
-            // Estado vacío global
+            // Globaler Leerstatus
             <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm p-12 text-center">
-              {/* ... (contenido igual al anterior) ... */}
+              {/* ... (gleicher Inhalt wie oben) ... */}
               <Link
                 to="/"
                 className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white dark:bg-gray-950 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
               >
-                <span>📖 Leer más textos</span>
+                <span>📖 Mehr Texte lesen</span>
               </Link>
             </div>
           ) : (
             <div className="space-y-6">
-              {/* PANEL DE ESTADÍSTICAS DE HOY */}
+              {/* HEUTIGES STATISTIK-PANEL */}
               <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-4">
@@ -163,64 +163,64 @@ export default function UnknownWordsSection({
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 dark:text-gray-100">
-                        Objetivo Diario
+                        Tagesziel
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Límite: {DAILY_NEW_WORD_LIMIT} nuevas/día
+                        Limit: {DAILY_NEW_WORD_LIMIT} neu/Tag
                       </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {/* Card 1: Repasos */}
+                  {/* Card 1: Wiederholungen */}
                   <div className="p-4 rounded-lg bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/30 text-center">
                     <div className="text-2xl font-bold text-amber-600 dark:text-amber-400">
                       {stats.reviewsDue}
                     </div>
                     <div className="text-sm font-medium text-amber-800 dark:text-amber-300">
-                      Repasos Vencidos
+                      Fallige Wiederholungen
                     </div>
                     <div className="text-xs text-amber-600/70 mt-1">
-                      Prioridad alta
+                      Hohe Prioritat
                     </div>
                   </div>
 
-                  {/* Card 2: Nuevas Disponibles */}
+                  {/* Card 2: Neue verfugbar */}
                   <div className="p-4 rounded-lg bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-900/30 text-center">
                     <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
                       {stats.newCardsAvailableToday}
                     </div>
                     <div className="text-sm font-medium text-indigo-800 dark:text-indigo-300">
-                      Nuevas Disponibles
+                      Neue verfugbar
                     </div>
                     <div className="text-xs text-indigo-600/70 mt-1">
-                      Has hecho {stats.newCardsDone}/{DAILY_NEW_WORD_LIMIT} hoy
+                      Heute erledigt: {stats.newCardsDone}/{DAILY_NEW_WORD_LIMIT}
                     </div>
                   </div>
 
-                  {/* Card 3: Total Colección */}
+                  {/* Card 3: Gesamtsammlung */}
                   <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-center">
                     <div className="text-2xl font-bold text-gray-700 dark:text-gray-300">
                       {stats.totalCollection}
                     </div>
                     <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                      Total Guardadas
+                      Insgesamt gespeichert
                     </div>
                     <div className="text-xs text-gray-500 mt-1">
-                      Base de datos
+                      Datenbank
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Acciones Rápidas */}
+              {/* Schnellaktionen */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
                   onClick={() => exportUnknownWordsCsv()}
                   className="flex-1 py-3 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-offset-gray-950"
                 >
-                  📥 Exportar CSV (Anki)
+                  📥 CSV exportieren (Anki)
                 </button>
                 <button
                   onClick={() => setShowStoryGenerator(true)}
@@ -231,7 +231,7 @@ export default function UnknownWordsSection({
                       : "bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
                   }`}
                 >
-                  ✨ Generar Historia ({selectedWords.size}/
+                  ✨ Story generieren ({selectedWords.size}/
                   {MAX_WORDS_FOR_STORY})
                 </button>
               </div>
@@ -239,22 +239,22 @@ export default function UnknownWordsSection({
               {selectedWords.size > 0 && (
                 <div className="bg-indigo-50 dark:bg-indigo-900/10 rounded-xl border border-indigo-100 dark:border-indigo-900/30 p-4">
                   <p className="text-sm text-indigo-800 dark:text-indigo-300">
-                    💡 <span className="font-medium">Tip:</span> Máximo 20
-                    palabras recomendado para obtener mejores textos. Si quieres
-                    usar más palabras, completa la generación actual con estas{" "}
-                    {selectedWords.size} palabras y selecciona nuevas.
+                    💡 <span className="font-medium">Tip:</span> Maximal 20
+                    Worter sind fur bessere Texte empfohlen. Wenn du mehr
+                    nutzen willst, beende zuerst die aktuelle Generierung mit{" "}
+                    {selectedWords.size} Wortern und wahle danach neue.
                   </p>
                 </div>
               )}
 
-              {/* Lista de palabras (Igual que antes, pero mostrando status) */}
+              {/* Wortliste (mit Status) */}
               <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm overflow-hidden">
                 <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-800 flex justify-between items-center">
                   <h3 className="font-bold text-gray-900 dark:text-gray-100">
-                    Tu Vocabulario
+                    Dein Wortschatz
                   </h3>
                   <span className="text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded-full text-gray-600 dark:text-gray-300">
-                    Ordenado por fecha
+                    Nach Datum sortiert
                   </span>
                 </div>
 
@@ -290,7 +290,7 @@ export default function UnknownWordsSection({
                               <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100">
                                 {word.word}
                               </h4>
-                              {/* Icono de audio ... */}
+                              {/* Audio-Icon ... */}
                               <button
                                 onClick={async () => {
                                   const s = await getSettings();
@@ -327,19 +327,19 @@ export default function UnknownWordsSection({
                               </p>
                             )}
 
-                            {/* Estado de la palabra */}
+                            {/* Wortstatus */}
                             <div className="flex items-center space-x-4 text-xs md:text-sm">
                               {isWordReadyForReview(word) && word.srData ? (
                                 <span className="text-amber-600 bg-amber-50 dark:bg-amber-900/20 px-2 py-0.5 rounded">
-                                  ⚠️ Repaso pendiente
+                                  ⚠️ Wiederholung fallig
                                 </span>
                               ) : !word.srData ? (
                                 <span className="text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 px-2 py-0.5 rounded">
-                                  ✨ Nueva
+                                  ✨ Neu
                                 </span>
                               ) : (
                                 <span className="text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded">
-                                  ✅ Aprendida (Próx:{" "}
+                                  ✅ Gelernt (Nachste:{" "}
                                   {formatTimeUntilReview(
                                     word.srData.nextReview
                                   )}
@@ -350,12 +350,12 @@ export default function UnknownWordsSection({
                           </div>
                         </div>
 
-                        {/* Botones individuales */}
+                        {/* Einzelaktionen */}
                         <div className="flex items-center space-x-2">
                           <button
                             className="p-2 rounded-lg text-red-700 dark:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-offset-gray-950"
                             onClick={async () => {
-                              if (confirm("¿Borrar?")) {
+                              if (confirm("Loschen?")) {
                                 await deleteWord(word.wordLower);
                                 onRemove(word.wordLower);
                               }

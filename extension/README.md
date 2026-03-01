@@ -11,7 +11,7 @@ traducción por palabra y sincronización con LingText Web.
 - Render visual tipo subtítulo CC de línea completa, manteniendo click por
   palabra.
 - Nuevo contrato interno de mensajes `LT2_*`.
-- Nuevo almacenamiento namespaced `lt2_*`.
+- Nuevo almacenamiento namespaced `ltde_*`.
 - Reset de datos locales al migrar a schema v2.
 
 ## Arquitectura
@@ -50,11 +50,11 @@ extension/src/
 
 ## Storage keys v2
 
-- `lt2_schema_version`
-- `lt2_words`
-- `lt2_phrases`
-- `lt2_settings`
-- `lt2_last_sync`
+- `ltde_schema_version`
+- `ltde_words`
+- `ltde_phrases`
+- `ltde_settings`
+- `ltde_last_sync`
 
 ## Desarrollo
 

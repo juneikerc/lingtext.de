@@ -42,7 +42,7 @@ interface Props {
 
 // Types moved to ./reader/types
 
-const READER_COPY_HINTS = ["Clic para traducir"] as const;
+const READER_COPY_HINTS = ["Klick zum Uebersetzen"] as const;
 const MAX_SELECTION_TRANSLATE_WORDS = 20;
 
 function stripReaderCopyHints(rawText: string): string {
@@ -83,7 +83,7 @@ export default function Reader({
   const [fileSize, setFileSize] = useState<number | null>(null);
   const phraseCacheRef = useRef<Map<string, string>>(new Map());
 
-  // Detectar si es archivo local y obtener información
+  // Detect local file and read metadata
   useEffect(() => {
     let mounted = true;
 
@@ -93,16 +93,16 @@ export default function Reader({
 
         let handle = text.audioRef.fileHandle;
 
-        // Si no tenemos el handle, intentar recuperarlo de IndexedDB
+        // If no handle is present, try restoring from IndexedDB
         if (!handle) {
           try {
             const savedHandle = await getFileHandle(text.id);
             if (savedHandle && mounted) {
               handle = savedHandle;
-              // Verificar permiso
+              // Check permission
               const hasPermission = await ensureReadPermission(handle);
               if (hasPermission) {
-                // Obtener archivo y crear URL
+                // Read file and create object URL
                 const file = await handle.getFile();
                 const url = URL.createObjectURL(file);
                 setAudioUrl(url);
@@ -117,11 +117,11 @@ export default function Reader({
         }
 
         if (mounted) {
-          // Si llegamos aquí y tenemos el handle original (primera carga)
+          // If we reached this point and we have the original handle (first load)
           if (text.audioRef.fileHandle) {
             setAudioAccessError(!text.audioUrl);
           } else {
-            // Si no tenemos handle ni recuperado ni original
+            // If neither restored nor original handle exists
             setAudioAccessError(true);
           }
         }
@@ -213,9 +213,9 @@ export default function Reader({
       ) {
         myMemoryQuotaAlertedRef.current = true;
         alert(
-          "Se alcanzó el límite diario del traductor gratis (MyMemory).\n\n" +
-            "Sugerencia: cambia el método de traducción (Chrome si está disponible) " +
-            "o configura una API Key de OpenRouter para seguir traduciendo."
+          "Das taegliche Limit des kostenlosen Uebersetzers (MyMemory) wurde erreicht.\n\n" +
+            "Tipp: Wechsle die Uebersetzungsmethode (Chrome, falls verfuegbar) " +
+            "oder konfiguriere einen OpenRouter-API-Key, um weiter zu uebersetzen."
         );
       }
 
@@ -288,7 +288,7 @@ export default function Reader({
     if (!t || !t.audioRef || t.audioRef.type !== "file") return;
 
     try {
-      // Limpiar URL anterior si existe
+      // Revoke previous object URL if needed
       if (audioUrl && !audioUrl.startsWith("http")) {
         URL.revokeObjectURL(audioUrl);
         setAudioUrl(null);
@@ -301,10 +301,10 @@ export default function Reader({
         // FileHandle exists - try to request permission
         const hasPermission = await ensureReadPermission(t.audioRef.fileHandle);
         if (!hasPermission) {
-          console.warn("Permiso denegado para archivo local");
+          console.warn("Zugriff auf lokale Datei verweigert");
           setAudioAccessError(true);
           alert(
-            "Permiso denegado. Vuelve a intentarlo o re-adjunta el audio desde la biblioteca."
+            "Zugriff verweigert. Versuche es erneut oder haenge das Audio in der Bibliothek neu an."
           );
           return;
         }
@@ -322,7 +322,7 @@ export default function Reader({
         await saveFileHandle(t.id, newHandle);
       }
 
-      // Validar que sea un archivo de audio válido
+      // Validate audio file type
       const fileName = file.name.toLowerCase();
       const isAudioFile =
         file.type.startsWith("audio/") ||
@@ -335,16 +335,16 @@ export default function Reader({
 
       if (!isAudioFile) {
         throw new Error(
-          `Tipo de archivo no válido: ${file.type || "desconocido"}. Solo se permiten archivos de audio (MP3, WAV, M4A, AAC, OGG, FLAC).`
+          `Ungueltiger Dateityp: ${file.type || "unbekannt"}. Erlaubt sind nur Audiodateien (MP3, WAV, M4A, AAC, OGG, FLAC).`
         );
       }
 
-      // Verificar tamaño del archivo (advertir si es muy grande)
+      // Validate file size (warn if very large)
       const maxSize = 500 * 1024 * 1024; // 500MB
       if (file.size > maxSize) {
         const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
         const shouldContinue = confirm(
-          `El archivo es muy grande (${sizeMB}MB). Puede causar problemas de rendimiento. ¿Deseas continuar?`
+          `Die Datei ist sehr gross (${sizeMB}MB). Das kann zu Performance-Problemen fuehren. Moechtest du fortfahren?`
         );
         if (!shouldContinue) {
           setAudioAccessError(true);
@@ -354,33 +354,33 @@ export default function Reader({
 
       setFileSize(file.size);
 
-      // Crear ObjectURL de forma segura
+      // Create object URL safely
       const url = URL.createObjectURL(file);
 
       setAudioUrl(url);
       setAudioAccessError(false);
     } catch (error) {
-      console.error("Error al cargar archivo local:", error);
+      console.error("Fehler beim Laden der lokalen Datei:", error);
 
-      // Limpiar estado de error
+      // Set error state
       setAudioAccessError(true);
 
-      // Determinar tipo de error y mostrar mensaje apropiado
-      let errorMessage = "Error desconocido al cargar el archivo";
+      // Resolve user-facing message by error type
+      let errorMessage = "Unbekannter Fehler beim Laden der Datei";
 
       if (error instanceof Error) {
         if (error.message.includes("NotAllowedError")) {
-          errorMessage = "Permiso denegado para acceder al archivo";
+          errorMessage = "Zugriff auf die Datei verweigert";
         } else if (error.message.includes("NotFoundError")) {
-          errorMessage = "El archivo ya no existe o ha sido movido";
-        } else if (error.message.includes("Tipo de archivo")) {
+          errorMessage = "Die Datei existiert nicht mehr oder wurde verschoben";
+        } else if (error.message.includes("Dateityp")) {
           errorMessage = error.message;
         } else {
-          errorMessage = `Error al cargar archivo: ${error.message}`;
+          errorMessage = `Fehler beim Laden der Datei: ${error.message}`;
         }
       }
 
-      alert(`${errorMessage}. Re-adjunta el audio desde la biblioteca.`);
+      alert(`${errorMessage}. Haenge das Audio in der Bibliothek erneut an.`);
     }
   }
 
@@ -398,7 +398,7 @@ export default function Reader({
     const rect = range.getBoundingClientRect();
     const { x, y } = relativePos(rect.left + rect.width / 2, rect.top);
 
-    // Intentar usar cache de frases: primero en DB, luego en memoria
+    // Try phrase cache: DB first, then in-memory cache
     const parts = tokenize(text)
       .filter((t) => t.isWord)
       .map((t) => t.lower || normalizeWord(t.text))
@@ -442,13 +442,13 @@ export default function Reader({
     ) {
       myMemoryQuotaAlertedRef.current = true;
       alert(
-        "Se alcanzó el límite diario del traductor gratis (MyMemory).\n\n" +
-          "Sugerencia: cambia el método de traducción (Chrome si está disponible) " +
-          "o configura una API Key de OpenRouter para seguir traduciendo."
+        "Das taegliche Limit des kostenlosen Uebersetzers (MyMemory) wurde erreicht.\n\n" +
+          "Tipp: Wechsle die Uebersetzungsmethode (Chrome, falls verfuegbar) " +
+          "oder konfiguriere einen OpenRouter-API-Key, um weiter zu uebersetzen."
       );
     }
 
-    // Guardar en cache en memoria si es frase (multi-palabra)
+    // Store in-memory cache for multi-word phrases
     if (parts.length >= 2) {
       const phraseLower = parts.join(" ");
       phraseCacheRef.current.set(phraseLower, translation.translation);
@@ -472,7 +472,7 @@ export default function Reader({
 
       if (parts.length < 2) {
         alert(
-          "Selecciona al menos dos palabras para guardar una frase compuesta."
+          "Waehle mindestens zwei Woerter aus, um eine zusammengesetzte Phrase zu speichern."
         );
         return;
       }
@@ -486,7 +486,7 @@ export default function Reader({
         addedAt: Date.now(),
       });
 
-      // Actualizar lista local de frases para subrayado inmediato
+      // Update local phrase list for immediate highlighting
       setPhrases((prev) => [...prev, parts]);
 
       setSelPopup(null);
@@ -523,7 +523,7 @@ export default function Reader({
       onClick={(e) => {
         const t = e.target as HTMLElement;
         const sel = window.getSelection();
-        // No cerrar popups si hay texto seleccionado (el usuario está seleccionando)
+        // Keep popups open while user has active text selection
         if (!t.closest(`.word-token`) && (!sel || sel.isCollapsed)) {
           clearPopups();
         }

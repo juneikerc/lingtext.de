@@ -23,7 +23,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
     {
       tagName: "link",
       rel: "canonical",
-      href: `https://lingtext.org/blog/${blog.slug}`,
+      href: `https://lingtext.de/blog/${blog.slug}`,
     },
   ];
 }
