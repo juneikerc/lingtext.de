@@ -1,38 +1,36 @@
 # LingText Chrome Extension (v0.2)
 
-Extensión MV3 para YouTube con subtítulos interactivos estilo CC línea a línea,
-traducción por palabra y sincronización con LingText Web.
+MV3-Erweiterung fuer YouTube mit interaktiven Untertiteln im CC-Stil (zeilenweise),
+Wortuebersetzung und Synchronisierung mit LingText Web.
 
-## Cambios principales en v0.2
+## Wichtigste Aenderungen in v0.2
 
-- Reescritura completa del content script de YouTube.
-- Nuevo motor de subtítulos con estabilización de cues (evita crecimiento
-  palabra a palabra en ASR).
-- Render visual tipo subtítulo CC de línea completa, manteniendo click por
-  palabra.
-- Nuevo contrato interno de mensajes `LT2_*`.
-- Nuevo almacenamiento namespaced `ltde_*`.
-- Reset de datos locales al migrar a schema v2.
+- Vollstaendige Neuschreibung des YouTube-Content-Skripts.
+- Neue Untertitel-Engine mit Cue-Stabilisierung (verhindert wortweises Anwachsen bei ASR).
+- Neue visuelle Darstellung im Stil kompletter CC-Untertitelzeilen bei gleichzeitigem Wort-Klick.
+- Neuer interner Message-Contract `LT2_*`.
+- Neuer namespaceter Speicher `ltde_*`.
+- Reset lokaler Daten bei Migration auf Schema v2.
 
-## Arquitectura
+## Architektur
 
 ```
 extension/src/
   background/
-    index.ts      # entrypoint SW + seguridad origen + bootstrap store
-    router.ts     # router de mensajes LT2_*
-    store.ts      # persistencia v2 (chrome.storage.local)
+    index.ts      # SW-Entrypoint + Origin-Sicherheit + Store-Bootstrap
+    router.ts     # Message-Router LT2_*
+    store.ts      # Persistenz v2 (chrome.storage.local)
   content/
-    main.tsx              # bootstrap YouTube overlay en shadow DOM
-    overlay-root.tsx      # estado principal UI/acciones
-    caption-track-loader.ts # carga track inglés + fallback API
-    caption-parser.ts     # parser json3/xml
-    cue-stabilizer.ts     # fusión/estabilización de cues
-    subtitle-engine.ts    # búsqueda binaria por tiempo
-    player-observer.ts    # videoId SPA + rect del player
-    native-cc.ts          # ocultar/restaurar CC nativo
-    bridge.ts             # sync con web app via postMessage
-    youtube.tsx           # entry de content script YouTube
+    main.tsx                # Bootstrap YouTube-Overlay im Shadow DOM
+    overlay-root.tsx        # Hauptzustand fuer UI/Aktionen
+    caption-track-loader.ts # Laden englischer Tracks + API-Fallback
+    caption-parser.ts       # json3/xml Parser
+    cue-stabilizer.ts       # Cue-Merge/Stabilisierung
+    subtitle-engine.ts      # Binaere Zeitsuche
+    player-observer.ts      # SPA-videoId + Player-Rechteck
+    native-cc.ts            # Native CC ausblenden/wiederherstellen
+    bridge.ts               # Sync mit Web-App via postMessage
+    youtube.tsx             # Entrypoint Content-Skript fuer YouTube
   components/
     SubtitleOverlay.tsx
     WordPopup.tsx
@@ -41,14 +39,14 @@ extension/src/
     Popup.tsx
 ```
 
-## Mensajes internos (runtime)
+## Interne Runtime-Messages
 
 - `LT2_GET_WORDS`, `LT2_GET_WORD`, `LT2_PUT_WORD`, `LT2_DELETE_WORD`
 - `LT2_GET_PHRASES`, `LT2_PUT_PHRASE`
 - `LT2_GET_SETTINGS`, `LT2_SET_SETTINGS`
 - `LT2_EXPORT_SYNC`, `LT2_IMPORT_SYNC`
 
-## Storage keys v2
+## Storage-Keys v2
 
 - `ltde_schema_version`
 - `ltde_words`
@@ -56,7 +54,7 @@ extension/src/
 - `ltde_settings`
 - `ltde_last_sync`
 
-## Desarrollo
+## Entwicklung
 
 ```bash
 cd extension
@@ -64,8 +62,8 @@ npm run dev
 npm run build
 ```
 
-## Notas funcionales
+## Funktionale Hinweise
 
-- Política de idioma para captions: solo inglés (`en*`).
-- Si falla transcript, usa fallback DOM captions.
-- CC nativo se oculta solo cuando el overlay está mostrando subtítulo.
+- Sprachrichtlinie fuer Captions: nur Englisch (`en*`).
+- Falls Transcript fehlschlaegt, wird auf DOM-Captions zurueckgegriffen.
+- Native CC werden nur ausgeblendet, wenn das Overlay Untertitel zeigt.

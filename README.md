@@ -1,161 +1,161 @@
-# LingText: Aprende inglés leyendo, con traducción instantánea, TTS y repaso espaciado
+# LingText: Englisch durch Lesen lernen, mit Sofortuebersetzung, TTS und Spaced Repetition
 
-[LingText](https://lingtext.de) es una aplicación web full‑stack enfocada en aprender inglés a través de la lectura activa. Combina biblioteca de textos, traducción de palabras o selecciones al español, Text‑to‑Speech (TTS), gestión de vocabulario con repetición espaciada, y exportación/importación de tu base de datos SQLite.
+[LingText](https://lingtext.de) ist eine Full-Stack-Webanwendung, die auf aktives Englischlernen durch Lesen ausgerichtet ist. Sie kombiniert eine Textbibliothek, Uebersetzung von Woertern oder markierten Textstellen ins Deutsche, Text-to-Speech (TTS), Vokabelverwaltung mit Spaced Repetition sowie Export/Import deiner SQLite-Datenbank.
 
-Su objetivo es ayudar a construir vocabulario en contexto, minimizando fricción: seleccionas o haces click sobre palabras mientras lees, escuchas la pronunciación, guardas lo desconocido y lo repasas con un algoritmo de repetición espaciada.
+Das Ziel ist, Wortschatz im Kontext aufzubauen und Reibung zu minimieren: Du klickst oder markierst Woerter waehrend des Lesens, hoerst die Aussprache, speicherst Unbekanntes und wiederholst es mit einem Spaced-Repetition-Algorithmus.
 
-—
+---
 
-## Características principales
+## Kernfunktionen
 
-- **Lectura centrada en el aprendizaje**: biblioteca de textos locales o por URL, con soporte de audio adjunto y formato Markdown.
-- **Traducción instantánea**: usa la API de Traducción local de Chrome si está disponible; si no, hace fallback automático a un endpoint remoto basado en OpenRouter (requiere clave).
-- **TTS (Text‑to‑Speech)**: pronuncia palabras al instante con la Web Speech API y configura voz, idioma y velocidad.
-- **Gestión de vocabulario**: marca palabras y frases como "desconocidas", guárdalas con repetición espaciada integrada.
-- **Base de datos SQLite local**: todos tus datos se almacenan en SQLite WASM con persistencia en OPFS (Origin Private File System).
-- **Exportar/Importar datos**: descarga tu base de datos `.sqlite` a tu PC o impórtala desde otro dispositivo. Tus datos, tu control.
-- **Repetición espaciada**: algoritmo SM-2 integrado para repasar vocabulario de forma óptima.
-- **Generador de historias**: crea textos personalizados (cuentos, artículos, conversaciones, blogs, emails) basados en tu vocabulario seleccionado, con nivel CEFR configurable (A2-C2) y palabras destacadas en bold para reforzar el aprendizaje en contexto.
-- **Audio**: reproduce audio adjunto (URL o archivo local vía File System Access API) con control de velocidad.
-- **SSR + HMR**: renderizado en servidor con React Router v7 y DX moderna con Vite.
+- **Lernzentriertes Lesen**: Bibliothek mit lokalen Texten oder URL-basierten Texten, inklusive optionalem Audio und Markdown-Unterstuetzung.
+- **Sofortige Uebersetzung**: nutzt die lokale Chrome-Translation-API, falls verfuegbar; andernfalls automatischer Fallback auf ein Remote-Endpoint mit OpenRouter (API-Key erforderlich).
+- **TTS (Text-to-Speech)**: spricht Woerter direkt ueber die Web Speech API und erlaubt Konfiguration von Stimme, Sprache und Geschwindigkeit.
+- **Vokabelverwaltung**: markiere Woerter und Phrasen als unbekannt und speichere sie mit integrierter Spaced Repetition.
+- **Lokale SQLite-Datenbank**: alle Daten liegen in SQLite WASM mit Persistenz in OPFS (Origin Private File System).
+- **Daten exportieren/importieren**: lade deine `.sqlite`-Datenbank herunter oder importiere sie von einem anderen Geraet. Deine Daten bleiben unter deiner Kontrolle.
+- **Spaced Repetition**: integrierter SM-2-Algorithmus fuer effiziente Wiederholung.
+- **Story-Generator**: erstellt personalisierte Texte (Kurzgeschichten, Artikel, Dialoge, Blogposts, E-Mails) auf Basis deiner ausgewaehlten Woerter, mit CEFR-Level (A2-C2) und hervorgehobenen Zielwoertern fuer Lernen im Kontext.
+- **Audio**: Wiedergabe von angehaengtem Audio (URL oder lokale Datei via File System Access API) mit Geschwindigkeitskontrolle.
+- **SSR + HMR**: Server-Side Rendering mit React Router v7 und moderne DX mit Vite.
 
-## Público objetivo y filosofía
+## Zielgruppe und Produktphilosophie
 
-- **Autoestudio guiado**: pensado para estudiantes autodidactas que quieren leer y construir vocabulario con mínimo contexto técnico.
-- **Local‑first con propiedad de datos**: todos los textos, audio y palabras se guardan en SQLite dentro de tu navegador (OPFS). Puedes exportar tu base de datos completa como archivo `.sqlite` y llevarla a otro dispositivo.
-- **Privacidad por defecto**: la traducción remota solo envía la palabra o selección al servidor cuando se usa el fallback. Nunca se envían tus textos completos ni tu vocabulario.
-- **Bajo coste**: aprovecha capacidades locales (Chrome Translator, TTS, SQLite WASM) y solo usa modelos remotos cuando es necesario.
+- **Gefuehrtes Selbstlernen**: fuer Lernende, die durch Lesen mit wenig technischem Aufwand Wortschatz aufbauen wollen.
+- **Local-first mit Datenhoheit**: Texte, Audio und Woerter werden in SQLite im Browser (OPFS) gespeichert. Du kannst die komplette Datenbank als `.sqlite` exportieren.
+- **Datenschutz standardmaessig**: beim Remote-Fallback wird nur der zu uebersetzende Begriff uebertragen, nicht dein kompletter Text oder gesamter Wortschatz.
+- **Kosteneffizient**: lokale Faehigkeiten (Chrome Translator, TTS, SQLite WASM) werden priorisiert; Remote-Modelle nur bei Bedarf.
 
-—
+---
 
-## Demo rápida
+## Schneller Einstieg (Demo)
 
-1. Crea o importa un texto en la Biblioteca.
-2. Abre el lector y haz click en una palabra: verás su traducción y podrás marcarla como desconocida o escucharla.
-3. Selecciona un fragmento para traducir y guardar múltiples palabras.
-4. Ve a “Palabras” para repasar, escuchar y exportar a CSV.
-5. Genera historias personalizadas: selecciona hasta 20 palabras de tu vocabulario, elige el tipo de texto (cuento, artículo, conversación, etc.), configura el nivel (A2-C2) y la IA creará textos que contengan tus palabras seleccionadas, reforzando el aprendizaje en contexto.
+1. Erstelle oder importiere einen Text in der Bibliothek.
+2. Oeffne den Reader und klicke auf ein Wort: Du siehst die Uebersetzung und kannst es als unbekannt markieren oder anhoeren.
+3. Markiere einen Abschnitt, um ihn zu uebersetzen und mehrere Woerter gleichzeitig zu speichern.
+4. Gehe zu "Woerter", um zu wiederholen, anzuhoeren und als CSV zu exportieren.
+5. Generiere personalisierte Texte: Waehle bis zu 20 Woerter, einen Texttyp und ein CEFR-Level (A2-C2). Die KI erstellt Texte mit deinen Zielwoertern im Kontext.
 
-—
+---
 
-## Stack técnico
+## Technischer Stack
 
 - **Framework**: `react-router` 7 (SSR) + `vite` 6 + `react` 19 + `tailwindcss` 4.
-- **Estado global**: `zustand` (`app/context/translatorSelector.ts`).
-- **Base de datos**: SQLite WASM (`@sqlite.org/sqlite-wasm`) con persistencia en OPFS (`app/services/db.ts`).
+- **Global State**: `zustand` (`app/context/translatorSelector.ts`).
+- **Datenbank**: SQLite WASM (`@sqlite.org/sqlite-wasm`) mit OPFS-Persistenz (`app/services/db.ts`).
 - **TTS**: Web Speech API (`app/utils/tts.ts`).
-- **Traducción**: Chrome Translator local si existe (`app/utils/translate.ts`) y endpoint remoto con OpenRouter (`app/routes/translate.tsx`).
-- **Backup/Restore**: File System Access API para exportar/importar archivos `.sqlite`.
+- **Uebersetzung**: lokaler Chrome Translator (`app/utils/translate.ts`) plus Remote-Endpoint (`app/routes/translate.tsx`).
+- **Backup/Restore**: File System Access API fuer Export/Import von `.sqlite`-Dateien.
 
-—
+---
 
-## Estructura de carpetas (extracto)
+## Projektstruktur (Auszug)
 
 - `app/`
   - `components/`
-    - `Reader.tsx`, `reader/` (UI de lectura, popups, audio)
-    - `UnknownWordsSection.tsx` (listado y acciones)
-    - `StoryGenerator.tsx` (modal para generar historias personalizadas)
+    - `Reader.tsx`, `reader/` (Lese-UI, Popups, Audio)
+    - `UnknownWordsSection.tsx` (Liste und Aktionen)
+    - `StoryGenerator.tsx` (Modal fuer personalisierte Texte)
   - `routes/`
     - `home.tsx`, `texts/text.tsx`, `words.tsx`, `review.tsx`, `translate.tsx`
   - `services/`
-    - `db.ts` (SQLite WASM con OPFS)
+    - `db.ts` (SQLite WASM mit OPFS)
   - `context/translatorSelector.ts` (zustand)
-  - `utils/` (`translate.ts`, `tts.ts`, `tokenize.ts`, `anki.ts`, `fs.ts`, `scheduler.ts`, `spaced-repetition.ts`, `story-generator.ts` - lógica de generación de historias con IA)
-  - `public/` (assets y textos de ejemplo)
-  - `workers/app.ts` (Cloudflare Worker con headers COOP/COEP)
+  - `utils/` (`translate.ts`, `tts.ts`, `tokenize.ts`, `anki.ts`, `fs.ts`, `scheduler.ts`, `spaced-repetition.ts`, `story-generator.ts`)
+  - `public/` (Assets und Beispieltexte)
+  - `workers/app.ts` (Cloudflare Worker mit COOP/COEP-Headern)
 
-—
+---
 
-## Rutas
+## Routen
 
-- `/` → `app/routes/home.tsx`: portada y biblioteca (`app/components/Libary.tsx`) con botones de exportar/importar DB.
-- `/texts/:id` → `app/routes/texts/text.tsx`: lector, audio y popups de traducción.
-- `/words` → listado de palabras desconocidas con estadísticas de repaso.
-- `/review` → sesión de repaso con repetición espaciada.
-- `/translate/:text` → endpoint JSON para traducción remota.
+- `/` -> `app/routes/home.tsx`: Startseite und Bibliothek (`app/components/Libary.tsx`) mit Datenbank-Export/Import.
+- `/texts/:id` -> `app/routes/texts/text.tsx`: Reader, Audio und Uebersetzungs-Popups.
+- `/words` -> Liste unbekannter Woerter mit Wiederholungsstatistiken.
+- `/review` -> Wiederholungssitzung mit Spaced Repetition.
+- `/translate/:text` -> JSON-Endpoint fuer Remote-Uebersetzung.
 
-—
+---
 
-## Flujo funcional
+## Funktionaler Ablauf
 
-1. **Biblioteca** (`app/components/Libary.tsx`)
-   - Crea textos con título y contenido (texto plano o Markdown), importa `.txt`, adjunta audio por URL o archivo local.
-   - Persiste en SQLite WASM (OPFS) con `addText()`.
-   - Exporta/importa tu base de datos completa como archivo `.sqlite`.
-2. **Lector** (`app/components/Reader.tsx`)
-   - Tokeniza texto y permite click/selección.
-   - `WordPopup` y `SelectionPopup` traducen usando `translateTerm()` con fallback automático.
-   - Marca palabras como desconocidas (`putUnknownWord`) y permite TTS por palabra.
-3. **Palabras** (`app/components/UnknownWordsSection.tsx`)
-   - Lista, reproduce TTS, elimina y exporta CSV (`app/utils/anki.ts`).
-   - Selecciona hasta 20 palabras y genera historias personalizadas con IA (`StoryGenerator.tsx`).
-4. **Generador de historias** (`app/components/StoryGenerator.tsx`, `app/utils/story-generator.ts`)
-   - Selecciona hasta 20 palabras de tu vocabulario.
-   - Elige tipo de texto (cuento corto, artículo, conversación, blog post, email).
-   - Configura tema personalizado (opcional) y nivel CEFR (A2-C2, default B1).
-   - Genera 1-3 textos en lote que contienen las palabras seleccionadas en **bold**.
-   - Textos se guardan en DB como markdown y se abren en el lector.
-5. **Repaso** (`app/routes/review.tsx`)
-   - Sesión de repaso con algoritmo de repetición espaciada (SM-2).
-   - Límite diario configurable de nuevas tarjetas.
+1. **Bibliothek** (`app/components/Libary.tsx`)
+   - Texte mit Titel und Inhalt (Plain Text oder Markdown) erstellen, `.txt` importieren, Audio per URL oder lokalem File anhaengen.
+   - Persistenz in SQLite WASM (OPFS) via `addText()`.
+   - Vollstaendigen Datenbank-Export/Import als `.sqlite`.
+2. **Reader** (`app/components/Reader.tsx`)
+   - Tokenisiert Text und unterstuetzt Klick/Selektion.
+   - `WordPopup` und `SelectionPopup` nutzen `translateTerm()` mit automatischem Fallback.
+   - Unbekannte Woerter markieren (`putUnknownWord`) und TTS pro Wort abspielen.
+3. **Woerter** (`app/components/UnknownWordsSection.tsx`)
+   - Listen, TTS, Loeschen und CSV-Export (`app/utils/anki.ts`).
+   - Bis zu 20 Woerter auswaehlen und personalisierte Texte mit KI erzeugen (`StoryGenerator.tsx`).
+4. **Story-Generator** (`app/components/StoryGenerator.tsx`, `app/utils/story-generator.ts`)
+   - Bis zu 20 Woerter aus dem Wortschatz waehlen.
+   - Texttyp auswaehlen (Kurzgeschichte, Artikel, Dialog, Blogpost, E-Mail).
+   - Optionales Thema und CEFR-Level (A2-C2, Standard B1) festlegen.
+   - 1-3 Texte als Batch erzeugen; Zielwoerter werden in **bold** markiert.
+   - Texte werden als Markdown in die DB gespeichert und im Reader geoeffnet.
+5. **Wiederholung** (`app/routes/review.tsx`)
+   - Wiederholungssitzung mit SM-2-basiertem Algorithmus.
+   - Konfigurierbares Tageslimit fuer neue Karten.
 
-—
+---
 
-## Modelo de datos (SQLite WASM)
+## Datenmodell (SQLite WASM)
 
-Base de datos SQLite almacenada en OPFS del navegador (`lingtext-de.sqlite3`):
+SQLite-Datenbank im Browser-OPFS (`lingtext-de.sqlite3`):
 
-- Tabla `texts` (`id`, `title`, `content`, `format`, `created_at`, `audio_ref`).
-- Tabla `words` (`word_lower`, `word`, `translation`, `status`, `added_at`, `voice`, `sr_data`).
-- Tabla `phrases` (`phrase_lower`, `phrase`, `translation`, `parts`, `added_at`, `sr_data`).
-- Tabla `settings` (`key`, `value` - preferencias TTS y otras).
-- Tabla `stats` (`date`, `new_cards_studied` - estadísticas diarias).
+- Tabelle `texts` (`id`, `title`, `content`, `format`, `created_at`, `audio_ref`).
+- Tabelle `words` (`word_lower`, `word`, `translation`, `status`, `added_at`, `voice`, `sr_data`).
+- Tabelle `phrases` (`phrase_lower`, `phrase`, `translation`, `parts`, `added_at`, `sr_data`).
+- Tabelle `settings` (`key`, `value` - TTS und weitere Praeferenzen).
+- Tabelle `stats` (`date`, `new_cards_studied` - taegliche Statistiken).
 
-—
+---
 
-## Traducción: local y remota (fallback)
+## Uebersetzung: lokal + remote (Fallback)
 
-- **Local (Chrome)**: `translateFromChrome(term)` usa la API `Translator` si existe.
-- **Remota (OpenRouter)**: `translateRemote(term, model)` consulta `/translate/:term`.
-- **Unificación**: `translateTerm(term, selected)` prioriza Chrome y cae a remoto si no hay resultado válido — sin bloquear la UI.
-- **Clave API**: define `OPEN_ROUTER_API_KEY` en el entorno del servidor para habilitar el endpoint remoto en desarrollo y producción.
+- **Lokal (Chrome)**: `translateFromChrome(term)` nutzt die `Translator`-API, sofern vorhanden.
+- **Remote (OpenRouter)**: `translateRemote(term, model)` ruft `/translate/:term` auf.
+- **Unified Flow**: `translateTerm(term, selected)` priorisiert Chrome und faellt bei ungueltigen Ergebnissen auf Remote zurueck.
+- **API-Key**: setze `OPEN_ROUTER_API_KEY` in der Serverumgebung, um das Remote-Endpoint in Entwicklung und Produktion zu aktivieren.
 
-—
+---
 
-## Audio local, permisos y re‑autorización
+## Lokales Audio, Berechtigungen und Re-Autorisierung
 
-- Si el audio está adjunto como archivo local (`FileSystemFileHandle`), el lector intenta materializar una URL temporal.
-- En `clientLoader` (`app/routes/texts/text.tsx`) se captura el error de `getFile()` y se devuelve `audioUrl: null` si falta permiso.
-- En `Reader` (`app/components/Reader.tsx`), si `audioRef.type === 'file'` y no hay `audioUrl`, se muestra un botón de “Reautorizar audio” que vuelve a solicitar permiso (`ensureReadPermission()` en `app/utils/fs.ts`).
-- Se limpian los `ObjectURL` para evitar fugas de memoria.
+- Wenn Audio als lokale Datei (`FileSystemFileHandle`) angehaengt ist, versucht der Reader eine temporaere URL zu erzeugen.
+- In `clientLoader` (`app/routes/texts/text.tsx`) wird ein `getFile()`-Fehler abgefangen und `audioUrl: null` geliefert, wenn Berechtigung fehlt.
+- In `Reader` (`app/components/Reader.tsx`) erscheint bei `audioRef.type === 'file'` und fehlender `audioUrl` ein "Audio neu autorisieren"-Button (`ensureReadPermission()` in `app/utils/fs.ts`).
+- `ObjectURL`s werden aufgeraeumt, um Memory-Leaks zu vermeiden.
 
-—
+---
 
-## Instalación y ejecución
+## Installation und Ausfuehrung
 
-Requisitos: Node 20+ y un navegador moderno. Para usar traducción remota, necesitarás una clave de OpenRouter.
+Voraussetzungen: Node 20+ und ein moderner Browser. Fuer Remote-Uebersetzung wird ein OpenRouter-Key benoetigt.
 
-1. Instalar dependencias
+1. Abhaengigkeiten installieren
 
 ```bash
 npm install
 ```
 
-2. Desarrollo (SSR con HMR)
+2. Entwicklung (SSR mit HMR)
 
 ```bash
 npm run dev
 # http://localhost:5173
 ```
 
-3. Producción
+3. Produktion
 
 ```bash
-# Requiere variable: OPEN_ROUTER_API_KEY
+# Erfordert Umgebungsvariable: OPEN_ROUTER_API_KEY
 npm run build
 npm run start
-# Servirá ./build/server/index.js
+# Serviert ./build/server/index.js
 ```
 
 4. Docker
@@ -165,118 +165,117 @@ docker build -t lingtext .
 docker run -e OPEN_ROUTER_API_KEY=sk-... -p 3000:3000 lingtext
 ```
 
-—
+---
 
-## Variables de entorno
+## Umgebungsvariablen
 
-- `OPEN_ROUTER_API_KEY`: clave para `app/routes/translate.tsx`. Solo se usa en el servidor (SSR).
+- `OPEN_ROUTER_API_KEY`: Key fuer `app/routes/translate.tsx`; wird nur serverseitig (SSR) verwendet.
 
-—
+---
 
-## Accesibilidad y privacidad
+## Barrierefreiheit und Datenschutz
 
-- **Accesibilidad**: componentes con `aria-label` en iconos, controles de velocidad de audio, contraste en tema oscuro. Se recomienda revisar con Lighthouse/Axe.
-- **Privacidad**: textos, audio (handles) y palabras viven en SQLite WASM dentro del navegador (OPFS). La traducción remota solo envía el término a traducir.
-- **Propiedad de datos**: puedes exportar toda tu base de datos como archivo `.sqlite` y llevarla a otro dispositivo o hacer backup en tu PC.
+- **Barrierefreiheit**: `aria-label` bei Icon-Buttons, Audiosteuerung, Kontrast im Dark Mode. Pruefung mit Lighthouse/Axe empfohlen.
+- **Datenschutz**: Texte, Audio-Handles und Woerter liegen in SQLite WASM im Browser (OPFS). Remote-Uebersetzung sendet nur den zu uebersetzenden Begriff.
+- **Datenhoheit**: die komplette Datenbank kann als `.sqlite` exportiert und auf andere Geraete migriert werden.
 
-—
+---
 
-## Solución de problemas (FAQ)
+## Troubleshooting (FAQ)
 
-- **No se reproduce el audio local**
-  - Usa Chrome/Edge en `localhost` o sitio HTTPS (requisito de File System Access API).
-  - Si ves “Reautorizar audio”, pulsa y concede permiso. Si falla, re‑adjunta el archivo desde la biblioteca.
-- **La traducción devuelve vacío**
-  - Verifica `OPEN_ROUTER_API_KEY` y conectividad. Chrome Translator puede no estar disponible en tu navegador; se hará fallback, pero sin API key el resultado será vacío.
-- **No aparece la opción de Chrome Translator**
-  - La API `Translator` es experimental y solo está en algunas versiones de Chrome. Usa los modelos remotos.
+- **Lokales Audio spielt nicht ab**
+  - Nutze Chrome/Edge auf `localhost` oder HTTPS (Voraussetzung der File System Access API).
+  - Bei "Audio neu autorisieren" klicken und Berechtigung vergeben. Falls noetig Datei in der Bibliothek erneut anhaengen.
+- **Uebersetzung bleibt leer**
+  - `OPEN_ROUTER_API_KEY` und Netzwerk pruefen. Chrome Translator ist evtl. nicht verfuegbar; ohne API-Key bleibt der Fallback leer.
+- **Chrome Translator-Option fehlt**
+  - Die `Translator`-API ist experimentell und nur in bestimmten Chrome-Versionen verfuegbar. Nutze in dem Fall Remote-Modelle.
 
-—
+---
 
 ## Roadmap
 
-- ~~Listado por texto de palabras desconocidas y progreso~~ (implementado)
-- ~~Generación de historias personalizadas~~ (implementado)
-- Sincronización opcional (autohosted) para múltiples dispositivos.
-- Importación EPUB/PDF con extracción de texto.
-- Decks Anki por texto/tema, tarjetas cloze.
+- ~~Unbekannte Woerter und Fortschritt pro Text~~ (implementiert)
+- ~~Personalisierte Story-Generierung~~ (implementiert)
+- Optionale Synchronisierung (self-hosted) fuer mehrere Geraete.
+- EPUB/PDF-Import mit Textextraktion.
+- Anki-Decks nach Text/Thema, inklusive Cloze-Karten.
 
-—
+---
 
-## Contribuir
+## Mitwirken
 
-1. Haz un fork y crea una rama: `feat/mi-mejora`.
-2. Ejecuta `npm run dev` y agrega tests/chequeos si aplica.
-3. Envía un PR describiendo el objetivo y el impacto en UX.
+1. Fork erstellen und Branch anlegen: `feat/mein-feature`.
+2. `npm run dev` ausfuehren und bei Bedarf Tests/Checks ergaenzen.
+3. PR mit Ziel und UX-Auswirkung einreichen.
 
-—
+---
 
-## Licencia
+## Lizenz
 
-Por definir. Si te interesa un esquema específico (MIT/BSD-3/Apache-2.0), abre un issue.
+Noch offen. Wenn du ein bestimmtes Modell bevorzugst (MIT/BSD-3/Apache-2.0), erstelle bitte ein Issue.
 
-—
+---
 
-## Nota
+## Hinweis
 
-`package.json` tiene `"name": ""`. Puedes cambiarlo a `"lingtext"` u otro nombre antes de publicar.
+`package.json` enthaelt aktuell `"name": ""`. Du kannst es vor einer Veroeffentlichung z. B. auf `"lingtext"` setzen.
 
-—
+---
 
-## Plantilla original (React Router)
+## Urspruengliches React-Router-Template
 
-## Features
+## Funktionen
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- Server-Side Rendering
+- Hot Module Replacement (HMR)
+- Asset-Bundling und Optimierung
+- Datenladen und Mutationen
+- TypeScript standardmaessig
+- TailwindCSS fuer Styling
+- [React-Router-Dokumentation](https://reactrouter.com/)
 
-## Getting Started
+## Erste Schritte
 
 ### Installation
 
-Install the dependencies:
+Abhaengigkeiten installieren:
 
 ```bash
 npm install
 ```
 
-### Development
+### Entwicklung
 
-Start the development server with HMR:
+Entwicklungsserver mit HMR starten:
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Die Anwendung ist unter `http://localhost:5173` erreichbar.
 
-## Building for Production
+## Produktionsbuild
 
-Create a production build:
+Produktionsbuild erstellen:
 
 ```bash
 npm run build
 ```
 
-## Deployment
+## Bereitstellung
 
-### Docker Deployment
+### Docker-Deployment
 
-To build and run using Docker:
+Mit Docker bauen und starten:
 
 ```bash
 docker build -t my-app .
 
-# Run the container
 docker run -p 3000:3000 my-app
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+Die containerisierte Anwendung kann auf Plattformen wie diesen bereitgestellt werden:
 
 - AWS ECS
 - Google Cloud Run
@@ -285,24 +284,20 @@ The containerized application can be deployed to any platform that supports Dock
 - Fly.io
 - Railway
 
-### DIY Deployment
+### Manuelles Deployment
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+Wenn du mit Node-Bereitstellungs-Workflows vertraut bist, ist der integrierte App-Server produktionsreif.
 
-Make sure to deploy the output of `npm run build`
+Stelle das Ergebnis von `npm run build` bereit:
 
 ```
 ├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
+├── package-lock.json (oder pnpm-lock.yaml oder bun.lockb)
 ├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+│   ├── client/    # Statische Assets
+│   └── server/    # Serverseitiger Code
 ```
 
 ## Styling
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+Tailwind CSS ist als praktischer Startpunkt vorkonfiguriert. Du kannst auch jedes andere CSS-Framework verwenden.
