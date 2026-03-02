@@ -35,6 +35,18 @@ function useExposeDbDebug() {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  // <script
+  //     dangerouslySetInnerHTML={{
+  //       __html: `
+  //         (function(c,l,a,r,i,t,y){
+  //           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+  //           t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+  //           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  //         })(window, document, "clarity", "script", "tdc4972jpq");
+  //       `,
+  //     }}
+  //   />
+
   return (
     <html>
       <head>
@@ -42,22 +54,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="google-site-verification"
-          content="wnGkhhW1lxmaRFvaltgi_yFgFd-iftiRmJ20jRbvL2A"
+          content="LM01Tqlc8gDJM1qZ68mp3An7Tie4qi2r45ewniORSK8"
         />
         <Meta />
         <Links />
         {/* Microsoft Clarity Analytics */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "tdc4972jpq");
-            `,
-          }}
-        />
       </head>
       <body>
         {children}

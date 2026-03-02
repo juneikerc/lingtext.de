@@ -34,7 +34,7 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://github.com/juneikerc/lingtext"
+                href="https://github.com/juneikerc/lingtext.de"
                 className="text-gray-400 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
                 aria-label="GitHub"
               >
@@ -203,24 +203,24 @@ export default function Footer() {
           </div>
         </div>
 
-          {/* Bottom bar */}
-          <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © {currentYear} LingText. Alle Rechte vorbehalten.
-            </div>
-            <div className="flex space-x-6 text-sm">
+        {/* Bottom bar */}
+        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="text-gray-400 text-sm mb-4 md:mb-0">
+            © {currentYear} LingText. Alle Rechte vorbehalten.
+          </div>
+          <div className="flex space-x-6 text-sm">
             <a
               href="#"
               className="text-gray-400 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
-              >
-                Datenschutz
-              </a>
+            >
+              Datenschutz
+            </a>
             <a
               href="#"
               className="text-gray-400 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"
-              >
-                Nutzungsbedingungen
-              </a>
+            >
+              Nutzungsbedingungen
+            </a>
             <a
               href="#"
               className="text-gray-400 hover:text-gray-100 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 rounded"

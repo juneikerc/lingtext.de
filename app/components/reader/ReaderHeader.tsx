@@ -209,7 +209,7 @@ export default function ReaderHeader({ title }: ReaderHeaderProps) {
 
                 <div className="flex items-center space-x-3 w-full sm:w-auto">
                   <a
-                    href="https://github.com/juneikerc/lingtext/blob/main/open-router-key.md"
+                    href="https://github.com/juneikerc/lingtext.de/blob/main/open-router-key.md"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 sm:flex-none text-center px-4 py-2 text-xs font-bold text-white bg-amber-600 hover:bg-amber-700 dark:bg-amber-700 dark:hover:bg-amber-600 rounded-lg transition-colors shadow-sm"
