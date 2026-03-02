@@ -216,7 +216,7 @@ export default function EnglishWords500Page({
       doc.setFont("helvetica", "bold");
       doc.setFontSize(14);
       doc.setTextColor(79, 70, 229);
-      doc.text("LINGTEXT.ORG", pageWidth - 40, 30, { align: "right" });
+      doc.text("lingtext.de", pageWidth - 40, 30, { align: "right" });
       doc.setTextColor(17, 24, 39);
     };
 
@@ -230,11 +230,7 @@ export default function EnglishWords500Page({
     doc.setFont("helvetica", "normal");
     doc.setFontSize(11);
     doc.setTextColor(75, 85, 99);
-    doc.text(
-      "Enthaelt Wort, Satz, Uebersetzung und Bedeutung.",
-      40,
-      cursorY
-    );
+    doc.text("Enthaelt Wort, Satz, Uebersetzung und Bedeutung.", 40, cursorY);
     cursorY += 18;
 
     doc.setTextColor(17, 24, 39);

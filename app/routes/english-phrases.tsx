@@ -76,7 +76,7 @@ export default function EnglishPhrasesPage({
       doc.setFont("helvetica", "bold");
       doc.setFontSize(14);
       doc.setTextColor(79, 70, 229);
-      doc.text("LINGTEXT.ORG", pageWidth - 40, 30, { align: "right" });
+      doc.text("lingtext.de", pageWidth - 40, 30, { align: "right" });
       doc.setTextColor(17, 24, 39);
     };
 

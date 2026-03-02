@@ -73,7 +73,7 @@ Con **$5 USD** puedes hacer aproximadamente:
 
 ### En la Web App
 
-1. Abre [lingtext.org](https://lingtext.org)
+1. Abre [lingtext.de](https://lingtext.de)
 2. Ve a cualquier texto o al lector
 3. Haz clic en el selector de traductor (arriba)
 4. Selecciona **"🧠 Inteligente"** o **"🚀 Muy Inteligente"**
