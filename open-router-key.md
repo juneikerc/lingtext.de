@@ -1,148 +1,172 @@
-# Cómo configurar tu API Key de OpenRouter en LingText
+# So richtest du deinen OpenRouter-API-Key in LingText ein
 
-LingText ofrece tres opciones de traducción para ayudarte a aprender inglés. En este tutorial te explicamos por qué recomendamos configurar OpenRouter y cómo hacerlo paso a paso.
+LingText bietet drei Uebersetzungsoptionen, die dir beim Englischlernen
+helfen. In dieser Anleitung erklaeren wir, warum wir OpenRouter empfehlen und
+wie du es Schritt fuer Schritt einrichtest.
 
-## ¿Por qué necesito una API Key?
+## Warum brauche ich einen API-Key?
 
-### El traductor de Chrome tiene limitaciones
+### Der Chrome-Uebersetzer hat Einschraenkungen
 
-El traductor nativo de Chrome (Chrome AI) es gratuito y rápido, pero tiene dos problemas importantes:
+Der native Chrome-Uebersetzer (Chrome AI) ist kostenlos und schnell, hat aber
+zwei wichtige Nachteile:
 
-1. **Solo funciona en escritorio** - No está disponible en dispositivos móviles ni en todos los navegadores
-2. **Traducciones básicas** - Ofrece una única traducción literal, sin contexto ni variaciones
+1. **Er funktioniert nur auf dem Desktop** - Auf mobilen Geraeten und in nicht
+   allen Browsern ist er nicht verfuegbar.
+2. **Einfache Uebersetzungen** - Er liefert nur eine einzige woertliche
+   Uebersetzung, ohne Kontext oder Varianten.
 
-### OpenRouter ofrece traducciones inteligentes
+### OpenRouter bietet intelligente Uebersetzungen
 
-Con OpenRouter obtienes:
+Mit OpenRouter bekommst du:
 
-- ✅ **Múltiples significados** según el contexto
-- ✅ **Ejemplos de uso** para entender mejor la palabra
-- ✅ **Funciona en cualquier dispositivo** con navegador moderno
-- ✅ **Modelos de IA avanzados** como Gemini y Claude
+- ✅ **Mehrere Bedeutungen** je nach Kontext
+- ✅ **Beispiele fuer die Verwendung**, um ein Wort besser zu verstehen
+- ✅ **Funktioniert auf jedem Geraet** mit modernem Browser
+- ✅ **Fortschrittliche KI-Modelle** wie Gemini und Claude
 
-### Tu API Key está segura
+### Dein API-Key ist sicher
 
-**Importante**: Tu API Key se guarda únicamente en tu navegador (localStorage/chrome.storage). Nunca se envía a nuestros servidores. Las llamadas a OpenRouter se hacen directamente desde tu navegador.
+**Wichtig**: Dein API-Key wird nur in deinem Browser gespeichert
+(`localStorage`/`chrome.storage`). Er wird niemals an unsere Server gesendet.
+Die Aufrufe an OpenRouter erfolgen direkt aus deinem Browser.
 
 ---
 
-## Paso 1: Crear cuenta en OpenRouter
+## Schritt 1: Ein Konto bei OpenRouter erstellen
 
-1. Ve a [openrouter.ai](https://openrouter.ai)
-2. Haz clic en **"Sign In"** (arriba a la derecha)
-3. Puedes registrarte con Google, GitHub o email
+1. Gehe zu [openrouter.ai](https://openrouter.ai)
+2. Klicke auf **"Sign In"** (oben rechts)
+3. Du kannst dich mit Google, GitHub oder per E-Mail registrieren
 
 ![OpenRouter Sign In](https://openrouter.ai/images/og-image.png)
 
 ---
 
-## Paso 2: Obtener tu API Key
+## Schritt 2: Deinen API-Key holen
 
-1. Una vez dentro, ve a [openrouter.ai/keys](https://openrouter.ai/keys)
-2. Haz clic en **"Create Key"**
-3. Ponle un nombre descriptivo como "LingText"
-4. Copia la key generada (empieza con `sk-or-...`)
+1. Wenn du eingeloggt bist, gehe zu
+   [openrouter.ai/keys](https://openrouter.ai/keys)
+2. Klicke auf **"Create Key"**
+3. Gib ihm einen beschreibenden Namen wie "LingText"
+4. Kopiere den generierten Key. Er beginnt mit `sk-or-...`
 
-> ⚠️ **Guarda esta key en un lugar seguro**. Solo se muestra una vez.
-
----
-
-## Paso 3: Agregar créditos
-
-OpenRouter funciona con créditos prepagados. Para agregar:
-
-1. Ve a [openrouter.ai/credits](https://openrouter.ai/credits)
-2. Haz clic en **"Add Credits"**
-3. Selecciona el monto (mínimo $5)
-4. Completa el pago con tarjeta
-
-### ¿Cuánto duran los créditos?
-
-Con **$5 USD** puedes hacer aproximadamente:
-
-| Modelo            | Traducciones estimadas | Uso recomendado                  |
-| ----------------- | ---------------------- | -------------------------------- |
-| Gemini Flash Lite | ~50,000+               | Uso diario, traducciones rápidas |
-| gemini 3.0        | ~5000                  | Cuando necesites más precisión   |
-
-**Recomendación**: Usa el modelo intermedio (Gemini) para el 95% de tus traducciones. Solo cambia al modelo inteligente (Gemini 3.0) cuando sientas que la traducción no tiene sentido o necesitas más contexto.
+> ⚠️ **Bewahre diesen Key an einem sicheren Ort auf**. Er wird nur einmal
+> angezeigt.
 
 ---
 
-## Paso 4: Configurar en LingText
+## Schritt 3: Guthaben hinzufuegen
 
-### En la Web App
+OpenRouter arbeitet mit Prepaid-Guthaben. So laedst du es auf:
 
-1. Abre [lingtext.de](https://lingtext.de)
-2. Ve a cualquier texto o al lector
-3. Haz clic en el selector de traductor (arriba)
-4. Selecciona **"🧠 Inteligente"** o **"🚀 Muy Inteligente"**
-5. Pega tu API Key en el campo que aparece
-6. ¡Listo! La key se guarda automáticamente
+1. Gehe zu [openrouter.ai/credits](https://openrouter.ai/credits)
+2. Klicke auf **"Add Credits"**
+3. Waehle den Betrag aus, mindestens 5 USD
+4. Schließe die Zahlung mit Karte ab
 
-### En la Extensión de Chrome
+### Wie lange reicht das Guthaben?
 
-1. Haz clic en el icono de LingText en la barra de extensiones
-2. En la sección **"Traductor"**, selecciona el modelo deseado
-3. Pega tu API Key en el campo que aparece
-4. La key se guarda y sincroniza con la web
+Mit **5 USD** kannst du ungefaehr Folgendes machen:
 
----
+| Modell            | Geschaetzte Uebersetzungen | Empfohlene Nutzung                  |
+| ----------------- | -------------------------- | ----------------------------------- |
+| Gemini Flash Lite | ~50,000+                   | Taeglicher Gebrauch, schnelle Uebersetzungen |
+| Gemini 3.0        | ~5000                      | Wenn du mehr Praezision brauchst    |
 
-## Modelos disponibles
-
-| Modelo               | Velocidad   | Calidad   | Costo por traducción |
-| -------------------- | ----------- | --------- | -------------------- |
-| ⚡ Chrome AI         | Instantáneo | Básica    | Gratis               |
-| 🧠 Gemini Flash Lite | Rápido      | Buena     | ~$0.00001            |
-| 🚀 Gemini 3.0 Flash  | Medio       | Excelente | ~$0.0003             |
-
-### ¿Cuál elegir?
-
-- **Chrome AI**: Cuando solo necesitas una traducción rápida y básica
-- **Gemini Flash Lite**: Para uso diario. Traducciones con contexto a costo casi nulo
-- **Gemini 3.0 Flash**: Para palabras difíciles, expresiones idiomáticas o cuando Gemini no te convence
+**Empfehlung**: Nutze das mittlere Modell, also Gemini, fuer 95 % deiner
+Uebersetzungen. Wechsle nur zu Gemini 3.0, wenn eine Uebersetzung keinen Sinn
+ergibt oder du mehr Kontext brauchst.
 
 ---
 
-## Estrategia recomendada
+## Schritt 4: In LingText einrichten
 
-1. **Configura Gemini Flash Lite como predeterminado** - Es económico y suficiente para el 95% de los casos
+### In der Web-App
 
-2. **Cambia a Gemini 3.0 flash solo cuando sea necesario** - Si una traducción no tiene sentido o necesitas más ejemplos
+1. Oeffne [lingtext.de](https://lingtext.de)
+2. Gehe zu einem beliebigen Text oder in den Reader
+3. Klicke oben auf den Uebersetzer-Selector
+4. Waehle **"🧠 Intelligent"** oder **"🚀 Very Intelligent"**
+5. Fuege deinen API-Key in das angezeigte Feld ein
+6. Fertig. Der Key wird automatisch gespeichert
 
-3. **Revisa tu uso mensualmente** - En [openrouter.ai/activity](https://openrouter.ai/activity) puedes ver cuánto has gastado
+### In der Chrome-Erweiterung
 
-4. **Recarga cuando llegues a $1 restante** - Así nunca te quedas sin créditos
-
----
-
-## Preguntas frecuentes
-
-### ¿Es seguro poner mi API Key?
-
-Sí. Tu key se guarda localmente en tu navegador y nunca pasa por nuestros servidores. Las llamadas a OpenRouter se hacen directamente desde tu dispositivo.
-
-### ¿Puedo usar la misma key en la web y la extensión?
-
-Sí. De hecho, cuando sincronizas la extensión con la web, la API Key se copia automáticamente.
-
-### ¿Qué pasa si se me acaban los créditos?
-
-LingText intentará usar Chrome AI como fallback. Si no está disponible, verás un mensaje de error pidiendo que recargues créditos.
-
-### ¿Puedo usar otros proveedores como OpenAI directamente?
-
-Por ahora solo soportamos OpenRouter, que actúa como intermediario y te da acceso a múltiples modelos con una sola API Key.
+1. Klicke auf das LingText-Symbol in der Erweiterungsleiste
+2. Waehle im Bereich **"Translator"** das gewuenschte Modell
+3. Fuege deinen API-Key in das angezeigte Feld ein
+4. Der Key wird gespeichert und mit der Web-App synchronisiert
 
 ---
 
-## Resumen
+## Verfuegbare Modelle
 
-1. Crea cuenta en [openrouter.ai](https://openrouter.ai)
-2. Genera una API Key en [openrouter.ai/keys](https://openrouter.ai/keys)
-3. Agrega créditos ($5 duran meses de uso normal)
-4. Pega la key en LingText (web o extensión)
-5. Usa Gemini Flash Lite para uso diario, Gemini 3.0 Flash para casos difíciles
+| Modell               | Geschwindigkeit | Qualitaet | Kosten pro Uebersetzung |
+| -------------------- | --------------- | --------- | ----------------------- |
+| ⚡ Chrome AI         | Sofort          | Einfach   | Kostenlos               |
+| 🧠 Gemini Flash Lite | Schnell         | Gut       | ~$0.00001               |
+| 🚀 Gemini 3.0 Flash  | Mittel          | Exzellent | ~$0.0003                |
 
-¡Ahora estás listo para aprender inglés con traducciones inteligentes! 🚀
+### Welches solltest du waehlen?
+
+- **Chrome AI**: Wenn du nur eine schnelle und einfache Uebersetzung brauchst
+- **Gemini Flash Lite**: Fuer den taeglichen Gebrauch. Kontextbezogene
+  Uebersetzungen zu fast keinen Kosten
+- **Gemini 3.0 Flash**: Fuer schwierige Woerter, Redewendungen oder wenn dich
+  Gemini nicht ueberzeugt
+
+---
+
+## Empfohlene Strategie
+
+1. **Setze Gemini Flash Lite als Standard** - Es ist guenstig und reicht fuer
+   95 % aller Faelle aus
+
+2. **Wechsle nur bei Bedarf zu Gemini 3.0 Flash** - Wenn eine Uebersetzung
+   keinen Sinn ergibt oder du mehr Beispiele brauchst
+
+3. **Pruefe deinen Verbrauch monatlich** - Unter
+   [openrouter.ai/activity](https://openrouter.ai/activity) kannst du sehen,
+   wie viel du ausgegeben hast
+
+4. **Lade nach, wenn du nur noch 1 USD uebrig hast** - So gehst du nie ganz
+   ohne Guthaben aus
+
+---
+
+## Haeufige Fragen
+
+### Ist es sicher, meinen API-Key einzutragen?
+
+Ja. Dein Key wird lokal in deinem Browser gespeichert und geht nie ueber unsere
+Server. Die Aufrufe an OpenRouter erfolgen direkt von deinem Geraet aus.
+
+### Kann ich denselben Key in der Web-App und in der Erweiterung verwenden?
+
+Ja. Wenn du die Erweiterung mit der Web-App synchronisierst, wird der API-Key
+automatisch uebernommen.
+
+### Was passiert, wenn mein Guthaben aufgebraucht ist?
+
+LingText versucht dann, Chrome AI als Fallback zu verwenden. Wenn das nicht
+verfuegbar ist, bekommst du eine Fehlermeldung mit dem Hinweis, Guthaben
+nachzuladen.
+
+### Kann ich stattdessen andere Anbieter wie OpenAI direkt nutzen?
+
+Aktuell unterstuetzen wir nur OpenRouter. Es fungiert als Vermittler und gibt
+dir mit einem einzigen API-Key Zugriff auf mehrere Modelle.
+
+---
+
+## Zusammenfassung
+
+1. Erstelle ein Konto auf [openrouter.ai](https://openrouter.ai)
+2. Erzeuge einen API-Key unter [openrouter.ai/keys](https://openrouter.ai/keys)
+3. Lade Guthaben auf. 5 USD reichen bei normaler Nutzung mehrere Monate
+4. Fuege den Key in LingText ein, egal ob Web-App oder Erweiterung
+5. Nutze Gemini Flash Lite fuer den Alltag und Gemini 3.0 Flash fuer
+   schwierige Faelle
+
+Jetzt bist du bereit, mit intelligenten Uebersetzungen Englisch zu lernen! 🚀

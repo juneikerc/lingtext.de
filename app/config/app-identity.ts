@@ -11,3 +11,5 @@ export const FILE_HANDLES_DB_NAME = "lingtext-de-handles";
 export const TRANSLATOR_STORAGE_KEY = "lingtext-de.translator";
 export const SEED_STORAGE_KEY = "lingtext-de:seeded:v1";
 export const TEXT_WELCOME_MODAL_KEY = "lingtext-de_texts_welcome_modal_v1";
+export const VISITED_COLLECTION_TEXTS_KEY =
+  "lingtext-de_visited_collection_texts_v1";

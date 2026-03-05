@@ -1,15 +1,18 @@
-import { getText } from "~/services/db";
-import type { Route } from "./+types/text";
 import { Suspense, lazy, useEffect, useState } from "react";
-import type { AudioRef } from "~/types";
+
+import ReaderErrorBoundary from "~/components/ReaderErrorBoundary";
 import ReaderHeader from "~/components/reader/ReaderHeader";
 import ReaderSkeleton from "~/components/reader/ReaderSkeleton";
-import ReaderErrorBoundary from "~/components/ReaderErrorBoundary";
-import { allTexts } from "~/lib/content/runtime";
+import { TEXT_WELCOME_MODAL_KEY } from "~/config/app-identity";
 import { formatSlug } from "~/helpers/formatSlug";
+import { allTexts } from "~/lib/content/runtime";
+import { getText } from "~/services/db";
+import type { AudioRef } from "~/types";
 import { type TextCollection, type TextItem } from "~/types";
 import { formatAudioRef } from "~/utils/format-audio-ref";
-import { TEXT_WELCOME_MODAL_KEY } from "~/config/app-identity";
+import { markCollectionTextAsVisited } from "~/utils/visited-collection-texts";
+
+import type { Route } from "./+types/text";
 
 const Reader = lazy(() => import("~/components/Reader"));
 
@@ -75,6 +78,17 @@ export default function Text({ loaderData }: Route.ComponentProps) {
       setShowWelcomeModal(true);
     }
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !text?.id) return;
+
+    const isCollectionText =
+      new URLSearchParams(window.location.search).get("source") ===
+      "collection";
+    if (!isCollectionText) return;
+
+    markCollectionTextAsVisited(text.id);
+  }, [text?.id]);
 
   const handleCloseModal = () => {
     window.localStorage.setItem(TEXT_WELCOME_MODAL_KEY, "true");

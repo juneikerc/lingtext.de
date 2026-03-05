@@ -1,9 +1,13 @@
-import type { Route } from "../+types/level";
-import { getLevelTextByLevel, getTextsByLevel } from "~/lib/content/runtime";
-import { formatSlug } from "~/helpers/formatSlug";
-import { type TextCollection } from "~/types";
-import ProseContent from "~/components/ProseContent";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
+
+import ProseContent from "~/components/ProseContent";
+import { formatSlug } from "~/helpers/formatSlug";
+import { getLevelTextByLevel, getTextsByLevel } from "~/lib/content/runtime";
+import { type TextCollection } from "~/types";
+import { getVisitedCollectionTextIds } from "~/utils/visited-collection-texts";
+
+import type { Route } from "../+types/level";
 
 export function loader({ params }: Route.LoaderArgs) {
   const level = params.level;
@@ -36,6 +40,11 @@ export function meta({ loaderData }: Route.MetaArgs) {
 export default function Level({ loaderData }: Route.ComponentProps) {
   const texts = loaderData.texts;
   const levelText = loaderData.levelText;
+  const [visitedTextIds, setVisitedTextIds] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    setVisitedTextIds(getVisitedCollectionTextIds());
+  }, []);
 
   return (
     <>
@@ -107,19 +116,50 @@ export default function Level({ loaderData }: Route.ComponentProps) {
 
           <div className="grid gap-6">
             {texts.map((text: TextCollection) => {
+              const textId = formatSlug(text.title);
+              const isVisited = visitedTextIds.has(textId);
+
               return (
                 <Link
                   key={text.title}
-                  to={`/texts/${formatSlug(text.title)}?source=collection`}
-                  className="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700 transition duration-200 overflow-hidden block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-offset-gray-950"
+                  to={`/texts/${textId}?source=collection`}
+                  className={`group rounded-2xl border shadow-sm transition duration-200 overflow-hidden block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:focus-visible:ring-offset-gray-950 ${
+                    isVisited
+                      ? "bg-gray-100 border-gray-200 hover:border-gray-300 hover:shadow-md dark:bg-gray-900/70 dark:border-gray-800 dark:hover:border-gray-700"
+                      : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-md dark:bg-gray-900 dark:border-gray-800 dark:hover:border-gray-700"
+                  }`}
                   rel="nofollow"
                 >
                   <div className="p-8">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex items-center gap-3">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-200">
+                        <h3
+                          className={`text-xl font-bold transition-colors duration-200 ${
+                            isVisited
+                              ? "text-gray-800 group-hover:text-indigo-600 dark:text-gray-200 dark:group-hover:text-indigo-400"
+                              : "text-gray-900 group-hover:text-indigo-600 dark:text-gray-100 dark:group-hover:text-indigo-400"
+                          }`}
+                        >
                           {text.title}
                         </h3>
+                        {isVisited ? (
+                          <span className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 px-2.5 py-1 text-xs font-semibold text-gray-700 dark:text-gray-300">
+                            <svg
+                              className="w-3.5 h-3.5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                            Besucht
+                          </span>
+                        ) : null}
                         {text.sound ? (
                           <span className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-900/30 px-2.5 py-1 text-xs font-semibold text-indigo-700 dark:text-indigo-300">
                             <svg
@@ -145,8 +185,14 @@ export default function Level({ loaderData }: Route.ComponentProps) {
                           </span>
                         ) : null}
                       </div>
-                      <span className="inline-flex items-center justify-center gap-1.5 rounded-full bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors duration-200 group-hover:bg-indigo-700 dark:group-hover:bg-indigo-500">
-                        Leer ahora
+                      <span
+                        className={`inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold shadow-sm transition-colors duration-200 ${
+                          isVisited
+                            ? "bg-gray-200 text-gray-700 group-hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:group-hover:bg-gray-700"
+                            : "bg-indigo-600 text-white group-hover:bg-indigo-700 dark:group-hover:bg-indigo-500"
+                        }`}
+                      >
+                        Jetzt lesen
                         <svg
                           className="w-4 h-4"
                           fill="none"

@@ -1,82 +1,90 @@
 # LingText — Style Guide (UI)
 
-Este documento define reglas prácticas para mantener un estilo **sobrio y profesional** en toda la UI.
+This document defines practical rules for maintaining a **clean and
+professional** style across the entire UI.
 
-## Principios
+## Principles
 
-- **Neutros primero**: la mayoría de superficies deben ser grises/blancas (y sus equivalentes en dark mode).
-- **Un solo color de acento**: usa **indigo** para acciones principales, enlaces y énfasis.
-- **Gradientes: casi nunca**: evita `bg-gradient-*` y `bg-clip-text` con degradados en títulos/botones. Si necesitas “vida”, usa _blobs_ sutiles con opacidad baja.
-- **Movimiento discreto**: evita `hover:scale-*` y transforms llamativos. Prefiere cambios de color, borde y sombra suave.
-- **Accesibilidad por defecto**: estados `focus-visible`, contraste correcto y targets táctiles cómodos.
+- **Neutrals first**: most surfaces should be gray/white, with matching dark
+  mode equivalents.
+- **A single accent color**: use **indigo** for primary actions, links, and
+  emphasis.
+- **Gradients: almost never**: avoid `bg-gradient-*` and gradient-based
+  `bg-clip-text` in headings or buttons. If you need more visual interest, use
+  subtle low-opacity _blobs_.
+- **Subtle motion**: avoid `hover:scale-*` and flashy transforms. Prefer color,
+  border, and soft shadow changes.
+- **Accessibility by default**: use `focus-visible` states, proper contrast, and
+  comfortable touch targets.
 
 ---
 
-## Tokens recomendados (Tailwind)
+## Recommended tokens (Tailwind)
 
-### Fondo y secciones
+### Background and sections
 
-- **Página / sección base**
+- **Page / base section**
   - `bg-white dark:bg-gray-950`
-- **Sección alterna** (para separar bloques)
+- **Alternate section** (to separate blocks)
   - `bg-gray-50 dark:bg-gray-950`
-- **Separadores entre secciones**
+- **Section dividers**
   - `border-b border-gray-200 dark:border-gray-800`
 
-### Superficies (cards)
+### Surfaces (cards)
 
-- **Card estándar**
+- **Standard card**
   - `bg-white dark:bg-gray-900`
   - `border border-gray-200 dark:border-gray-800`
   - `shadow-sm`
 
-### Texto
+### Text
 
-- **Titulares**
+- **Headings**
   - `text-gray-900 dark:text-gray-100`
-- **Cuerpo**
+- **Body**
   - `text-gray-600 dark:text-gray-400`
-- **Texto secundario**
+- **Secondary text**
   - `text-gray-500 dark:text-gray-400`
 
-### Acento de marca (indigo)
+### Brand accent (indigo)
 
-- **Texto acento**
+- **Accent text**
   - `text-indigo-600 dark:text-indigo-400`
-- **Fondo acento (CTA principal)**
+- **Accent background (primary CTA)**
   - `bg-indigo-600 hover:bg-indigo-700 text-white`
-- **Focus ring (estándar)**
+- **Focus ring (standard)**
   - `focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950`
 
-### Colores semánticos (uso puntual)
+### Semantic colors (specific use only)
 
-- **Warning/acción sensible** (ej: Importar backup)
+- **Warning / sensitive action** (e.g. import backup)
   - `bg-amber-600 hover:bg-amber-700 text-white`
   - Ring: `focus-visible:ring-amber-500`
-- **Peligro** (eliminar, acciones destructivas)
-  - `bg-red-600 hover:bg-red-700 text-white` o botones neutros con `text-red-700` + `bg-red-50`
+- **Danger** (delete, destructive actions)
+  - `bg-red-600 hover:bg-red-700 text-white` or neutral buttons with
+    `text-red-700` + `bg-red-50`
 
 ---
 
-## Patrones de componentes (clases base)
+## Component patterns (base classes)
 
-### Wrapper de sección
+### Section wrapper
 
-Recomendación (sección normal):
+Recommendation (standard section):
 
 ```txt
 relative overflow-hidden py-16 sm:py-20 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800
 ```
 
-Recomendación (sección alterna):
+Recommendation (alternate section):
 
 ```txt
 relative overflow-hidden py-16 sm:py-20 bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800
 ```
 
-### Blobs decorativos (opcional)
+### Decorative blobs (optional)
 
-Solo como decoración sutil (opacidad baja):
+Only as subtle decoration with low opacity:
 
 ```txt
 absolute inset-0 pointer-events-none
@@ -87,11 +95,11 @@ bg-indigo-500/10 dark:bg-indigo-400/5 rounded-full blur-3xl
 bg-sky-500/10 dark:bg-sky-400/5 rounded-full blur-3xl
 ```
 
-Reglas:
+Rules:
 
-- No usar más de 2 blobs por sección.
-- Mantener opacidad baja (ej. `/10` o `/5` en dark).
-- Evitar degradados en blobs.
+- Do not use more than 2 blobs per section.
+- Keep opacity low (for example `/10` or `/5` in dark mode).
+- Avoid gradients in blobs.
 
 ### Card
 
@@ -108,15 +116,15 @@ bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300
 border border-gray-200 dark:border-gray-800 rounded-full
 ```
 
-Con dot:
+With dot:
 
 ```txt
 w-2 h-2 bg-indigo-500 rounded-full mr-2
 ```
 
-### Botones
+### Buttons
 
-**Primario (CTA)**
+**Primary (CTA)**
 
 ```txt
 inline-flex items-center justify-center
@@ -127,7 +135,7 @@ shadow-sm hover:shadow-md
 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950
 ```
 
-**Secundario (surface)**
+**Secondary (surface)**
 
 ```txt
 inline-flex items-center justify-center
@@ -139,10 +147,10 @@ hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200
 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950
 ```
 
-**Icon button (solo icono)**
+**Icon button (icon only)**
 
-- Debe llevar `title` y/o `aria-label`.
-- Usar superficie neutra:
+- Must include `title` and/or `aria-label`.
+- Use a neutral surface:
 
 ```txt
 p-3 rounded-xl bg-gray-50 dark:bg-gray-800
@@ -152,7 +160,7 @@ hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200
 
 ---
 
-## Formularios
+## Forms
 
 ### Input / textarea
 
@@ -166,57 +174,59 @@ focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent
 transition-all duration-200
 ```
 
-Notas:
+Notes:
 
-- Evitar fondos translúcidos tipo `bg-white/80` salvo overlays.
-- Evitar `backdrop-blur-*` salvo necesidad real (modales, glass muy puntual).
+- Avoid translucent backgrounds like `bg-white/80` except for overlays.
+- Avoid `backdrop-blur-*` unless there is a real need for it, such as modals or
+  very limited glass effects.
 
----
+## Shadows, borders, and transitions
 
-## Sombras, bordes y transiciones
-
-- **Sombras**
+- **Shadows**
   - Default: `shadow-sm`
   - Hover: `hover:shadow-md`
-  - Evitar: `shadow-xl`, `shadow-2xl` en cards normales.
+  - Avoid `shadow-xl` and `shadow-2xl` on normal cards.
 
-- **Transiciones**
-  - Preferir: `transition-colors duration-200`
-  - Si también cambia sombra/borde: `transition duration-200`
-  - Evitar: `transform hover:scale-*` en botones/cards (si se usa, que sea excepcional).
+- **Transitions**
+  - Prefer `transition-colors duration-200`
+  - If shadow/border also changes: `transition duration-200`
+  - Avoid `transform hover:scale-*` on buttons/cards. If used, it should be an
+    exception.
 
 ---
 
 ## Dark mode
 
-Reglas:
+Rules:
 
-- Siempre acompañar:
-  - Fondo: `bg-*` + `dark:bg-*`
-  - Texto: `text-*` + `dark:text-*`
-  - Bordes: `border-*` + `dark:border-*`
+- Always pair:
+  - Background: `bg-*` + `dark:bg-*`
+  - Text: `text-*` + `dark:text-*`
+  - Borders: `border-*` + `dark:border-*`
 
-Objetivo:
+Goal:
 
-- Mantener contraste suficiente (especialmente en textos secundarios).
-
----
-
-## Accesibilidad (checklist)
-
-- **Focus visible** en links/botones/inputs.
-- **Botones con solo icono**: `aria-label`.
-- **Targets**: botones con `py-3/py-4` cuando son acciones principales.
-- **No depender solo del color** para transmitir estado (usar texto, icono o etiqueta).
-- Considerar `motion-reduce:*` si se agregan animaciones.
+- Maintain enough contrast, especially for secondary text.
 
 ---
 
-## Checklist rápido antes de subir un cambio
+## Accessibility (checklist)
 
-- [ ] No introduje `bg-gradient-*` en superficies principales.
-- [ ] Usé `indigo` como acento principal (y semánticos solo cuando aplica).
-- [ ] Cards y secciones usan bordes/sombras suaves (no `shadow-xl`).
-- [ ] No agregué `hover:scale-*` salvo necesidad justificada.
-- [ ] Añadí `focus-visible` en elementos interactivos.
-- [ ] Verifiqué dark mode (fondo, texto y bordes).
+- **Visible focus** on links, buttons, and inputs.
+- **Icon-only buttons**: include `aria-label`.
+- **Targets**: use `py-3/py-4` on primary action buttons.
+- **Do not rely only on color** to communicate state; use text, icons, or
+  labels.
+- Consider `motion-reduce:*` if animations are added.
+
+---
+
+## Quick checklist before shipping a change
+
+- [ ] I did not introduce `bg-gradient-*` on primary surfaces.
+- [ ] I used `indigo` as the main accent color, and semantic colors only when
+      needed.
+- [ ] Cards and sections use soft borders/shadows, not `shadow-xl`.
+- [ ] I did not add `hover:scale-*` unless there was a justified need.
+- [ ] I added `focus-visible` to interactive elements.
+- [ ] I verified dark mode for background, text, and borders.
